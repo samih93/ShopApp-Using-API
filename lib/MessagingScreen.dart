@@ -55,811 +55,156 @@ class MessagingScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                  color: Colors.grey.shade400,
-                  borderRadius: BorderRadius.circular(5)),
-              child: Row(
-                children: [
-                  Icon(Icons.search),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  Text("Search"),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  Container(
-                    width: 60,
-                    child: Column(
-                      children: [
-                        Stack(
-                          alignment: Alignment.bottomRight,
-                          children: [
-                            CircleAvatar(
-                              radius: 30,
-                              backgroundImage: AssetImage("assets/person.png"),
-                            ),
-                            // CircleAvatar(
-                            //   radius: 8,
-                            //   backgroundColor: Colors.white,
-                            // ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  bottom: 4, end: 4),
-                              child: CircleAvatar(
-                                radius: 7,
-                                backgroundColor: Colors.green,
-                              ),
-                            )
-                          ],
-                        ),
-                        Text(
-                          "samih ahmad damaj",
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    width: 60,
-                    child: Column(
-                      children: [
-                        Stack(
-                          alignment: Alignment.bottomRight,
-                          children: [
-                            CircleAvatar(
-                              radius: 30,
-                              backgroundImage: AssetImage("assets/person.png"),
-                            ),
-                            // CircleAvatar(
-                            //   radius: 8,
-                            //   backgroundColor: Colors.white,
-                            // ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  bottom: 4, end: 4),
-                              child: CircleAvatar(
-                                radius: 7,
-                                backgroundColor: Colors.green,
-                              ),
-                            )
-                          ],
-                        ),
-                        Text(
-                          "samih ahmad damaj",
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    width: 60,
-                    child: Column(
-                      children: [
-                        Stack(
-                          alignment: Alignment.bottomRight,
-                          children: [
-                            CircleAvatar(
-                              radius: 30,
-                              backgroundImage: AssetImage("assets/person.png"),
-                            ),
-                            // CircleAvatar(
-                            //   radius: 8,
-                            //   backgroundColor: Colors.white,
-                            // ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  bottom: 4, end: 4),
-                              child: CircleAvatar(
-                                radius: 7,
-                                backgroundColor: Colors.green,
-                              ),
-                            )
-                          ],
-                        ),
-                        Text(
-                          "samih ahmad damaj",
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    width: 60,
-                    child: Column(
-                      children: [
-                        Stack(
-                          alignment: Alignment.bottomRight,
-                          children: [
-                            CircleAvatar(
-                              radius: 30,
-                              backgroundImage: AssetImage("assets/person.png"),
-                            ),
-                            // CircleAvatar(
-                            //   radius: 8,
-                            //   backgroundColor: Colors.white,
-                            // ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  bottom: 4, end: 4),
-                              child: CircleAvatar(
-                                radius: 7,
-                                backgroundColor: Colors.green,
-                              ),
-                            )
-                          ],
-                        ),
-                        Text(
-                          "samih ahmad damaj",
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    width: 60,
-                    child: Column(
-                      children: [
-                        Stack(
-                          alignment: Alignment.bottomRight,
-                          children: [
-                            CircleAvatar(
-                              radius: 30,
-                              backgroundImage: AssetImage("assets/person.png"),
-                            ),
-                            // CircleAvatar(
-                            //   radius: 8,
-                            //   backgroundColor: Colors.white,
-                            // ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  bottom: 4, end: 4),
-                              child: CircleAvatar(
-                                radius: 7,
-                                backgroundColor: Colors.green,
-                              ),
-                            )
-                          ],
-                        ),
-                        Text(
-                          "samih ahmad damaj",
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    width: 60,
-                    child: Column(
-                      children: [
-                        Stack(
-                          alignment: Alignment.bottomRight,
-                          children: [
-                            CircleAvatar(
-                              radius: 30,
-                              backgroundImage: AssetImage("assets/person.png"),
-                            ),
-                            // CircleAvatar(
-                            //   radius: 8,
-                            //   backgroundColor: Colors.white,
-                            // ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  bottom: 4, end: 4),
-                              child: CircleAvatar(
-                                radius: 7,
-                                backgroundColor: Colors.green,
-                              ),
-                            )
-                          ],
-                        ),
-                        Text(
-                          "samih ahmad damaj",
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    width: 60,
-                    child: Column(
-                      children: [
-                        Stack(
-                          alignment: Alignment.bottomRight,
-                          children: [
-                            CircleAvatar(
-                              radius: 30,
-                              backgroundImage: AssetImage("assets/person.png"),
-                            ),
-                            // CircleAvatar(
-                            //   radius: 8,
-                            //   backgroundColor: Colors.white,
-                            // ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  bottom: 4, end: 4),
-                              child: CircleAvatar(
-                                radius: 7,
-                                backgroundColor: Colors.green,
-                              ),
-                            )
-                          ],
-                        ),
-                        Text(
-                          "samih ahmad damaj",
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                    color: Colors.grey.shade300,
+                    borderRadius: BorderRadius.circular(8)),
+                child: Row(
                   children: [
-                    Row(
-                      children: [
-                        Stack(
-                          alignment: Alignment.bottomRight,
-                          children: [
-                            CircleAvatar(
-                              radius: 30,
-                              backgroundImage: AssetImage("assets/person.png"),
-                            ),
-                            // CircleAvatar(
-                            //   radius: 8,
-                            //   backgroundColor: Colors.white,
-                            // ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  bottom: 4, end: 4),
-                              child: CircleAvatar(
-                                radius: 7,
-                                backgroundColor: Colors.green,
-                              ),
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "samih ahmad damaj ",
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      "chu wenak ya zalameee chu wenak ya zalameee chu wenak ya zalameee chu wenak ya zalameee",
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                      ),
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
-                                    child: CircleAvatar(
-                                      radius: 7,
-                                      backgroundColor: Colors.blue,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  Text("11:00 AM",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                    Icon(Icons.search),
+                    SizedBox(
+                      width: 15,
                     ),
-                    SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Stack(
-                          alignment: Alignment.bottomRight,
-                          children: [
-                            CircleAvatar(
-                              radius: 30,
-                              backgroundImage: AssetImage("assets/person.png"),
-                            ),
-                            // CircleAvatar(
-                            //   radius: 8,
-                            //   backgroundColor: Colors.white,
-                            // ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  bottom: 4, end: 4),
-                              child: CircleAvatar(
-                                radius: 7,
-                                backgroundColor: Colors.green,
-                              ),
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "samih ahmad damaj ",
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      "chu wenak ya zalameee chu wenak ya zalameee chu wenak ya zalameee chu wenak ya zalameee",
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                      ),
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
-                                    child: CircleAvatar(
-                                      radius: 7,
-                                      backgroundColor: Colors.blue,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  Text("11:00 AM",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Stack(
-                          alignment: Alignment.bottomRight,
-                          children: [
-                            CircleAvatar(
-                              radius: 30,
-                              backgroundImage: AssetImage("assets/person.png"),
-                            ),
-                            // CircleAvatar(
-                            //   radius: 8,
-                            //   backgroundColor: Colors.white,
-                            // ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  bottom: 4, end: 4),
-                              child: CircleAvatar(
-                                radius: 7,
-                                backgroundColor: Colors.green,
-                              ),
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "samih ahmad damaj ",
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      "chu wenak ya zalameee chu wenak ya zalameee chu wenak ya zalameee chu wenak ya zalameee",
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                      ),
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
-                                    child: CircleAvatar(
-                                      radius: 7,
-                                      backgroundColor: Colors.blue,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  Text("11:00 AM",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Stack(
-                          alignment: Alignment.bottomRight,
-                          children: [
-                            CircleAvatar(
-                              radius: 30,
-                              backgroundImage: AssetImage("assets/person.png"),
-                            ),
-                            // CircleAvatar(
-                            //   radius: 8,
-                            //   backgroundColor: Colors.white,
-                            // ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  bottom: 4, end: 4),
-                              child: CircleAvatar(
-                                radius: 7,
-                                backgroundColor: Colors.green,
-                              ),
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "samih ahmad damaj ",
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      "chu wenak ya zalameee chu wenak ya zalameee chu wenak ya zalameee chu wenak ya zalameee",
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                      ),
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
-                                    child: CircleAvatar(
-                                      radius: 7,
-                                      backgroundColor: Colors.blue,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  Text("11:00 AM",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Stack(
-                          alignment: Alignment.bottomRight,
-                          children: [
-                            CircleAvatar(
-                              radius: 30,
-                              backgroundImage: AssetImage("assets/person.png"),
-                            ),
-                            // CircleAvatar(
-                            //   radius: 8,
-                            //   backgroundColor: Colors.white,
-                            // ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  bottom: 4, end: 4),
-                              child: CircleAvatar(
-                                radius: 7,
-                                backgroundColor: Colors.green,
-                              ),
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "samih ahmad damaj ",
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      "chu wenak ya zalameee chu wenak ya zalameee chu wenak ya zalameee chu wenak ya zalameee",
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                      ),
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
-                                    child: CircleAvatar(
-                                      radius: 7,
-                                      backgroundColor: Colors.blue,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  Text("11:00 AM",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Stack(
-                          alignment: Alignment.bottomRight,
-                          children: [
-                            CircleAvatar(
-                              radius: 30,
-                              backgroundImage: AssetImage("assets/person.png"),
-                            ),
-                            // CircleAvatar(
-                            //   radius: 8,
-                            //   backgroundColor: Colors.white,
-                            // ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  bottom: 4, end: 4),
-                              child: CircleAvatar(
-                                radius: 7,
-                                backgroundColor: Colors.green,
-                              ),
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "samih ahmad damaj ",
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      "chu wenak ya zalameee chu wenak ya zalameee chu wenak ya zalameee chu wenak ya zalameee",
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                      ),
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
-                                    child: CircleAvatar(
-                                      radius: 7,
-                                      backgroundColor: Colors.blue,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  Text("11:00 AM",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Stack(
-                          alignment: Alignment.bottomRight,
-                          children: [
-                            CircleAvatar(
-                              radius: 30,
-                              backgroundImage: AssetImage("assets/person.png"),
-                            ),
-                            // CircleAvatar(
-                            //   radius: 8,
-                            //   backgroundColor: Colors.white,
-                            // ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  bottom: 4, end: 4),
-                              child: CircleAvatar(
-                                radius: 7,
-                                backgroundColor: Colors.green,
-                              ),
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "samih ahmad damaj ",
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      "chu wenak ya zalameee chu wenak ya zalameee chu wenak ya zalameee chu wenak ya zalameee",
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                      ),
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
-                                    child: CircleAvatar(
-                                      radius: 7,
-                                      backgroundColor: Colors.blue,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  Text("11:00 AM",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10),
+                    Text("Search"),
                   ],
                 ),
               ),
-            ),
-          ],
+              SizedBox(
+                height: 10,
+              ),
+              // list view of story
+              Container(
+                height: 110,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 8,
+                  itemBuilder: (context, index) => buildstoryItem(),
+                  separatorBuilder: (BuildContext context, int index) =>
+                      SizedBox(
+                    width: 20,
+                  ),
+                ),
+              ),
+              SizedBox(),
+              ListView.separated(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: 15,
+                  itemBuilder: (context, index) => buildChatItem(),
+                  separatorBuilder: (context, index) => SizedBox(
+                        height: 15,
+                      )),
+            ],
+          ),
         ),
       ),
     );
   }
+
+  Widget buildChatItem() => Row(
+        children: [
+          Stack(
+            alignment: Alignment.bottomRight,
+            children: [
+              CircleAvatar(
+                radius: 30,
+                backgroundImage: AssetImage("assets/person.png"),
+              ),
+              // CircleAvatar(
+              //   radius: 8,
+              //   backgroundColor: Colors.white,
+              // ),
+              Padding(
+                padding: const EdgeInsetsDirectional.only(bottom: 4, end: 4),
+                child: CircleAvatar(
+                  radius: 7,
+                  backgroundColor: Colors.green,
+                ),
+              )
+            ],
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "samih ahmad damaj ",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "chu wenak ya zalameee chu wenak ya zalameee chu wenak ya zalameee chu wenak ya zalameee",
+                        style: TextStyle(
+                          color: Colors.grey.shade600,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: CircleAvatar(
+                        radius: 7,
+                        backgroundColor: Colors.blue,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Text("11:00 AM",
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      );
+
+  Widget buildstoryItem() => Container(
+        width: 60,
+        child: Column(
+          children: [
+            Stack(
+              alignment: Alignment.bottomRight,
+              children: [
+                CircleAvatar(
+                  radius: 30,
+                  backgroundImage: AssetImage("assets/person.png"),
+                ),
+                // CircleAvatar(
+                //   radius: 8,
+                //   backgroundColor: Colors.white,
+                // ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.only(bottom: 4, end: 4),
+                  child: CircleAvatar(
+                    radius: 7,
+                    backgroundColor: Colors.green,
+                  ),
+                )
+              ],
+            ),
+            Text(
+              "samih ahmad damaj",
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
+      );
 }
