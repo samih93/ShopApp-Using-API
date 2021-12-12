@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:udemy_flutter/MessagingScreen.dart';
+import 'package:udemy_flutter/modules/login/LoginScreen.dart';
+import 'package:udemy_flutter/modules/messanger/MessagingScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
     // TODO: implement build
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MessagingScreen(),
+      home: LoginScreen(),
     );
   }
 }
