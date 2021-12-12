@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:udemy_flutter/Controller/BMIController.dart';
-import 'package:udemy_flutter/constant.dart';
+import 'package:udemy_flutter/shared/componets/constants.dart';
 
 class BMICalculator extends StatelessWidget {
   @override
