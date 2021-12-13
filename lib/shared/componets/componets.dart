@@ -31,6 +31,7 @@ Widget defaultTextFormField({
   required TextEditingController controller,
   required TextInputType inputtype,
   Function(String?)? onfieldsubmit,
+  VoidCallback? ontap,
   String? Function(String?)? onvalidate,
   String? text,
   Widget? prefixIcon,
@@ -41,6 +42,7 @@ Widget defaultTextFormField({
         controller: controller,
         keyboardType: inputtype,
         onFieldSubmitted: onfieldsubmit,
+        onTap: ontap,
         obscureText: obscure,
         // onChanged: (String value) {
         //   print(value);
