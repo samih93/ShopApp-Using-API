@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:udemy_flutter/modules/bmi/BMIController.dart';
+import 'package:udemy_flutter/shared/componets/componets.dart';
 import 'package:udemy_flutter/shared/componets/constants.dart';
 
 class BMICalculator extends StatelessWidget {
@@ -280,23 +281,14 @@ class BMICalculator extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                width: double.infinity,
-                height: 40,
-                child: MaterialButton(
-                  onPressed: () {
+              defaultButton(
+                  text: "Calculate",
+                  background: Colors.red,
+                  height: 55,
+                  onpress: () {
                     _onAlertWithCustomImagePressed(
                         context, bMIController.result);
-
-                    print("w :" + bMIController.weight.round().toString());
-                    print("H:" + bMIController.height.toString());
-                    print("a:" + bMIController.age.toString());
-                    print(bMIController.result.round());
-                  },
-                  color: Colors.red,
-                  child: Text("Calclate"),
-                ),
-              ),
+                  }),
             ],
           )),
     );

@@ -7,10 +7,12 @@ Widget defaultButton(
         VoidCallback? onpress,
         required String text,
         double radius = 0,
+        double height = 40,
         bool? isUppercase}) =>
     Container(
       width: width,
       child: MaterialButton(
+        height: height,
         onPressed: onpress,
         child: Text(
           (isUppercase != null && isUppercase) ? text.toUpperCase() : text,
@@ -33,13 +35,13 @@ Widget defaultTextFormField({
   String? text,
   Widget? prefixIcon,
   Widget? suffixIcon,
-  bool isPassword = false,
+  bool obscure = false,
 }) =>
     TextFormField(
         controller: controller,
         keyboardType: inputtype,
         onFieldSubmitted: onfieldsubmit,
-        obscureText: isPassword,
+        obscureText: obscure,
         // onChanged: (String value) {
         //   print(value);
         // },

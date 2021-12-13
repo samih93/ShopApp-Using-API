@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:udemy_flutter/shared/componets/componets.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   var emailController = TextEditingController();
+
   var passwordController = TextEditingController();
+
+  bool _showpassword = true;
 
   var _formkey = GlobalKey<FormState>();
 
@@ -49,8 +58,18 @@ class LoginScreen extends StatelessWidget {
                       controller: passwordController,
                       text: 'Password',
                       prefixIcon: Icon(Icons.lock),
-                      isPassword: true,
-                      suffixIcon: Icon(Icons.remove_red_eye),
+                      obscure: _showpassword,
+                      suffixIcon: IconButton(
+                        icon: _showpassword
+                            ? Icon(Icons.visibility)
+                            : Icon(Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            print(_showpassword);
+                            _showpassword = !_showpassword;
+                          });
+                        },
+                      ),
                       onvalidate: (value) {
                         if (value!.isEmpty) {
                           return 'Password must be not empty';
