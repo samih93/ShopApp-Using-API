@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:udemy_flutter/layout/home_layout.dart';
 import 'package:udemy_flutter/modules/login/LoginScreen.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       // initialBinding: Binding(),
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: HomeLayout(),
     );
   }
 }
