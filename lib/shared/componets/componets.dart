@@ -54,3 +54,36 @@ Widget defaultTextFormField({
           border: OutlineInputBorder(),
         ),
         validator: onvalidate);
+
+Widget buildTaskItem(Map map) => Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 35,
+            child: Text(
+              "${map['time']}",
+            ),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "${map['title']}",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "${map['date']}",
+                style: TextStyle(fontSize: 15, color: Colors.grey),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
