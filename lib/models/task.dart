@@ -1,6 +1,5 @@
 class Task {
-  late int id;
-  late String title, date, time, status;
+  late String id, title, date, time, status;
   Task(
       {required this.title,
       required this.date,
@@ -19,10 +18,11 @@ class Task {
 
   toJson() {
     return {
-      // 'id': id,
+      'id': id,
       'title': title,
       'date': date,
       'time': time,
+      'status':status,
     };
   }
 }

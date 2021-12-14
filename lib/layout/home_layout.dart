@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/layout/home_layoutcontroller.dart';
+import 'package:udemy_flutter/models/task.dart';
 import 'package:udemy_flutter/modules/archive_tasks/archive_task.dart';
 import 'package:udemy_flutter/modules/new_tasks/new_task_screen.dart';
-import 'package:udemy_flutter/modules/todo_tasks/todo_task.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:udemy_flutter/shared/componets/componets.dart';
 import 'package:intl/intl.dart';
@@ -53,10 +53,16 @@ class HomeLayout extends StatelessWidget {
             if (homecontroller.isOpenBottomSheet.value) {
               if (formkey.currentState!.validate()) {
                 homecontroller
-                    .insertTask(
-                        title: titlecontroller.text,
-                        date: datecontroller.text,
-                        time: timecontroller.text)
+                    .insertTaskByModel(
+                        model: new Task(
+                            title: titlecontroller.text,
+                            date: datecontroller.text,
+                            time: timecontroller.text,
+                            status: "new"))
+                    // .insertTask(
+                    //     title: titlecontroller.text,
+                    //     date: datecontroller.text,
+                    //     time: timecontroller.text)
                     .then((value) {
                   Navigator.pop(context);
                   homecontroller.isOpenBottomSheet.value = false;
