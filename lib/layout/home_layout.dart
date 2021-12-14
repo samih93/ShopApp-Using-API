@@ -27,7 +27,9 @@ class HomeLayout extends StatelessWidget {
         appBar: AppBar(
           title: Text(homecontroller.appbar_title[homecontroller.currentIndex]),
         ),
-        body: homecontroller.screens[homecontroller.currentIndex],
+        body: homecontroller.isloading
+            ? Center(child: CircularProgressIndicator())
+            : homecontroller.screens[homecontroller.currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: homecontroller.currentIndex,
@@ -51,7 +53,7 @@ class HomeLayout extends StatelessWidget {
             if (homecontroller.isOpenBottomSheet.value) {
               if (formkey.currentState!.validate()) {
                 homecontroller
-                    .insertToDatabase(
+                    .insertTask(
                         title: titlecontroller.text,
                         date: datecontroller.text,
                         time: timecontroller.text)
