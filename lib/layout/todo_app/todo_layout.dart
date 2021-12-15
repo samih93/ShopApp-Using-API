@@ -7,7 +7,7 @@ import 'package:udemy_flutter/modules/new_tasks/new_task_screen.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:udemy_flutter/shared/componets/componets.dart';
 import 'package:intl/intl.dart';
-import 'package:udemy_flutter/shared/constants.dart';
+import 'package:udemy_flutter/shared/componets/constants.dart';
 
 class TodoLayout extends StatelessWidget {
   @override

@@ -7,11 +7,15 @@ import 'package:udemy_flutter/layout/todo_app/todo_layoutcontroller.dart';
 import 'package:udemy_flutter/modules/login/LoginScreen.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/shared/helper/binding.dart';
+import 'package:udemy_flutter/shared/network/local/TodoDbHelper.dart';
+import 'package:udemy_flutter/shared/network/remote/diohelper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Get.put(TodoLayoutController());
   Get.put(NewsLayoutController());
+  Get.put(TodoLayoutController());
+  DioHelper.Init();
+
   runApp(MyApp());
 }
 
@@ -32,6 +36,8 @@ class MyApp extends StatelessWidget {
               statusBarColor: Colors.white,
               statusBarIconBrightness: Brightness.dark,
             )),
+        floatingActionButtonTheme:
+            FloatingActionButtonThemeData(backgroundColor: Colors.deepOrange),
       ),
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.light,

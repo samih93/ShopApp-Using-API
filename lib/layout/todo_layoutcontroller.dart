@@ -10,7 +10,7 @@ import 'package:udemy_flutter/shared/componets/constants.dart';
 import 'package:udemy_flutter/shared/network/local/TodoDbHelper.dart';
 import 'package:uuid/uuid.dart';
 
-class TodoLayoutController extends GetxController {
+class HomeLayoutController extends GetxController {
   List<Map> _newtaskMap = [];
   List<Map> get newtaskMap => _newtaskMap;
   List<Map> _donetaskMap = [];
@@ -21,16 +21,6 @@ class TodoLayoutController extends GetxController {
   int get currentIndex => _currentIndex;
 
   final screens = [NewTaskScreen(), DoneTaskScreen(), ArchiveTaskScreen()];
-  List<BottomNavigationBarItem> bottomItems = [
-    BottomNavigationBarItem(icon: Icon(Icons.menu), label: "Task"),
-    BottomNavigationBarItem(
-        icon: Icon(Icons.check_circle_outline), label: "Done"),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.archive_outlined),
-      label: "Archive",
-    ),
-  ];
-
   final appbar_title = ["New Tasks", "Todo Tasks", "Archive Tasks"];
   RxBool isOpenBottomSheet = false.obs;
   Icon _favIcon = Icon(Icons.edit);
@@ -85,9 +75,9 @@ class TodoLayoutController extends GetxController {
               return a['date'].compareTo(b['date']);
             })
           : [];
-      // print("N  " + _newtaskMap.length.toString());
-      // print("D  " + _donetaskMap.length.toString());
-      // print("A  " + _archivetaskMap.length.toString());
+      print("N  " + _newtaskMap.length.toString());
+      print("D  " + _donetaskMap.length.toString());
+      print("A  " + _archivetaskMap.length.toString());
     });
 
     _isloading = false;

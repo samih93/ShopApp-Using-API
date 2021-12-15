@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/layout/todo_app/todo_layoutcontroller.dart';
 import 'package:udemy_flutter/shared/componets/componets.dart';
-import 'package:udemy_flutter/shared/constants.dart';
+import 'package:udemy_flutter/shared/componets/constants.dart';
 
 class NewTaskScreen extends StatelessWidget {
   @override
