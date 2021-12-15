@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:udemy_flutter/layout/home_layoutcontroller.dart';
+import 'package:udemy_flutter/layout/todo_app/todo_layoutcontroller.dart';
 import 'package:udemy_flutter/models/task.dart';
 import 'package:udemy_flutter/modules/archive_tasks/archive_task.dart';
 import 'package:udemy_flutter/modules/new_tasks/new_task_screen.dart';
@@ -9,7 +9,7 @@ import 'package:udemy_flutter/shared/componets/componets.dart';
 import 'package:intl/intl.dart';
 import 'package:udemy_flutter/shared/constants.dart';
 
-class HomeLayout extends StatelessWidget {
+class TodoLayout extends StatelessWidget {
   @override
   var scaffoldkey = GlobalKey<ScaffoldState>();
   var formkey = GlobalKey<FormState>();
@@ -20,39 +20,31 @@ class HomeLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeLayoutController>(
-      init: HomeLayoutController(),
-      builder: (homecontroller) => Scaffold(
+    return GetBuilder<TodoLayoutController>(
+      init: TodoLayoutController(),
+      builder: (todocontroller) => Scaffold(
         key: scaffoldkey,
         appBar: AppBar(
-          title: Text(homecontroller.appbar_title[homecontroller.currentIndex]),
+          title: Text(todocontroller.appbar_title[todocontroller.currentIndex]),
         ),
-        body: homecontroller.isloading
+        body: todocontroller.isloading
             ? Center(child: CircularProgressIndicator())
-            : homecontroller.screens[homecontroller.currentIndex],
+            : todocontroller.screens[todocontroller.currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          currentIndex: homecontroller.currentIndex,
+          currentIndex: todocontroller.currentIndex,
           onTap: (index) {
-            homecontroller.onchangeIndex(index);
+            todocontroller.onchangeIndex(index);
           },
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.menu), label: "Task"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.check_circle_outline), label: "Done"),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.archive_outlined),
-              label: "Archive",
-            ),
-          ],
+          items: todocontroller.bottomItems,
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.blue,
-          child: homecontroller.favIcon,
+          child: todocontroller.favIcon,
           onPressed: () {
-            if (homecontroller.isOpenBottomSheet.value) {
+            if (todocontroller.isOpenBottomSheet.value) {
               if (formkey.currentState!.validate()) {
-                homecontroller
+                todocontroller
                     .insertTaskByModel(
                         model: new Task(
                             title: titlecontroller.text,
@@ -65,8 +57,8 @@ class HomeLayout extends StatelessWidget {
                     //     time: timecontroller.text)
                     .then((value) {
                   Navigator.pop(context);
-                  homecontroller.isOpenBottomSheet.value = false;
-                  homecontroller.onchangefavIcon(Icon(Icons.edit));
+                  todocontroller.isOpenBottomSheet.value = false;
+                  todocontroller.onchangefavIcon(Icon(Icons.edit));
                 });
               }
             } else {
@@ -153,12 +145,12 @@ class HomeLayout extends StatelessWidget {
                   .closed
                   .then((value) {
                 // Navigator.pop(context); no need cs i close it by hand
-                homecontroller.isOpenBottomSheet.value = false;
-                homecontroller.onchangefavIcon(Icon(Icons.edit));
+                todocontroller.isOpenBottomSheet.value = false;
+                todocontroller.onchangefavIcon(Icon(Icons.edit));
               });
 
-              homecontroller.isOpenBottomSheet.value = true;
-              homecontroller.onchangefavIcon(Icon(Icons.add));
+              todocontroller.isOpenBottomSheet.value = true;
+              todocontroller.onchangefavIcon(Icon(Icons.add));
             }
           },
         ),

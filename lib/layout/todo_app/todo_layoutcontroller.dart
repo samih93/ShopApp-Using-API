@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:udemy_flutter/models/task.dart';
 import 'package:udemy_flutter/modules/archive_tasks/archive_task.dart';
@@ -9,7 +10,7 @@ import 'package:udemy_flutter/shared/constants.dart';
 import 'package:udemy_flutter/shared/network/local/TodoDbHelper.dart';
 import 'package:uuid/uuid.dart';
 
-class HomeLayoutController extends GetxController {
+class TodoLayoutController extends GetxController {
   List<Map> _newtaskMap = [];
   List<Map> get newtaskMap => _newtaskMap;
   List<Map> _donetaskMap = [];
@@ -20,6 +21,16 @@ class HomeLayoutController extends GetxController {
   int get currentIndex => _currentIndex;
 
   final screens = [NewTaskScreen(), DoneTaskScreen(), ArchiveTaskScreen()];
+  List<BottomNavigationBarItem> bottomItems = [
+    BottomNavigationBarItem(icon: Icon(Icons.menu), label: "Task"),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.check_circle_outline), label: "Done"),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.archive_outlined),
+      label: "Archive",
+    ),
+  ];
+
   final appbar_title = ["New Tasks", "Todo Tasks", "Archive Tasks"];
   RxBool isOpenBottomSheet = false.obs;
   Icon _favIcon = Icon(Icons.edit);
@@ -29,6 +40,8 @@ class HomeLayoutController extends GetxController {
 
   bool _isloading = true;
   bool get isloading => _isloading;
+
+  DateFormat format = DateFormat("dd-MM-yyyy");
 
   @override
   void onInit() async {
@@ -67,7 +80,16 @@ class HomeLayoutController extends GetxController {
           _donetaskMap.add(element);
         else if (element['status'] == "archive") _archivetaskMap.add(element);
       });
+      _newtaskMap.length != 0
+          ? _newtaskMap.sort((a, b) {
+              return a['date'].compareTo(b['date']);
+            })
+          : [];
+      // print("N  " + _newtaskMap.length.toString());
+      // print("D  " + _donetaskMap.length.toString());
+      // print("A  " + _archivetaskMap.length.toString());
     });
+
     _isloading = false;
     update();
   }

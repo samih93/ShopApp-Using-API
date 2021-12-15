@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:udemy_flutter/layout/home_layoutcontroller.dart';
+import 'package:udemy_flutter/layout/todo_app/todo_layoutcontroller.dart';
 
 Widget defaultButton(
         {double width = double.infinity,
@@ -57,27 +57,29 @@ Widget defaultTextFormField({
         ),
         validator: onvalidate);
 
-Widget buildTaskItem(Map map) => GetBuilder<HomeLayoutController>(
-      init: Get.find<HomeLayoutController>(),
-      builder: (homecontroller) => Dismissible(
+Widget buildTaskItem(Map map) => GetBuilder<TodoLayoutController>(
+      init: Get.find<TodoLayoutController>(),
+      builder: (todocontroller) => Dismissible(
         key: Key(map['id']),
         onDismissed: (direction) {
-          homecontroller.deleteTask(taskId: map['id'].toString());
+          todocontroller.deleteTask(taskId: map['id'].toString());
         },
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(15.0),
           child: Row(
             children: [
               CircleAvatar(
                 radius: 35,
                 child: Text(
                   "${map['time']}",
+                  style: TextStyle(fontSize: 15),
                 ),
               ),
               SizedBox(
                 width: 10,
               ),
               Expanded(
+                flex: 3,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
@@ -90,25 +92,41 @@ Widget buildTaskItem(Map map) => GetBuilder<HomeLayoutController>(
                     SizedBox(
                       height: 10,
                     ),
-                    Text(
-                      "${map['date']}",
-                      style: TextStyle(fontSize: 15, color: Colors.grey),
+                    Row(
+                      children: [
+                        Text(
+                          "${map['date']}",
+                          style: TextStyle(fontSize: 15, color: Colors.grey),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
-              IconButton(
-                  onPressed: () {
-                    homecontroller.updatestatusTask(
-                        taskId: map["id"].toString(), status: "done");
-                  },
-                  icon: Icon(Icons.check_box, color: Colors.green)),
-              IconButton(
-                  onPressed: () {
-                    homecontroller.updatestatusTask(
-                        taskId: map["id"].toString(), status: "archive");
-                  },
-                  icon: Icon(Icons.archive, color: Colors.black45)),
+              Expanded(
+                flex: 2,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          todocontroller.updatestatusTask(
+                              taskId: map["id"].toString(), status: "done");
+                        },
+                        icon: Icon(Icons.check_box, color: Colors.green)),
+                    IconButton(
+                        onPressed: () {
+                          todocontroller.updatestatusTask(
+                              taskId: map["id"].toString(), status: "archive");
+                        },
+                        icon: Icon(Icons.archive, color: Colors.black45)),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -116,27 +134,28 @@ Widget buildTaskItem(Map map) => GetBuilder<HomeLayoutController>(
     );
 
 // circular indicator then show list of tasks or archived taks or finished task
-Widget tasksBuilder({required List<Map> tasks}) => tasks.length == 0
-    ? Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.menu, size: 60, color: Colors.grey),
-            SizedBox(
-              height: 10,
+Widget tasksBuilder({required List<Map> tasks, required String message}) =>
+    tasks.length == 0
+        ? Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.menu, size: 60, color: Colors.grey),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "$message",
+                  style: TextStyle(fontSize: 23, color: Colors.grey),
+                ),
+              ],
             ),
-            Text(
-              "No Tasks Archived",
-              style: TextStyle(fontSize: 23, color: Colors.grey),
-            ),
-          ],
-        ),
-      )
-    : ListView.separated(
-        itemBuilder: (context, index) => buildTaskItem(tasks[index]),
-        separatorBuilder: (context, index) => Container(
-              color: Colors.grey,
-              width: double.infinity,
-              height: 1,
-            ),
-        itemCount: tasks.length);
+          )
+        : ListView.separated(
+            itemBuilder: (context, index) => buildTaskItem(tasks[index]),
+            separatorBuilder: (context, index) => Container(
+                  color: Colors.grey,
+                  width: double.infinity,
+                  height: 1,
+                ),
+            itemCount: tasks.length);
