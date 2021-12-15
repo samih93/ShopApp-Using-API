@@ -1,2 +1,3 @@
 //GET https://example.com/comments/1 HTTP/1.1
-GET https://newsapi.org/v2/top-headlines?country=eg&category=business&apiKey=12290ceb1bf34821a6a71f937bb2d815
+//GET https://newsapi.org/v2/top-headlines?country=eg&category=business&apiKey=12290ceb1bf34821a6a71f937bb2d815
+GET https://jsonplaceholder.typicode.com/albums/1

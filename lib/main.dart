@@ -15,7 +15,6 @@ void main() async {
   Get.put(NewsLayoutController());
   Get.put(TodoLayoutController());
   DioHelper.Init();
-
   runApp(MyApp());
 }
 

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/layout/news_app/news_layoutController.dart';
 import 'package:udemy_flutter/shared/network/remote/diohelper.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
 
 class NewsLayout extends StatelessWidget {
   @override
@@ -28,22 +30,17 @@ class NewsLayout extends StatelessWidget {
             items: newsLayoutController.bottomItems),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            var dio = Dio();
-            final response = await dio.get('https://google.com');
-            print(response.data);
-            // DioHelper.getData(
-            //   url: 'v2/top-headlines',
-            //   query: {
-            //     'country': 'eg',
-            //     'category': 'business',
-            //     'apiKey': '12290ceb1bf34821a6a71f937bb2d815'
-            //   }
-            // ).then((value) {
-            //   // _business = value.data;
-            //   print("from new controller" + value.data.toString());
-            // }).catchError((error) {
-            //   print(error.toString());
-            // });
+            final response = await http.get(
+                Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
+            if (response.statusCode == 200) {
+              // If the server did return a 200 OK response,
+              // then parse the JSON.
+              print(response.body.toString());
+            } else {
+              // If the server did not return a 200 OK response,
+              // then throw an exception.
+              throw Exception('Failed to load album');
+            }
           },
           child: Icon(Icons.add),
         ),
