@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/layout/todo_app/todo_layoutcontroller.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 Widget defaultButton(
         {double width = double.infinity,
@@ -165,47 +166,70 @@ Widget myDivider() => Container(
       width: double.infinity,
       height: 1,
     );
-Widget buildArticleItem(article) => Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Row(
-        children: [
-          Container(
-            height: 120,
-            width: 120,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                    image: NetworkImage(article['urlToImage'].toString()),
-                    fit: BoxFit.cover)),
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          Expanded(
-            child: Container(
+Widget buildArticleItem(article) => Directionality(
+      textDirection: TextDirection.rtl,
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Row(
+          children: [
+            Container(
               height: 120,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Text(
-                      article['title'],
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+              width: 120,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+
+                // image: DecorationImage(
+
+                //     image: NetworkImage(article['urlToImage'].toString()),
+
+                //     fit: BoxFit.cover)),
+              ),
+              child: CachedNetworkImage(
+                imageUrl: article['urlToImage'].toString(),
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                        colorFilter:
+                            ColorFilter.mode(Colors.red, BlendMode.colorBurn)),
                   ),
-                  Text(
-                    article['publishedAt'],
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ],
+                ),
+                placeholder: (context, url) =>
+                    Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) =>
+                    Image.asset("assets/notfound.png"),
               ),
             ),
-          ),
-        ],
+            SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              child: Container(
+                height: 120,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        article['title'],
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    Text(
+                      article['publishedAt'],
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );

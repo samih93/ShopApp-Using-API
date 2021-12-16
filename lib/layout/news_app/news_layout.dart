@@ -28,6 +28,9 @@ class NewsLayout extends StatelessWidget {
               if (index == 1) {
                 newsLayoutController.getAllSports();
               }
+              if (index == 2) {
+                newsLayoutController.getAllScience();
+              }
             },
             items: newsLayoutController.bottomItems),
         floatingActionButton: FloatingActionButton(

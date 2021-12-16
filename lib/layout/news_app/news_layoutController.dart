@@ -16,12 +16,17 @@ class NewsLayoutController extends GetxController {
 
   List<dynamic> _sports = [];
   List<dynamic> get sports => _sports;
+  List<dynamic> _science = [];
+  List<dynamic> get science => _science;
 
   bool _isloadingBusiness = true;
   bool get isloadingBusiness => _isloadingBusiness;
 
   bool _isloadingSports = true;
   bool get isloadingSports => _isloadingSports;
+
+  bool _isloadingScience = true;
+  bool get isloadingScience => _isloadingScience;
 
   List<BottomNavigationBarItem> bottomItems = [
     BottomNavigationBarItem(icon: Icon(Icons.business), label: "Business"),
@@ -52,7 +57,7 @@ class NewsLayoutController extends GetxController {
     update();
   }
 
-  Future getAllBusiness() async {
+  getAllBusiness() async {
     _isloadingBusiness = true;
     print("first" + _isloadingBusiness.toString());
     DioHelper.getData(url: 'v2/top-headlines', query: {
@@ -72,10 +77,10 @@ class NewsLayoutController extends GetxController {
     });
   }
 
-  Future getAllSports() async {
+  getAllSports() async {
     _isloadingSports = true;
     print("first" + _isloadingSports.toString());
-    if (_sports.length > 0) {
+    if (_sports.length == 0) {
       DioHelper.getData(url: 'v2/top-headlines', query: {
         'country': 'eg',
         'category': 'sports',
@@ -91,6 +96,30 @@ class NewsLayoutController extends GetxController {
       }).catchError((error) {
         print(error.toString());
       });
+    } else {
+      _isloadingSports = false;
+    }
+  }
+
+  getAllScience() async {
+    _isloadingScience = true;
+    if (_science.length == 0) {
+      DioHelper.getData(url: 'v2/top-headlines', query: {
+        'country': 'eg',
+        'category': 'science',
+        'apiKey': '12290ceb1bf34821a6a71f937bb2d815'
+      }).then((value) {
+        _science = value.data['articles'];
+        _isloadingScience = false;
+        update();
+
+        //print(_business.length);
+        //print("from new controller :" + value.data['totalResults'].toString());
+      }).catchError((error) {
+        print(error.toString());
+      });
+    } else {
+      _isloadingScience = false;
     }
   }
 }

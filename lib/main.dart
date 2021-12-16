@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       // bind the dependency
       theme: ThemeData(
+        primarySwatch: Colors.deepOrange,
         appBarTheme: AppBarTheme(
             backgroundColor: Colors.white,
             elevation: 0,
