@@ -15,7 +15,8 @@ class SportScreen extends StatelessWidget {
             : ListView.separated(
                 physics: BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
-                  return buildArticleItem(newsLayoutController.sports[index]);
+                  return buildArticleItem(
+                      newsLayoutController.sports[index], context);
                 },
                 separatorBuilder: (context, index) => myDivider(),
                 itemCount: newsLayoutController.sports.length));

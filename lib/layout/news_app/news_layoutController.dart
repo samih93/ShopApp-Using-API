@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/modules/business/business_screen.dart';
-import 'package:udemy_flutter/modules/settings/setting_screen.dart';
 import 'package:udemy_flutter/modules/sicence/science_screen.dart';
 import 'package:udemy_flutter/modules/sport/sport_screen.dart';
 import 'package:udemy_flutter/shared/network/remote/diohelper.dart';
@@ -28,6 +27,9 @@ class NewsLayoutController extends GetxController {
   bool _isloadingScience = true;
   bool get isloadingScience => _isloadingScience;
 
+  bool _isDarkMode = false;
+  bool get isDarkMode => _isDarkMode;
+
   List<BottomNavigationBarItem> bottomItems = [
     BottomNavigationBarItem(icon: Icon(Icons.business), label: "Business"),
     BottomNavigationBarItem(
@@ -35,17 +37,12 @@ class NewsLayoutController extends GetxController {
       label: "Sports",
     ),
     BottomNavigationBarItem(icon: Icon(Icons.science), label: "Science"),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.settings),
-      label: "Settings",
-    ),
   ];
 
   final screens = [
     BusinessScreen(),
     SportScreen(),
     ScienceScreen(),
-    SettingsScreen()
   ];
 
   NewsLayoutController() {
@@ -54,6 +51,11 @@ class NewsLayoutController extends GetxController {
 
   void onchangeIndex(int index) {
     _currentIndex = index;
+    update();
+  }
+
+  void onchangeThem() {
+    _isDarkMode = !isDarkMode;
     update();
   }
 

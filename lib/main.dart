@@ -9,6 +9,9 @@ import 'package:get/get.dart';
 import 'package:udemy_flutter/shared/helper/binding.dart';
 import 'package:udemy_flutter/shared/network/local/TodoDbHelper.dart';
 import 'package:udemy_flutter/shared/network/remote/diohelper.dart';
+import 'package:hexcolor/hexcolor.dart';
+
+import 'shared/componets/thems.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,30 +24,19 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      // bind the dependency
-      theme: ThemeData(
-        primarySwatch: Colors.deepOrange,
-        appBarTheme: AppBarTheme(
-            backgroundColor: Colors.white,
-            elevation: 0,
-            actionsIconTheme: IconThemeData(color: Colors.black),
-            backwardsCompatibility: false,
-            titleTextStyle: TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 25),
-            systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarColor: Colors.white,
-              statusBarIconBrightness: Brightness.dark,
-            )),
-        floatingActionButtonTheme:
-            FloatingActionButtonThemeData(backgroundColor: Colors.deepOrange),
-      ),
-      darkTheme: ThemeData.dark(),
-      themeMode: ThemeMode.light,
+    return GetBuilder<NewsLayoutController>(
+      init: Get.find<NewsLayoutController>(),
+      builder: (newsLayoutController) => GetMaterialApp(
+        // bind the dependency
+        theme: lightTheme(),
+        darkTheme: darkThem(),
+        themeMode:
+            newsLayoutController.isDarkMode ? ThemeMode.dark : ThemeMode.light,
 
-      initialBinding: Binding(),
-      debugShowCheckedModeBanner: false,
-      home: NewsLayout(),
+        initialBinding: Binding(),
+        debugShowCheckedModeBanner: false,
+        home: NewsLayout(),
+      ),
     );
   }
 }

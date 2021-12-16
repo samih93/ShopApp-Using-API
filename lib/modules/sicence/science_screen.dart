@@ -15,7 +15,8 @@ class ScienceScreen extends StatelessWidget {
             : ListView.separated(
                 physics: BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
-                  return buildArticleItem(newsLayoutController.science[index]);
+                  return buildArticleItem(
+                      newsLayoutController.science[index], context);
                 },
                 separatorBuilder: (context, index) => myDivider(),
                 itemCount: newsLayoutController.science.length));

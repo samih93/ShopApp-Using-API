@@ -166,7 +166,7 @@ Widget myDivider() => Container(
       width: double.infinity,
       height: 1,
     );
-Widget buildArticleItem(article) => Directionality(
+Widget buildArticleItem(article, context) => Directionality(
       textDirection: TextDirection.rtl,
       child: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -213,10 +213,7 @@ Widget buildArticleItem(article) => Directionality(
                     Expanded(
                       child: Text(
                         article['title'],
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: Theme.of(context).textTheme.bodyText1,
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                       ),

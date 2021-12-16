@@ -8,17 +8,18 @@ class BusinessScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<NewsLayoutController>(
         init: Get.find<NewsLayoutController>(),
-        builder: (newsLayoutController) => newsLayoutController
-                .isloadingBusiness
-            ? Scaffold(
-                body: Center(child: CircularProgressIndicator()),
-              )
-            : ListView.separated(
-                physics: BouncingScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return buildArticleItem(newsLayoutController.business[index]);
-                },
-                separatorBuilder: (context, index) => myDivider(),
-                itemCount: newsLayoutController.business.length));
+        builder: (newsLayoutController) =>
+            newsLayoutController.isloadingBusiness
+                ? Scaffold(
+                    body: Center(child: CircularProgressIndicator()),
+                  )
+                : ListView.separated(
+                    physics: BouncingScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return buildArticleItem(
+                          newsLayoutController.business[index], context);
+                    },
+                    separatorBuilder: (context, index) => myDivider(),
+                    itemCount: newsLayoutController.business.length));
   }
 }

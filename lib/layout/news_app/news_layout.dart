@@ -15,6 +15,12 @@ class NewsLayout extends StatelessWidget {
           title: Text("News"),
           actions: [
             IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+            IconButton(
+                onPressed: () {
+                  newsLayoutController.onchangeThem();
+                  print(newsLayoutController.isDarkMode);
+                },
+                icon: Icon(Icons.brightness_4_outlined)),
           ],
         ),
         body: newsLayoutController.screens[newsLayoutController.currentIndex],
