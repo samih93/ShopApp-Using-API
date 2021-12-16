@@ -25,20 +25,14 @@ class NewsLayout extends StatelessWidget {
             currentIndex: newsLayoutController.currentIndex,
             onTap: (index) {
               newsLayoutController.onchangeIndex(index);
+              if (index == 1) {
+                newsLayoutController.getAllSports();
+              }
             },
             items: newsLayoutController.bottomItems),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            DioHelper.getData(url: 'v2/top-headlines', query: {
-              'country': 'eg',
-              'category': 'business',
-              'apiKey': '12290ceb1bf34821a6a71f937bb2d815'
-            }).then((value) {
-              // _business = value.data;
-              print("from new controller" + value.data.toString());
-            }).catchError((error) {
-              print(error.toString());
-            });
+            print(newsLayoutController.business.length);
           },
           child: Icon(Icons.add),
         ),

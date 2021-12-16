@@ -159,3 +159,53 @@ Widget tasksBuilder({required List<Map> tasks, required String message}) =>
                   height: 1,
                 ),
             itemCount: tasks.length);
+
+Widget myDivider() => Container(
+      color: Colors.grey,
+      width: double.infinity,
+      height: 1,
+    );
+Widget buildArticleItem(article) => Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Row(
+        children: [
+          Container(
+            height: 120,
+            width: 120,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(
+                    image: NetworkImage(article['urlToImage'].toString()),
+                    fit: BoxFit.cover)),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Expanded(
+            child: Container(
+              height: 120,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Text(
+                      article['title'],
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  Text(
+                    article['publishedAt'],
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );

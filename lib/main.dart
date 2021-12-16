@@ -14,7 +14,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Get.put(NewsLayoutController());
   Get.put(TodoLayoutController());
-  DioHelper.Init();
+  //DioHelper.Init();
   runApp(MyApp());
 }
 
