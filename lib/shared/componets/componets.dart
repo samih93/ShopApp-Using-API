@@ -219,7 +219,7 @@ Widget buildArticleItem(article, context) => Directionality(
                       ),
                     ),
                     Text(
-                      article['publishedAt'],
+                      getDateFormated(article['publishedAt']),
                       style: TextStyle(color: Colors.grey),
                     ),
                   ],
@@ -230,3 +230,9 @@ Widget buildArticleItem(article, context) => Directionality(
         ),
       ),
     );
+
+String getDateFormated(String date) {
+  List<String> listdate = date.split("T");
+  List<String> list1date = listdate[1].split(":");
+  return list1date[0] + ":" + list1date[1] + "   " + listdate[0];
+}

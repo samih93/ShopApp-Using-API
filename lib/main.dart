@@ -8,6 +8,7 @@ import 'package:udemy_flutter/modules/login/LoginScreen.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/shared/helper/binding.dart';
 import 'package:udemy_flutter/shared/network/local/TodoDbHelper.dart';
+import 'package:udemy_flutter/shared/network/local/cashhelper.dart';
 import 'package:udemy_flutter/shared/network/remote/diohelper.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -15,13 +16,19 @@ import 'shared/componets/thems.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // dio helper is used to call api
+  // this come first cz in new controller i use the dio so if i dont use then ,
+  // then new layoutcontroller created and call diohelper on null so return business list null
+  DioHelper.Init().then((value) {});
+  await CashHelper.Init();
   Get.put(NewsLayoutController());
   Get.put(TodoLayoutController());
-  //DioHelper.Init();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  MyApp();
   @override
   Widget build(BuildContext context) {
     return GetBuilder<NewsLayoutController>(

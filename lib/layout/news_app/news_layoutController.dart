@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:udemy_flutter/modules/business/business_screen.dart';
 import 'package:udemy_flutter/modules/sicence/science_screen.dart';
 import 'package:udemy_flutter/modules/sport/sport_screen.dart';
+import 'package:udemy_flutter/shared/network/local/cashhelper.dart';
 import 'package:udemy_flutter/shared/network/remote/diohelper.dart';
 
 class NewsLayoutController extends GetxController {
@@ -47,6 +48,11 @@ class NewsLayoutController extends GetxController {
 
   NewsLayoutController() {
     getAllBusiness();
+    bool? isdarkcashedthem = CashHelper.getThem(key: "isdark");
+    if (isdarkcashedthem != null) {
+      _isDarkMode = isdarkcashedthem;
+    }
+    update();
   }
 
   void onchangeIndex(int index) {
@@ -56,6 +62,7 @@ class NewsLayoutController extends GetxController {
 
   void onchangeThem() {
     _isDarkMode = !isDarkMode;
+    CashHelper.setTheme(key: "isdark", value: _isDarkMode).then((value) {});
     update();
   }
 
