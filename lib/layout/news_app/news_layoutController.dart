@@ -18,6 +18,8 @@ class NewsLayoutController extends GetxController {
   List<dynamic> get sports => _sports;
   List<dynamic> _science = [];
   List<dynamic> get science => _science;
+  List<dynamic> _search = [];
+  List<dynamic> get search => _search;
 
   bool _isloadingBusiness = true;
   bool get isloadingBusiness => _isloadingBusiness;
@@ -27,6 +29,9 @@ class NewsLayoutController extends GetxController {
 
   bool _isloadingScience = true;
   bool get isloadingScience => _isloadingScience;
+
+  bool _isloadingSearch = true;
+  bool get isloadingSearch => _isloadingSearch;
 
   bool _isDarkMode = false;
   bool get isDarkMode => _isDarkMode;
@@ -47,12 +52,11 @@ class NewsLayoutController extends GetxController {
   ];
 
   NewsLayoutController() {
-    getAllBusiness();
     bool? isdarkcashedthem = CashHelper.getThem(key: "isdark");
     if (isdarkcashedthem != null) {
       _isDarkMode = isdarkcashedthem;
     }
-    update();
+    getAllBusiness();
   }
 
   void onchangeIndex(int index) {
@@ -129,6 +133,24 @@ class NewsLayoutController extends GetxController {
       });
     } else {
       _isloadingScience = false;
+      update();
     }
+  }
+
+  void getSearch(String search) {
+    _isloadingSearch = true;
+    DioHelper.getData(url: 'v2/everything', query: {
+      'q': '$search',
+      'apiKey': '12290ceb1bf34821a6a71f937bb2d815'
+    }).then((value) {
+      _search = value.data['articles'];
+      _isloadingSearch = false;
+      update();
+
+      //print(_business.length);
+      //print("from new controller :" + value.data['totalResults'].toString());
+    }).catchError((error) {
+      print(error.toString());
+    });
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/layout/todo_app/todo_layoutcontroller.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:udemy_flutter/modules/web_view/webview_screen.dart';
 
 Widget defaultButton(
         {double width = double.infinity,
@@ -36,6 +37,7 @@ Widget defaultTextFormField({
   Function(String?)? onfieldsubmit,
   VoidCallback? ontap,
   String? Function(String?)? onvalidate,
+  Function(String?)? onchange,
   String? text,
   Widget? prefixIcon,
   Widget? suffixIcon,
@@ -47,9 +49,7 @@ Widget defaultTextFormField({
         onFieldSubmitted: onfieldsubmit,
         onTap: ontap,
         obscureText: obscure,
-        // onChanged: (String value) {
-        //   print(value);
-        // },
+        onChanged: onchange,
         decoration: InputDecoration(
           labelText: text,
           prefixIcon: prefixIcon,
@@ -168,65 +168,71 @@ Widget myDivider() => Container(
     );
 Widget buildArticleItem(article, context) => Directionality(
       textDirection: TextDirection.rtl,
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Row(
-          children: [
-            Container(
-              height: 120,
-              width: 120,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+      child: GestureDetector(
+        onTap: () {
+          Get.to(WebViewScreen(article['url']));
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Row(
+            children: [
+              Container(
+                height: 120,
+                width: 120,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
 
-                // image: DecorationImage(
+                  // image: DecorationImage(
 
-                //     image: NetworkImage(article['urlToImage'].toString()),
+                  //     image: NetworkImage(article['urlToImage'].toString()),
 
-                //     fit: BoxFit.cover)),
-              ),
-              child: CachedNetworkImage(
-                imageUrl: article['urlToImage'].toString(),
-                imageBuilder: (context, imageProvider) => Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
+                  //     fit: BoxFit.cover)),
+                ),
+                child: CachedNetworkImage(
+                  imageUrl: article['urlToImage'].toString(),
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
                         image: imageProvider,
                         fit: BoxFit.cover,
-                        colorFilter:
-                            ColorFilter.mode(Colors.red, BlendMode.colorBurn)),
-                  ),
-                ),
-                placeholder: (context, url) =>
-                    Center(child: CircularProgressIndicator()),
-                errorWidget: (context, url, error) =>
-                    Image.asset("assets/notfound.png"),
-              ),
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Expanded(
-              child: Container(
-                height: 120,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        article['title'],
-                        style: Theme.of(context).textTheme.bodyText1,
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
+                        // colorFilter: ColorFilter.mode(
+                        //     Colors.red, BlendMode.colorBurn)
                       ),
                     ),
-                    Text(
-                      getDateFormated(article['publishedAt']),
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                  ],
+                  ),
+                  placeholder: (context, url) =>
+                      Center(child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) =>
+                      Image.asset("assets/notfound.png"),
                 ),
               ),
-            ),
-          ],
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: Container(
+                  height: 120,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          article['title'],
+                          style: Theme.of(context).textTheme.bodyText1,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      Text(
+                        getDateFormated(article['publishedAt']),
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

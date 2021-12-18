@@ -2,3 +2,5 @@
 //GET https://newsapi.org/v2/top-headlines?country=eg&category=business&apiKey=12290ceb1bf34821a6a71f937bb2d815
 GET https://newsapi.org/v2/top-headlines?country=eg&category=sports&apiKey=12290ceb1bf34821a6a71f937bb2d815
 //GET https://jsonplaceholder.typicode.com/albums/1
+
+Get https://newsapi.org/v2/everything?q=tesla&apiKey=65f7f556ec76449fa7dc7c0069f040ca
