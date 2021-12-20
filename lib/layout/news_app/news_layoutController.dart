@@ -2,9 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:udemy_flutter/modules/business/business_screen.dart';
-import 'package:udemy_flutter/modules/sicence/science_screen.dart';
-import 'package:udemy_flutter/modules/sport/sport_screen.dart';
+import 'package:udemy_flutter/modules/news_app/business/business_screen.dart';
+import 'package:udemy_flutter/modules/news_app/sicence/science_screen.dart';
+import 'package:udemy_flutter/modules/news_app/sport/sport_screen.dart';
 import 'package:udemy_flutter/shared/network/local/cashhelper.dart';
 import 'package:udemy_flutter/shared/network/remote/diohelper.dart';
 

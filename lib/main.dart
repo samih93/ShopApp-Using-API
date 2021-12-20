@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:udemy_flutter/layout/news_app/news_layout.dart';
 import 'package:udemy_flutter/layout/news_app/news_layoutController.dart';
-import 'package:udemy_flutter/layout/todo_app/todo_layout.dart';
 import 'package:udemy_flutter/layout/todo_app/todo_layoutcontroller.dart';
-import 'package:udemy_flutter/modules/login/LoginScreen.dart';
 import 'package:get/get.dart';
+import 'package:udemy_flutter/modules/shop_app/onboarding/on_boarding_screen.dart';
 import 'package:udemy_flutter/shared/helper/binding.dart';
-import 'package:udemy_flutter/shared/network/local/TodoDbHelper.dart';
 import 'package:udemy_flutter/shared/network/local/cashhelper.dart';
 import 'package:udemy_flutter/shared/network/remote/diohelper.dart';
-import 'package:hexcolor/hexcolor.dart';
+import 'package:udemy_flutter/shared/styles/thems.dart';
 
-import 'shared/componets/thems.dart';
+import 'shared/styles/thems.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,7 +39,7 @@ class MyApp extends StatelessWidget {
 
         initialBinding: Binding(),
         debugShowCheckedModeBanner: false,
-        home: NewsLayout(),
+        home: OnBoardingScreen(),
       ),
     );
   }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/layout/todo_app/todo_layoutcontroller.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:udemy_flutter/modules/web_view/webview_screen.dart';
+import 'package:udemy_flutter/modules/news_app/web_view/webview_screen.dart';
 
 Widget defaultButton(
         {double width = double.infinity,
