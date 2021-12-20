@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/layout/news_app/news_layoutController.dart';
 import 'package:udemy_flutter/modules/news_app/search/searchscreen.dart';
-import 'package:udemy_flutter/shared/network/remote/diohelper.dart';
+import 'package:udemy_flutter/shared/network/remote/diohelper_news.dart';
 import 'package:http/http.dart' as http;
 
 class NewsLayout extends StatelessWidget {

@@ -6,7 +6,7 @@ import 'package:udemy_flutter/modules/news_app/business/business_screen.dart';
 import 'package:udemy_flutter/modules/news_app/sicence/science_screen.dart';
 import 'package:udemy_flutter/modules/news_app/sport/sport_screen.dart';
 import 'package:udemy_flutter/shared/network/local/cashhelper.dart';
-import 'package:udemy_flutter/shared/network/remote/diohelper.dart';
+import 'package:udemy_flutter/shared/network/remote/diohelper_news.dart';
 
 class NewsLayoutController extends GetxController {
   int _currentIndex = 0;
@@ -73,7 +73,7 @@ class NewsLayoutController extends GetxController {
   getAllBusiness() async {
     _isloadingBusiness = true;
     print("first" + _isloadingBusiness.toString());
-    DioHelper.getData(url: 'v2/top-headlines', query: {
+    DioHelperNews.getData(url: 'v2/top-headlines', query: {
       'country': 'eg',
       'category': 'business',
       'apiKey': '12290ceb1bf34821a6a71f937bb2d815'
@@ -94,7 +94,7 @@ class NewsLayoutController extends GetxController {
     _isloadingSports = true;
     print("first" + _isloadingSports.toString());
     if (_sports.length == 0) {
-      DioHelper.getData(url: 'v2/top-headlines', query: {
+      DioHelperNews.getData(url: 'v2/top-headlines', query: {
         'country': 'eg',
         'category': 'sports',
         'apiKey': '12290ceb1bf34821a6a71f937bb2d815'
@@ -117,7 +117,7 @@ class NewsLayoutController extends GetxController {
   getAllScience() async {
     _isloadingScience = true;
     if (_science.length == 0) {
-      DioHelper.getData(url: 'v2/top-headlines', query: {
+      DioHelperNews.getData(url: 'v2/top-headlines', query: {
         'country': 'eg',
         'category': 'science',
         'apiKey': '12290ceb1bf34821a6a71f937bb2d815'
@@ -139,7 +139,7 @@ class NewsLayoutController extends GetxController {
 
   void getSearch(String search) {
     _isloadingSearch = true;
-    DioHelper.getData(url: 'v2/everything', query: {
+    DioHelperNews.getData(url: 'v2/everything', query: {
       'q': '$search',
       'apiKey': '12290ceb1bf34821a6a71f937bb2d815'
     }).then((value) {

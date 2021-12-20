@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:udemy_flutter/shared/styles/colors.dart';
 
 ThemeData darkThem() => ThemeData(
       scaffoldBackgroundColor: HexColor('#525252'),
@@ -17,7 +18,7 @@ ThemeData darkThem() => ThemeData(
             statusBarIconBrightness: Brightness.light,
           )),
       floatingActionButtonTheme:
-          FloatingActionButtonThemeData(backgroundColor: Colors.deepOrange),
+          FloatingActionButtonThemeData(backgroundColor: defaultColor),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: HexColor('#525252'),
           unselectedItemColor: Colors.grey),
@@ -28,7 +29,7 @@ ThemeData darkThem() => ThemeData(
     );
 
 ThemeData lightTheme() => ThemeData(
-      primarySwatch: Colors.deepOrange,
+      primarySwatch: defaultColor,
       appBarTheme: AppBarTheme(
           iconTheme: IconThemeData(color: Colors.black),
           backgroundColor: Colors.white,
@@ -42,7 +43,7 @@ ThemeData lightTheme() => ThemeData(
             statusBarIconBrightness: Brightness.dark,
           )),
       floatingActionButtonTheme:
-          FloatingActionButtonThemeData(backgroundColor: Colors.deepOrange),
+          FloatingActionButtonThemeData(backgroundColor: defaultColor),
       textTheme: TextTheme(
         bodyText1: TextStyle(
             color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),

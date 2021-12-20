@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:udemy_flutter/models/task.dart';
+import 'package:udemy_flutter/models/task_app/task.dart';
 import 'package:udemy_flutter/modules/task_app/archive_tasks/archive_task.dart';
 import 'package:udemy_flutter/modules/task_app/done_tasks/done_task.dart';
 import 'package:udemy_flutter/modules/task_app/new_tasks/new_task_screen.dart';

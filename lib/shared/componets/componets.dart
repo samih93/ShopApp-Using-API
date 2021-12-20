@@ -31,6 +31,15 @@ Widget defaultButton(
       ),
     );
 
+Widget defaultTextButton(
+        {@required VoidCallback? onpress, @required String? text}) =>
+    TextButton(
+      onPressed: onpress,
+      child: Text(
+        text!,
+      ),
+    );
+
 Widget defaultTextFormField({
   required TextEditingController controller,
   required TextInputType inputtype,

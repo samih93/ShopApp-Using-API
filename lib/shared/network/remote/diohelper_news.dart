@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 
-class DioHelper {
+class DioHelperNews {
   static Dio? dio;
 
-  static Future<void> Init() async {
+  static Future<void> init() async {
     dio = Dio(BaseOptions(
         baseUrl: 'https://newsapi.org/', receiveDataWhenStatusError: true));
   }

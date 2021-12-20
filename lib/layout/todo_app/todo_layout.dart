@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/layout/todo_app/todo_layoutcontroller.dart';
-import 'package:udemy_flutter/models/task.dart';
+import 'package:udemy_flutter/models/task_app/task.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:udemy_flutter/shared/componets/componets.dart';
 import 'package:intl/intl.dart';
