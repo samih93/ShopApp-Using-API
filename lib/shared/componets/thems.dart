@@ -30,6 +30,7 @@ ThemeData darkThem() => ThemeData(
 ThemeData lightTheme() => ThemeData(
       primarySwatch: Colors.deepOrange,
       appBarTheme: AppBarTheme(
+          iconTheme: IconThemeData(color: Colors.black),
           backgroundColor: Colors.white,
           elevation: 0,
           actionsIconTheme: IconThemeData(color: Colors.black),
