@@ -7,6 +7,7 @@ ThemeData darkThem() => ThemeData(
       scaffoldBackgroundColor: HexColor('#525252'),
       primarySwatch: Colors.deepOrange,
       appBarTheme: AppBarTheme(
+          iconTheme: IconThemeData(color: Colors.white),
           backgroundColor: HexColor('#525252'),
           elevation: 0,
           actionsIconTheme: IconThemeData(color: Colors.white),

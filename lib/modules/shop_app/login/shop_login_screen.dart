@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:udemy_flutter/layout/shop_app/shop_layout.dart';
+import 'package:udemy_flutter/models/shop_app/login_model.dart';
 import 'package:udemy_flutter/modules/shop_app/login/shoplogin_controller.dart';
 import 'package:udemy_flutter/modules/shop_app/register/register_screen.dart';
 import 'package:udemy_flutter/shared/componets/componets.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ShopLoginScreen extends StatelessWidget {
   var emailController = TextEditingController();
@@ -87,11 +90,38 @@ class ShopLoginScreen extends StatelessWidget {
                         : defaultButton(
                             text: "Login",
                             isUppercase: true,
-                            onpress: () {
+                            onpress: () async {
+                              ShopLoginModel? shopLoginModel;
                               if (_formkey.currentState!.validate()) {
-                                shopLoginController.userlogin(
-                                    email: emailController.text,
-                                    password: passwordController.text);
+                                shopLoginController
+                                    .userlogin(
+                                        email: emailController.text,
+                                        password: passwordController.text)
+                                    .then((value) {
+                                  shopLoginModel = value;
+                                  if (shopLoginModel!.status!) {
+                                    print("success");
+                                    Fluttertoast.showToast(
+                                        msg: shopLoginModel!.message!,
+                                        toastLength: Toast.LENGTH_SHORT,
+                                        gravity: ToastGravity.BOTTOM,
+                                        timeInSecForIosWeb: 1,
+                                        backgroundColor: Colors.green,
+                                        textColor: Colors.white,
+                                        fontSize: 16.0);
+                                    Get.off(ShopLayout());
+                                  } else {
+                                    print("failed");
+                                    Fluttertoast.showToast(
+                                        msg: shopLoginModel!.message!,
+                                        toastLength: Toast.LENGTH_SHORT,
+                                        gravity: ToastGravity.BOTTOM,
+                                        timeInSecForIosWeb: 1,
+                                        backgroundColor: Colors.red,
+                                        textColor: Colors.white,
+                                        fontSize: 16.0);
+                                  }
+                                });
                               }
                             }),
                     SizedBox(
