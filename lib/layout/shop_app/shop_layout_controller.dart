@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:udemy_flutter/models/shop_app/category_model.dart';
 import 'package:udemy_flutter/models/shop_app/home_model.dart';
 import 'package:udemy_flutter/modules/shop_app/categories/category_screen.dart';
 import 'package:udemy_flutter/modules/shop_app/favorites/favorite_screen.dart';
@@ -18,6 +19,13 @@ class ShopLayoutController extends GetxController {
   HomeModel? _homeModel;
   HomeModel? get homeModel => _homeModel;
 
+
+  bool _isloadingcategories = true;
+  bool get isloadingcategories => _isloadingcategories;
+  CategoriesModel? _categoriesModel;
+  CategoriesModel? get categoriesModel => _categoriesModel;
+
+
   List<BottomNavigationBarItem> bottomItems = [
     BottomNavigationBarItem(icon: Icon(Icons.apps), label: "Home"),
     BottomNavigationBarItem(
@@ -31,7 +39,8 @@ class ShopLayoutController extends GetxController {
 
   ShopLayoutController() {
     print("status ");
-    getHomeDate();
+    getHomeData();
+    getCategories();
   }
 
   final screens = [
@@ -46,15 +55,30 @@ class ShopLayoutController extends GetxController {
     update();
   }
 
-  void getHomeDate() {
+  void getHomeData() {
     _isloadinghome = true;
     DioHelperShop.getData(url: HOME, token: token).then((value) {
-      print(value.data.toString());
+     // print(value.data.toString());
       _homeModel = HomeModel.fromJson(value.data);
-      print(_homeModel!.data!.banners[0].image.toString());
+    //  print(_homeModel!.data!.banners[0].image.toString());
       // print("afterstatus ");
       // printFullText(_homeModel.toString());
       _isloadinghome = false;
+      update();
+    }).catchError((error) {
+      print(error);
+    });
+  }
+
+  void getCategories() {
+    _isloadingcategories = true;
+    DioHelperShop.getData(url: GET_CATEGORIES, token: token).then((value) {
+      print(value.data.toString());
+      _categoriesModel = CategoriesModel.fromJson(value.data);
+     // print(_homeModel!.data!.banners[0].image.toString());
+      // print("afterstatus ");
+      // printFullText(_homeModel.toString());
+      _isloadingcategories = false;
       update();
     }).catchError((error) {
       print(error);

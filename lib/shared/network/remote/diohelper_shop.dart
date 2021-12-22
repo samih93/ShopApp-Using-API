@@ -37,7 +37,7 @@ class DioHelperShop {
   }) async {
     dio!.options.headers = {
       'lang': lang,
-      'Authorization': token,
+      'Authorization': token??"",
       'Content-Type': 'application/json',
     };
 
@@ -56,7 +56,7 @@ class DioHelperShop {
   }) async {
     dio!.options.headers = {
       'lang': lang,
-      'Authorization': token,
+      'Authorization': token??"",
       'Content-Type': 'application/json',
     };
 
