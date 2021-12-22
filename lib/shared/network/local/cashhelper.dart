@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CashHelper {
@@ -26,5 +28,9 @@ class CashHelper {
 
   static dynamic getData({required String key}) {
     return sharedPreferences!.get(key);
+  }
+
+  static Future<bool> removeDatabykey({required String key}) async {
+    return await sharedPreferences!.remove(key);
   }
 }

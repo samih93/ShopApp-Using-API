@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/layout/todo_app/todo_layoutcontroller.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -250,4 +251,32 @@ String getDateFormated(String date) {
   List<String> listdate = date.split("T");
   List<String> list1date = listdate[1].split(":");
   return list1date[0] + ":" + list1date[1] + "   " + listdate[0];
+}
+
+void showToast({required message, required ToastStatus status}) =>
+    Fluttertoast.showToast(
+        msg: message,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: chooseToastColor(status),
+        textColor: Colors.white,
+        fontSize: 16.0);
+
+enum ToastStatus { Success, Error, Warning }
+
+Color chooseToastColor(ToastStatus status) {
+  Color color;
+  switch (status) {
+    case ToastStatus.Success:
+      color = Colors.green;
+      break;
+    case ToastStatus.Error:
+      color = Colors.red;
+      break;
+    case ToastStatus.Warning:
+      color = Colors.amber;
+      break;
+  }
+  return color;
 }

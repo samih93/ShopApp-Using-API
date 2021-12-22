@@ -6,6 +6,7 @@ import 'package:udemy_flutter/modules/shop_app/login/shoplogin_controller.dart';
 import 'package:udemy_flutter/modules/shop_app/register/register_screen.dart';
 import 'package:udemy_flutter/shared/componets/componets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:udemy_flutter/shared/network/local/cashhelper.dart';
 
 class ShopLoginScreen extends StatelessWidget {
   var emailController = TextEditingController();
@@ -101,25 +102,21 @@ class ShopLoginScreen extends StatelessWidget {
                                   shopLoginModel = value;
                                   if (shopLoginModel!.status!) {
                                     print("success");
-                                    Fluttertoast.showToast(
-                                        msg: shopLoginModel!.message!,
-                                        toastLength: Toast.LENGTH_SHORT,
-                                        gravity: ToastGravity.BOTTOM,
-                                        timeInSecForIosWeb: 1,
-                                        backgroundColor: Colors.green,
-                                        textColor: Colors.white,
-                                        fontSize: 16.0);
-                                    Get.off(ShopLayout());
+                                    print(shopLoginModel!.data!.token);
+                                    CashHelper.saveData(
+                                            key: "token",
+                                            value: shopLoginModel!.data!.token)
+                                        .then((value) {
+                                      showToast(
+                                          message: shopLoginModel!.message,
+                                          status: ToastStatus.Success);
+                                      Get.off(ShopLayout());
+                                    });
                                   } else {
                                     print("failed");
-                                    Fluttertoast.showToast(
-                                        msg: shopLoginModel!.message!,
-                                        toastLength: Toast.LENGTH_SHORT,
-                                        gravity: ToastGravity.BOTTOM,
-                                        timeInSecForIosWeb: 1,
-                                        backgroundColor: Colors.red,
-                                        textColor: Colors.white,
-                                        fontSize: 16.0);
+                                    showToast(
+                                        message: shopLoginModel!.message,
+                                        status: ToastStatus.Error);
                                   }
                                 });
                               }

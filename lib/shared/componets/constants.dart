@@ -1,8 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:udemy_flutter/modules/shop_app/login/shop_login_screen.dart';
+import 'package:udemy_flutter/shared/network/local/cashhelper.dart';
 
 final Color primaryColor = Colors.deepPurple.shade900;
 
 final String taskTable = "tasks";
+
+void signOut() {
+  CashHelper.removeDatabykey(key: "token").then((value) {
+    if (value) Get.off(ShopLoginScreen());
+  });
+}
+
+void printFullText(String text) {
+  final pattern = RegExp('.{1,800}'); // 800 is the size of each chunk
+  pattern.allMatches(text).forEach((match) => print(match.group(0)));
+}
+
+String token = "";
 
 // GET
 

@@ -5,6 +5,7 @@ import 'package:udemy_flutter/layout/news_app/news_layoutController.dart';
 import 'package:udemy_flutter/modules/news_app/search/searchscreen.dart';
 import 'package:udemy_flutter/shared/network/remote/diohelper_news.dart';
 import 'package:http/http.dart' as http;
+import 'package:udemy_flutter/shared/styles/colors.dart';
 
 class NewsLayout extends StatelessWidget {
   @override
@@ -17,7 +18,7 @@ class NewsLayout extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () {
-                  Get.to(SearchScreen());
+                  Get.to(NewsSearchScreen());
                 },
                 icon: Icon(Icons.search)),
             IconButton(
@@ -32,7 +33,7 @@ class NewsLayout extends StatelessWidget {
         bottomNavigationBar: BottomNavigationBar(
             elevation: 30,
             type: BottomNavigationBarType.fixed,
-            selectedItemColor: Colors.deepOrange,
+            selectedItemColor: defaultColor,
             currentIndex: newsLayoutController.currentIndex,
             onTap: (index) {
               newsLayoutController.onchangeIndex(index);
