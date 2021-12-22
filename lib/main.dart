@@ -32,7 +32,7 @@ void main() async {
   bool? onboarding = CashHelper.getData(key: "onBoarding");
   print(onboarding);
 
-  token = CashHelper.getData(key: "token");
+  token = CashHelper.getData(key: "token") ?? null;
   print("token :" + token.toString());
   Widget widget;
 

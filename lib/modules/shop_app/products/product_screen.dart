@@ -77,16 +77,17 @@ class ProductsScreen extends StatelessWidget {
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
-                Container(
-                  child: Text(
-                    "DISCOUNT",
-                    style: TextStyle(
-                      color: Colors.white,
-                      backgroundColor: Colors.red,
-                      fontSize: 8,
+                if (model.discount != 0)
+                  Container(
+                    child: Text(
+                      "DISCOUNT",
+                      style: TextStyle(
+                        color: Colors.white,
+                        backgroundColor: Colors.red,
+                        fontSize: 8,
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
             Padding(
@@ -111,15 +112,14 @@ class ProductsScreen extends StatelessWidget {
                       SizedBox(
                         width: 5,
                       ),
-                      model.discount != 0
-                          ? Text(
-                              model.old_price.toString(),
-                              style: TextStyle(
-                                  fontSize: 10,
-                                  color: Colors.grey,
-                                  decoration: TextDecoration.lineThrough),
-                            )
-                          : Text(""),
+                      if (model.discount != 0)
+                        Text(
+                          model.old_price.toString(),
+                          style: TextStyle(
+                              fontSize: 10,
+                              color: Colors.grey,
+                              decoration: TextDecoration.lineThrough),
+                        ),
                     ],
                   ),
                 ],
