@@ -54,6 +54,7 @@ class BannerModel {
 
 class ProductModel {
   int? id;
+  String? name;
   dynamic price;
   dynamic old_price;
   dynamic discount;
@@ -65,6 +66,7 @@ class ProductModel {
     if (json == null) return;
 
     id = json["id"];
+    name = json["name"];
     price = json["price"];
     old_price = json["old_price"];
     discount = json["discount"];
@@ -75,6 +77,7 @@ class ProductModel {
   toJson() {
     return {
       'id': id,
+      'name': name,
       'price': price,
       'old_price': old_price,
       'discount': discount,
