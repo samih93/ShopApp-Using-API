@@ -6,6 +6,7 @@ import 'package:udemy_flutter/modules/shop_app/login/shoplogin_controller.dart';
 import 'package:udemy_flutter/modules/shop_app/register/register_screen.dart';
 import 'package:udemy_flutter/shared/componets/componets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:udemy_flutter/shared/componets/constants.dart';
 import 'package:udemy_flutter/shared/network/local/cashhelper.dart';
 
 class ShopLoginScreen extends StatelessWidget {
@@ -17,10 +18,10 @@ class ShopLoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ShopLoginController>(
       init: ShopLoginController(),
-      builder: (shopLoginController) => Center(
-        child: Scaffold(
-          appBar: AppBar(),
-          body: SingleChildScrollView(
+      builder: (shopLoginController) => Scaffold(
+        appBar: AppBar(),
+        body: Center(
+          child: SingleChildScrollView(
             reverse: true,
             child: Padding(
               padding: const EdgeInsets.all(20.0),
@@ -107,6 +108,7 @@ class ShopLoginScreen extends StatelessWidget {
                                             key: "token",
                                             value: shopLoginModel!.data!.token)
                                         .then((value) {
+                                          token = shopLoginModel!.data!.token.toString();
                                       showToast(
                                           message: shopLoginModel!.message,
                                           status: ToastStatus.Success);

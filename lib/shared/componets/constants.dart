@@ -9,7 +9,10 @@ final String taskTable = "tasks";
 
 void signOut() {
   CashHelper.removeDatabykey(key: "token").then((value) {
-    if (value) Get.off(ShopLoginScreen());
+    if (value) {
+      Get.off(ShopLoginScreen());
+      token = "";
+    }
   });
 }
 
@@ -28,7 +31,6 @@ String? token = "";
 
 // for search
 // https://newsapi.org/v2/everything?q=tesla&apiKey=65f7f556ec76449fa7dc7c0069f040ca
-
 
 /// NAME         SIZE  WEIGHT  SPACING
 /// headline1    96.0  light   -1.5
