@@ -103,12 +103,12 @@ class ShopLoginScreen extends StatelessWidget {
                                   shopLoginModel = value;
                                   if (shopLoginModel!.status!) {
                                     print("success");
-                                    print(shopLoginModel!.data!.token);
+                                    print(shopLoginModel!.userData!.token);
                                     CashHelper.saveData(
                                             key: "token",
-                                            value: shopLoginModel!.data!.token)
+                                            value: shopLoginModel!.userData!.token)
                                         .then((value) {
-                                          token = shopLoginModel!.data!.token.toString();
+                                          token = shopLoginModel!.userData!.token.toString();
                                       showToast(
                                           message: shopLoginModel!.message,
                                           status: ToastStatus.Success);

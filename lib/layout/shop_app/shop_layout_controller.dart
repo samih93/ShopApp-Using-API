@@ -14,26 +14,16 @@ import 'package:udemy_flutter/shared/network/end_point.dart';
 import 'package:udemy_flutter/shared/network/remote/diohelper_shop.dart';
 import 'dart:convert';
 
-
 class ShopLayoutController extends GetxController {
-
-
-
-
-
-
-
   Map<int?, bool?> favorites = {};
 
-
-
   Favoritesmodel? _favoritesmodel;
-  Favoritesmodel? get favoritesmodel =>_favoritesmodel;
+
+  Favoritesmodel? get favoritesmodel => _favoritesmodel;
 
   List<BottomNavigationBarItem> bottomItems = [
     BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-    BottomNavigationBarItem(
-        icon: Icon(Icons.apps), label: "Categories"),
+    BottomNavigationBarItem(icon: Icon(Icons.apps), label: "Categories"),
     BottomNavigationBarItem(
       icon: Icon(Icons.favorite),
       label: "Favorites",
@@ -58,17 +48,21 @@ class ShopLayoutController extends GetxController {
   // ------------------------ onchangeIndex -------------------------------------//
 
   int _currentIndex = 0;
+
   int get currentIndex => _currentIndex;
 
   void onchangeIndex(int index) {
     _currentIndex = index;
     update();
   }
+
   // ------------------------ getHomeData -------------------------------------//
 
   bool _isloadinghome = true;
+
   bool get isloadinghome => _isloadinghome;
   HomeModel? _homeModel;
+
   HomeModel? get homeModel => _homeModel;
 
   void getHomeData() {
@@ -82,7 +76,7 @@ class ShopLayoutController extends GetxController {
         });
       });
 
-     // print(favorites.toString());
+      // print(favorites.toString());
 
       _isloadinghome = false;
       update();
@@ -90,6 +84,7 @@ class ShopLayoutController extends GetxController {
       print(error);
     });
   }
+
   // ------------------------ getCategories -------------------------------------//
 
   bool _isloadingcategories = true;
@@ -110,8 +105,10 @@ class ShopLayoutController extends GetxController {
       print(error);
     });
   }
- // --------------------------- changeFavorites ----------------------------------//
+
+  // --------------------------- changeFavorites ----------------------------------//
   ChangeFavoritesModel? _changeFavoritesModel;
+
   ChangeFavoritesModel? get changeFavoritesModel => _changeFavoritesModel;
 
   Future<ChangeFavoritesModel?> changeFavorites(int productId) async {
@@ -124,11 +121,9 @@ class ShopLayoutController extends GetxController {
       _changeFavoritesModel = ChangeFavoritesModel.fromJson(value.data);
       if (_changeFavoritesModel!.status == false) {
         favorites[productId] = !(favorites[productId] as bool);
+      } else {
+        getFavorites();
       }
-      else
-        {
-          getFavorites();
-        }
       print("Favorite Updated");
       update();
       return _changeFavoritesModel;
@@ -139,8 +134,9 @@ class ShopLayoutController extends GetxController {
 
   // -------------------------- getFavorites -----------------------------------//
 
-  bool? _isloadingfavorites ;
-  bool? get isloadingfavorites =>_isloadingfavorites;
+  bool? _isloadingfavorites;
+
+  bool? get isloadingfavorites => _isloadingfavorites;
 
   void getFavorites() {
     // to remove without laoding favorite
@@ -148,29 +144,32 @@ class ShopLayoutController extends GetxController {
     _isloadingfavorites = true;
     DioHelperShop.getData(url: FAVORITES, token: token).then((value) {
       _favoritesmodel = Favoritesmodel.fromJson(value.data);
-     // print("favorites status : "+_favoritesmodel!.status.toString());
-      print("favorites lenght : "+_favoritesmodel!.data!.ListOfFavoriteModel.length.toString());
+      // print("favorites status : "+_favoritesmodel!.status.toString());
+      print("favorites lenght : " +
+          _favoritesmodel!.data!.ListOfFavoriteModel.length.toString());
       _isloadingfavorites = false;
       update();
     }).catchError((error) {
       print(error);
     });
   }
+
   // ---------------------------getUserProfile----------------------------------//
 
-  bool? _isloadingUserProfile ;
-  bool? get isloadingUserProfile =>_isloadingUserProfile;
+  bool? _isloadingUserProfile;
+
+  bool? get isloadingUserProfile => _isloadingUserProfile;
   ShopLoginModel? _shopLoginModel;
-  ShopLoginModel? get  shopLoginModel =>_shopLoginModel;
+
+  ShopLoginModel? get shopLoginModel => _shopLoginModel;
 
   void getUserProfile() {
-
     // to remove without laoding favorite
     //if(_favoritesmodel !=null && _favoritesmodel!.data!.ListOfFavoriteModel.length<=0)
     _isloadingUserProfile = true;
     DioHelperShop.getData(url: PROFILE, token: token).then((value) {
       _shopLoginModel = ShopLoginModel.fromJson(value.data);
-      print(_shopLoginModel!.data!.name);
+      print(_shopLoginModel!.userData!.name);
 
       _isloadingUserProfile = false;
       update();
@@ -178,6 +177,37 @@ class ShopLayoutController extends GetxController {
       print(error);
     });
   }
-// -------------------------------------------------------------//
+
+// -------------------------updateUserData------------------------------------//
+  bool? _isloadingupdate=false;
+
+  bool? get isloadingupdate => _isloadingupdate;
+
+  Future<ShopLoginModel?> updateUserData(
+      {required String name,
+      required String phone,
+      required String email}) async {
+
+    ShopLoginModel? shopLoginMode = null;
+    _isloadingupdate = true;
+    update();
+   await DioHelperShop.putData(url: UPDATE_PROFILE, token: token, data: {
+      "name": name,
+      "phone": phone,
+      "email": email,
+    }).then((value) {
+     _shopLoginModel = ShopLoginModel.fromJson(value.data);
+     shopLoginMode = ShopLoginModel.fromJson(value.data);
+
+     // print(_shopLoginModel!.userData!.name);
+
+      _isloadingupdate = false;
+      update();
+    }).catchError((error) {
+      print(error);
+    });
+    return shopLoginMode;
+  }
+// ---------------------------------------------------------------//
 
 }

@@ -1,12 +1,12 @@
 class ShopLoginModel {
   bool? status;
   String? message;
-  UserData? data;
+  UserData? userData;
 
   ShopLoginModel.fromJson(Map<String, dynamic> json) {
     status = json["status"];
     message = json["message"];
-    data = json["data"] != null ? UserData.fromJson(json["data"]) : null;
+    userData = json["data"] != null ? UserData.fromJson(json["data"]) : null;
   }
 }
 
