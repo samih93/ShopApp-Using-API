@@ -15,12 +15,6 @@ import 'package:udemy_flutter/shared/network/remote/diohelper_shop.dart';
 import 'dart:convert';
 
 class ShopLayoutController extends GetxController {
-  Map<int?, bool?> favorites = {};
-
-  Favoritesmodel? _favoritesmodel;
-
-  Favoritesmodel? get favoritesmodel => _favoritesmodel;
-
   List<BottomNavigationBarItem> bottomItems = [
     BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
     BottomNavigationBarItem(icon: Icon(Icons.apps), label: "Categories"),
@@ -107,6 +101,9 @@ class ShopLayoutController extends GetxController {
   }
 
   // --------------------------- changeFavorites ----------------------------------//
+
+  Map<int?, bool?> favorites = {};
+
   ChangeFavoritesModel? _changeFavoritesModel;
 
   ChangeFavoritesModel? get changeFavoritesModel => _changeFavoritesModel;
@@ -133,6 +130,9 @@ class ShopLayoutController extends GetxController {
   }
 
   // -------------------------- getFavorites -----------------------------------//
+  Favoritesmodel? _favoritesmodel;
+
+  Favoritesmodel? get favoritesmodel => _favoritesmodel;
 
   bool? _isloadingfavorites;
 
@@ -179,7 +179,7 @@ class ShopLayoutController extends GetxController {
   }
 
 // -------------------------updateUserData------------------------------------//
-  bool? _isloadingupdate=false;
+  bool? _isloadingupdate = false;
 
   bool? get isloadingupdate => _isloadingupdate;
 
@@ -187,19 +187,18 @@ class ShopLayoutController extends GetxController {
       {required String name,
       required String phone,
       required String email}) async {
-
     ShopLoginModel? shopLoginMode = null;
     _isloadingupdate = true;
     update();
-   await DioHelperShop.putData(url: UPDATE_PROFILE, token: token, data: {
+    await DioHelperShop.putData(url: UPDATE_PROFILE, token: token, data: {
       "name": name,
       "phone": phone,
       "email": email,
     }).then((value) {
-     _shopLoginModel = ShopLoginModel.fromJson(value.data);
-     shopLoginMode = ShopLoginModel.fromJson(value.data);
+      _shopLoginModel = ShopLoginModel.fromJson(value.data);
+      shopLoginMode = ShopLoginModel.fromJson(value.data);
 
-     // print(_shopLoginModel!.userData!.name);
+      // print(_shopLoginModel!.userData!.name);
 
       _isloadingupdate = false;
       update();
@@ -208,6 +207,67 @@ class ShopLayoutController extends GetxController {
     });
     return shopLoginMode;
   }
-// ---------------------------------------------------------------//
 
+// --------------------------------Login------------------------------------------------//
+
+  bool _showpassword = true;
+  bool get showpassword => _showpassword;
+
+  bool _isloadingLogin = false;
+  bool get isloadingLogin => _isloadingLogin;
+
+  onObscurePassword() {
+    _showpassword = !showpassword;
+    update();
+  }
+
+  Future<ShopLoginModel?> userlogin(
+      {required String email, required String password}) async {
+    ShopLoginModel? shopLoginMode = null;
+    _isloadingLogin = true;
+    update();
+    print("first:" + _isloadingLogin.toString());
+    await DioHelperShop.postData(
+        url: LOGIN, data: {"email": email, "password": password}).then((value) {
+      print(value.data.toString());
+      shopLoginMode = ShopLoginModel.fromJson(value.data);
+      _isloadingLogin = false;
+      print("last:" + _isloadingLogin.toString());
+      update();
+    }).catchError((error) {
+      print(error.toString());
+    });
+
+    return shopLoginMode;
+  }
+
+// -----------------------------Resgiter New User ----------------------------------//
+
+  bool? _isloadingRegister = false;
+  bool? get isloadingRegister => _isloadingRegister;
+
+  Future<ShopLoginModel?> registerUser(
+      {required String name,
+      required String email,
+      required String password,
+      required String phone}) async {
+    _isloadingRegister = true;
+    update();
+    DioHelperShop.postData(url: REGISTER, token: token, data: {
+      'name': name,
+      'email': email,
+      'password': password,
+      "phone": phone
+    }).then((value) {
+      print(value.data.toString());
+      _shopLoginModel = ShopLoginModel.fromJson(value.data);
+      _isloadingLogin = false;
+      print("last:" + _isloadingLogin.toString());
+      update();
+    }).catchError((error) {
+      print(error.toString());
+    });
+
+    return _shopLoginModel;
+  }
 }

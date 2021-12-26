@@ -2,9 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:udemy_flutter/layout/shop_app/shop_layout_controller.dart';
 import 'package:udemy_flutter/layout/todo_app/todo_layoutcontroller.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:udemy_flutter/models/shop_app/home_model.dart';
 import 'package:udemy_flutter/modules/news_app/web_view/webview_screen.dart';
+import 'package:udemy_flutter/shared/styles/colors.dart';
 
 Widget defaultButton(
         {double width = double.infinity,
@@ -52,6 +55,8 @@ Widget defaultTextFormField({
   Widget? prefixIcon,
   Widget? suffixIcon,
   bool obscure = false,
+  InputBorder? border,
+  String? hinttext,
 }) =>
     TextFormField(
         controller: controller,
@@ -62,9 +67,10 @@ Widget defaultTextFormField({
         onChanged: onchange,
         decoration: InputDecoration(
           labelText: text,
+          hintText: hinttext ?? null,
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
-          border: OutlineInputBorder(),
+          border: border ?? OutlineInputBorder(),
         ),
         validator: onvalidate);
 
@@ -243,6 +249,102 @@ Widget buildArticleItem(article, context) => Directionality(
               ),
             ],
           ),
+        ),
+      ),
+    );
+
+Widget buildFavoriteItem(ProductModel? model, {bool issearch = false}) =>
+    Container(
+      padding: EdgeInsets.all(20),
+      height: 120,
+      child: GetBuilder<ShopLayoutController>(
+        init: Get.find<ShopLayoutController>(),
+        builder: (shopLayoutController) => Row(
+          children: [
+            Stack(
+              alignment: AlignmentDirectional.bottomStart,
+              children: [
+                Image(
+                  height: 120,
+                  width: 120,
+                  image: NetworkImage(model!.image.toString()),
+                  fit: BoxFit.cover,
+                ),
+                if (model.discount != 0)
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    color: Colors.red,
+                    child: Text(
+                      "DISCOUNT",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(model.name.toString(),
+                      style: TextStyle(fontSize: 15),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis),
+                  Spacer(),
+                  Row(
+                    children: [
+                      Text(
+                        model.price.toString(),
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: defaultColor,
+                        ),
+                        maxLines: 2,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      if (!issearch)
+                        if (model.discount != 0)
+                          Text(
+                            model.old_price.toString(),
+                            style: TextStyle(
+                                fontSize: 10,
+                                color: Colors.grey,
+                                decoration: TextDecoration.lineThrough),
+                          ),
+                      Spacer(),
+                      IconButton(
+                          padding: EdgeInsets.zero,
+                          onPressed: () async {
+                            shopLayoutController
+                                .changeFavorites(int.parse(model.id.toString()))
+                                .then((value) {});
+                            print("after change");
+
+                            // print(model!.id);
+                          },
+                          icon: shopLayoutController.favorites[model.id] == true
+                              ? Icon(
+                                  Icons.favorite,
+                                  color: Colors.red,
+                                  size: 20,
+                                )
+                              : Icon(
+                                  Icons.favorite_border,
+                                  size: 20,
+                                )),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

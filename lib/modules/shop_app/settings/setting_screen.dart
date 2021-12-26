@@ -46,7 +46,7 @@ class SettingsScreen extends StatelessWidget {
                       },
                       icon: Icon(
                         Icons.person,
-                        size: 50,
+                        size: 40,
                         color: Colors.grey.shade700,
                       )),
                 ),
@@ -58,7 +58,7 @@ class SettingsScreen extends StatelessWidget {
                       },
                       icon: Icon(
                         Icons.favorite,
-                        size: 50,
+                        size: 40,
                         color: Colors.grey.shade700,
                       )),
                 ),
@@ -68,7 +68,7 @@ class SettingsScreen extends StatelessWidget {
                       onPressed: () {},
                       icon: Icon(
                         Icons.location_on,
-                        size: 50,
+                        size: 40,
                         color: Colors.grey.shade700,
                       )),
                 ),
@@ -81,7 +81,7 @@ class SettingsScreen extends StatelessWidget {
                       },
                       icon: Icon(
                         Icons.logout_outlined,
-                        size: 50,
+                        size: 40,
                         color: Colors.red.shade400,
                       )),
                 ),

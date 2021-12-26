@@ -3,23 +3,25 @@ import 'package:get/get.dart';
 import 'package:udemy_flutter/layout/shop_app/shop_layout.dart';
 import 'package:udemy_flutter/layout/shop_app/shop_layout_controller.dart';
 import 'package:udemy_flutter/models/shop_app/login_model.dart';
-import 'package:udemy_flutter/modules/shop_app/register/shop_register_screen.dart';
 import 'package:udemy_flutter/shared/componets/componets.dart';
 import 'package:udemy_flutter/shared/componets/constants.dart';
 import 'package:udemy_flutter/shared/network/local/cashhelper.dart';
 
-class ShopLoginScreen extends StatelessWidget {
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
+class ShopRegisterScreen extends StatelessWidget {
   var _formkey = GlobalKey<FormState>();
+
+  var nameController = TextEditingController();
+  var passwordController = TextEditingController();
+  var emailController = TextEditingController();
+  var phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ShopLayoutController>(
-      init: Get.find<ShopLayoutController>(),
-      builder: (shopLayoutController) => Scaffold(
-        appBar: AppBar(),
-        body: Center(
+    return Scaffold(
+      appBar: AppBar(),
+      body: GetBuilder<ShopLayoutController>(
+        init: Get.find<ShopLayoutController>(),
+        builder: (shopLayoutController) => Center(
           child: SingleChildScrollView(
             reverse: true,
             child: Padding(
@@ -30,7 +32,7 @@ class ShopLoginScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "LOGIN",
+                      "REGISTER",
                       style: Theme.of(context)
                           .textTheme
                           .headline5!
@@ -40,13 +42,27 @@ class ShopLoginScreen extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      "Login Now to browse our hot offers",
+                      "REGITER Now to browse our hot offers",
                       style: Theme.of(context).textTheme.bodyText2!.copyWith(
                             color: Colors.grey,
                           ),
                     ),
                     SizedBox(
                       height: 20,
+                    ),
+                    defaultTextFormField(
+                      controller: nameController,
+                      text: "User Name",
+                      prefixIcon: Icon(Icons.person),
+                      inputtype: TextInputType.name,
+                      onvalidate: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please Enter your User Name';
+                        }
+                      },
+                    ),
+                    SizedBox(
+                      height: 15,
                     ),
                     defaultTextFormField(
                       controller: emailController,
@@ -84,20 +100,39 @@ class ShopLoginScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
+                      height: 15,
+                    ),
+                    defaultTextFormField(
+                      controller: phoneController,
+                      text: "Phone Number",
+                      prefixIcon: Icon(Icons.phone),
+                      inputtype: TextInputType.phone,
+                      onvalidate: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please Enter your Phone Number';
+                        }
+                      },
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    SizedBox(
                       height: 10,
                     ),
-                    shopLayoutController.isloadingLogin
+                    shopLayoutController.isloadingRegister!
                         ? Center(child: CircularProgressIndicator())
                         : defaultButton(
-                            text: "Login",
+                            text: "REGITSER",
                             isUppercase: true,
                             onpress: () async {
                               ShopLoginModel? shopLoginModel;
                               if (_formkey.currentState!.validate()) {
                                 shopLayoutController
-                                    .userlogin(
+                                    .registerUser(
+                                        name: nameController.text,
                                         email: emailController.text,
-                                        password: passwordController.text)
+                                        password: passwordController.text,
+                                        phone: phoneController.text)
                                     .then((value) {
                                   shopLoginModel = value;
                                   if (shopLoginModel!.status!) {
@@ -126,19 +161,6 @@ class ShopLoginScreen extends StatelessWidget {
                             }),
                     SizedBox(
                       height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Don\'t have an account?',
-                        ),
-                        defaultTextButton(
-                            onpress: () {
-                              Get.to(ShopRegisterScreen());
-                            },
-                            text: "Register".toUpperCase()),
-                      ],
                     ),
                   ],
                 ),

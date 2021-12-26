@@ -17,7 +17,6 @@ class ProductsScreen extends StatelessWidget {
     return GetBuilder<ShopLayoutController>(
       init: Get.find<ShopLayoutController>(),
       builder: (shopLayoutController) => Scaffold(
-        appBar: AppBar(),
         body: shopLayoutController.isloadinghome &&
                 shopLayoutController.isloadingcategories
             ? Center(child: CircularProgressIndicator())
@@ -35,17 +34,22 @@ class ProductsScreen extends StatelessWidget {
           children: [
             CarouselSlider(
               // check null
-              items: homemodel!=null? homemodel.data!.banners
-                  .map((element) => Image(
-                        image: NetworkImage(element.image.toString()),
-                        fit: BoxFit.cover,
-                      ))
-                  .toList():[],
+              items: homemodel != null
+                  ? homemodel.data!.banners
+                      .map((element) => Container(
+                            padding: EdgeInsets.all(10),
+                            child: Image(
+                              image: NetworkImage(element.image.toString()),
+                              fit: BoxFit.cover,
+                            ),
+                          ))
+                      .toList()
+                  : [],
               options: CarouselOptions(
                 height: 200,
                 initialPage: 0,
                 enableInfiniteScroll: true,
-                viewportFraction: 1,
+                viewportFraction: 0.8,
                 reverse: false,
                 autoPlay: true,
                 autoPlayInterval: Duration(seconds: 3),
@@ -100,9 +104,12 @@ class ProductsScreen extends StatelessWidget {
                   physics: NeverScrollableScrollPhysics(),
                   crossAxisCount: 2,
                   children: List.generate(
-                       homemodel!=null? homemodel.data!.products.length:0,
-                      (index) => homemodel!=null ?
-                          buildGridProduct(homemodel.data!.products[index]) : SizedBox(height: 10,))),
+                      homemodel != null ? homemodel.data!.products.length : 0,
+                      (index) => homemodel != null
+                          ? buildGridProduct(homemodel.data!.products[index])
+                          : SizedBox(
+                              height: 10,
+                            ))),
             )
           ],
         ),
@@ -132,7 +139,9 @@ class ProductsScreen extends StatelessWidget {
 
   Widget buildGridProduct(ProductModel model) => Container(
         color: Colors.white,
-        child: GetBuilder<ShopLayoutController>(init:Get.find<ShopLayoutController>(),builder: (shopLayoutController)=> Column(
+        child: GetBuilder<ShopLayoutController>(
+          init: Get.find<ShopLayoutController>(),
+          builder: (shopLayoutController) => Column(
             children: [
               Stack(
                 alignment: AlignmentDirectional.bottomStart,
@@ -191,23 +200,25 @@ class ProductsScreen extends StatelessWidget {
                         IconButton(
                             padding: EdgeInsets.zero,
                             onPressed: () async {
-                               shopLayoutController.changeFavorites( int.parse(model.id.toString())).then((value) {
-
-                              });
+                              shopLayoutController
+                                  .changeFavorites(
+                                      int.parse(model.id.toString()))
+                                  .then((value) {});
                               print("after change");
 
                               print(model.id);
                             },
-                            icon: shopLayoutController.favorites[model.id] == true ?Icon(
-                              Icons.favorite,
-                              color: Colors.red,
-                              size: 20,
-
-                            ) :Icon(
-                              Icons.favorite_border,
-                              size: 20,
-
-                            ) ),
+                            icon:
+                                shopLayoutController.favorites[model.id] == true
+                                    ? Icon(
+                                        Icons.favorite,
+                                        color: Colors.red,
+                                        size: 20,
+                                      )
+                                    : Icon(
+                                        Icons.favorite_border,
+                                        size: 20,
+                                      )),
                       ],
                     ),
                   ],
