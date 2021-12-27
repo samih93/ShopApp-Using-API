@@ -32,6 +32,8 @@ String? token = "";
 // for search
 // https://newsapi.org/v2/everything?q=tesla&apiKey=65f7f556ec76449fa7dc7c0069f040ca
 
+
+// NOTE:
 /// NAME         SIZE  WEIGHT  SPACING
 /// headline1    96.0  light   -1.5
 /// headline2    60.0  light   -0.5
@@ -46,3 +48,10 @@ String? token = "";
 /// button       14.0  medium   1.25
 /// caption      12.0  regular  0.4
 /// overline     10.0  regular  1.5
+
+// ToDo: 
+// ! important 
+// NOTE:    
+// FIXME:   
+// WARNING: 
+// ATTENTION: 

@@ -25,6 +25,7 @@ class ShopLayoutController extends GetxController {
     BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
   ];
 
+// NOTE: first call for  constructor  i retreive needs data
   ShopLayoutController() {
     getHomeData();
     getCategories();
@@ -39,7 +40,7 @@ class ShopLayoutController extends GetxController {
     SettingsScreen()
   ];
 
-  // ------------------------ onchangeIndex -------------------------------------//
+  // NOTE: --------------------- On Change Index Of Screens ------------------
 
   int _currentIndex = 0;
 
@@ -50,7 +51,7 @@ class ShopLayoutController extends GetxController {
     update();
   }
 
-  // ------------------------ getHomeData -------------------------------------//
+  // NOTE: ---------------------  Get Home Data ------------------
 
   bool _isloadinghome = true;
 
@@ -79,7 +80,7 @@ class ShopLayoutController extends GetxController {
     });
   }
 
-  // ------------------------ getCategories -------------------------------------//
+  // NOTE: --------------------- Get Categories -------------------
 
   bool _isloadingcategories = true;
 
@@ -100,7 +101,7 @@ class ShopLayoutController extends GetxController {
     });
   }
 
-  // --------------------------- changeFavorites ----------------------------------//
+  // NOTE: --------------------- Change favorites -------------------
 
   Map<int?, bool?> favorites = {};
 
@@ -129,7 +130,7 @@ class ShopLayoutController extends GetxController {
     return _changeFavoritesModel;
   }
 
-  // -------------------------- getFavorites -----------------------------------//
+  // NOTE: --------------------- Get favorites -------------------
   Favoritesmodel? _favoritesmodel;
 
   Favoritesmodel? get favoritesmodel => _favoritesmodel;
@@ -154,7 +155,7 @@ class ShopLayoutController extends GetxController {
     });
   }
 
-  // ---------------------------getUserProfile----------------------------------//
+  // NOTE: --------------------- Get User Profile -------------------
 
   bool? _isloadingUserProfile;
 
@@ -178,7 +179,7 @@ class ShopLayoutController extends GetxController {
     });
   }
 
-// -------------------------updateUserData------------------------------------//
+  // NOTE:  --------------------- Update User Data -------------------
   bool? _isloadingupdate = false;
 
   bool? get isloadingupdate => _isloadingupdate;
@@ -208,7 +209,7 @@ class ShopLayoutController extends GetxController {
     return shopLoginMode;
   }
 
-// --------------------------------Login------------------------------------------------//
+  // NOTE: ---------------------  User Login --------------
 
   bool _showpassword = true;
   bool get showpassword => _showpassword;
@@ -241,8 +242,7 @@ class ShopLayoutController extends GetxController {
     return shopLoginMode;
   }
 
-// -----------------------------Resgiter New User ----------------------------------//
-
+  // NOTE: --------------------- Resgister New User --------------
   bool? _isloadingRegister = false;
   bool? get isloadingRegister => _isloadingRegister;
 
