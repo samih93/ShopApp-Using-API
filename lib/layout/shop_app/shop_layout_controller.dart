@@ -27,10 +27,11 @@ class ShopLayoutController extends GetxController {
 
 // NOTE: first call for  constructor  i retreive needs data
   ShopLayoutController() {
-    getHomeData();
-    getCategories();
-    getFavorites();
-    getUserProfile();
+    //FIXME :
+    // getHomeData();
+    // getCategories();
+    // getFavorites();
+    // getUserProfile();
   }
 
   final screens = [

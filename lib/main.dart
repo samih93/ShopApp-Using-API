@@ -10,6 +10,7 @@ import 'package:udemy_flutter/layout/todo_app/todo_layoutcontroller.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/modules/shop_app/login/shop_login_screen.dart';
 import 'package:udemy_flutter/modules/shop_app/onboarding/on_boarding_screen.dart';
+import 'package:udemy_flutter/modules/social_app/social_login/social_login.dart';
 import 'package:udemy_flutter/shared/componets/constants.dart';
 import 'package:udemy_flutter/shared/helper/binding.dart';
 import 'package:udemy_flutter/shared/network/local/cashhelper.dart';
@@ -19,13 +20,24 @@ import 'package:udemy_flutter/shared/styles/thems.dart';
 
 import 'shared/styles/thems.dart';
 
+import 'package:firebase_core/firebase_core.dart';
+
 void main() async {
+
+  // NOTE : to run all thing befor runApp()
   WidgetsFlutterBinding.ensureInitialized();
+
+  // NOTE: INITIALIZE FIREBASE
+  await Firebase.initializeApp();
 
   // dio helper is used to call api
   // this come first cz in new controller i use the dio so if i dont use then ,
   // then new layoutcontroller created and call diohelper on null so return business list null
   DioHelperNews.init().then((value) {});
+
+
+  // NOTE : For shop App ----------------------
+
   DioHelperShop.init().then((value) {});
   await CashHelper.Init();
 
@@ -37,6 +49,7 @@ void main() async {
   print("token :" + token.toString());
   Widget widget;
 
+
   if (onboarding != null) {
     if (token != null)
       widget = ShopLayout();
@@ -45,7 +58,10 @@ void main() async {
   } else {
     widget = OnBoardingScreen();
   }
+  //NOTE ----------------------------------
 
+
+ //NOTE : ADD dependencies
   Get.put(NewsLayoutController());
   Get.put(TodoLayoutController());
   Get.put(ShopLayoutController());
@@ -69,7 +85,7 @@ class MyApp extends StatelessWidget {
 
         initialBinding: Binding(),
         debugShowCheckedModeBanner: false,
-        home: widget,
+        home: SocialLoginScreen(),
       ),
     );
   }
