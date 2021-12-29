@@ -100,44 +100,40 @@ class SocialFeedsScreen extends StatelessWidget {
                       ),
                       Text(
                           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'),
-                      Container(
-                        width: double.infinity,
-                        child: Wrap(
-                          alignment: WrapAlignment.start,
-                          children: [
-                            MaterialButton(
-                                padding: EdgeInsets.zero,
-                                minWidth: 1,
-                                onPressed: () {},
-                                child: Text(
-                                  "#software",
-                                  style: TextStyle(color: defaultColor),
-                                )),
-                            MaterialButton(
-                                padding: EdgeInsets.zero,
-                                minWidth: 1,
-                                onPressed: () {},
-                                child: Text(
-                                  "#Engineer",
-                                  style: TextStyle(color: defaultColor),
-                                )),
-                            MaterialButton(
-                                padding: EdgeInsets.zero,
-                                minWidth: 1,
-                                onPressed: () {},
-                                child: Text(
-                                  "#developement",
-                                  style: TextStyle(color: defaultColor),
-                                )),
-                          ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Container(
+                          width: double.infinity,
+                          child: Wrap(
+                            alignment: WrapAlignment.start,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsetsDirectional.only(end: 7.0),
+                                child: Container(
+                                  height: 25,
+                                  child: MaterialButton(
+                                      padding: EdgeInsets.zero,
+                                      minWidth: 1,
+                                      onPressed: () {},
+                                      child: Text(
+                                        "#software_Engineer",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .caption!
+                                            .copyWith(
+                                              color: defaultColor,
+                                            ),
+                                      )),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 10,
                       ),
                       Container(
                           width: double.infinity,
-                          height: 150,
+                          height: 180,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(4),
                             image: DecorationImage(
@@ -146,6 +142,22 @@ class SocialFeedsScreen extends StatelessWidget {
                               fit: BoxFit.cover,
                             ),
                           )),
+                      Row(
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.favorite_border, color: Colors.red),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                "1230",
+                                style: Theme.of(context).textTheme.caption,
+                              ),
+                            ],
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 )),
