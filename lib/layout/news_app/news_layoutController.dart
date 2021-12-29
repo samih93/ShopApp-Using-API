@@ -56,7 +56,8 @@ class NewsLayoutController extends GetxController {
     if (isdarkcashedthem != null) {
       _isDarkMode = isdarkcashedthem;
     }
-    getAllBusiness();
+    //FIXME : 
+    // getAllBusiness();
   }
 
   void onchangeIndex(int index) {
