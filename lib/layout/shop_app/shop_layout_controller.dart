@@ -24,6 +24,12 @@ class ShopLayoutController extends GetxController {
     ),
     BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
   ];
+  final screens = [
+    ProductsScreen(),
+    CategoriesScreen(),
+    FavoritesScreen(),
+    SettingsScreen()
+  ];
 
 // NOTE: first call for  constructor  i retreive needs data
   ShopLayoutController() {
@@ -33,13 +39,6 @@ class ShopLayoutController extends GetxController {
     // getFavorites();
     // getUserProfile();
   }
-
-  final screens = [
-    ProductsScreen(),
-    CategoriesScreen(),
-    FavoritesScreen(),
-    SettingsScreen()
-  ];
 
   // NOTE: --------------------- On Change Index Of Screens ------------------
 

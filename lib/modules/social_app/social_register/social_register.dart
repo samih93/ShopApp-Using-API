@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/layout/shop_app/shop_layout.dart';
 import 'package:udemy_flutter/layout/shop_app/shop_layout_controller.dart';
+import 'package:udemy_flutter/layout/social_app/social_layout.dart';
 import 'package:udemy_flutter/models/shop_app/login_model.dart';
 import 'package:udemy_flutter/modules/social_app/social_login/social_login_controller.dart';
 import 'package:udemy_flutter/modules/social_app/social_register/social_register_controller.dart';
@@ -127,13 +128,26 @@ class SocialRegisterScreen extends StatelessWidget {
                             text: "REGITSER",
                             isUppercase: true,
                             onpress: () async {
+                              // NOTE : GET STATUS OF  register method
+                              String registerMessage = "";
                               if (_formkey.currentState!.validate()) {
-                                socialRegisterController.registerUser(
+                                await socialRegisterController.registerUser(
                                     name: nameController.text,
                                     email: emailController.text,
                                     password: passwordController.text,
                                     phone: phoneController.text);
                               }
+                              print(
+                                  "status firestore ${socialRegisterController.isSuccessRegisterToFireStore}");
+                              if (socialRegisterController
+                                  .isSuccessRegisterToFireStore) {
+                                Get.offAll(SocialLayout());
+                              }
+                              showToast(
+                                  message:
+                                      socialRegisterController.statusMessage,
+                                  status: socialRegisterController
+                                      .statusLoginMessage!);
                             }),
                     SizedBox(
                       height: 10,

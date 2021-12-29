@@ -6,6 +6,7 @@ import 'package:udemy_flutter/layout/news_app/news_layout.dart';
 import 'package:udemy_flutter/layout/news_app/news_layoutController.dart';
 import 'package:udemy_flutter/layout/shop_app/shop_layout.dart';
 import 'package:udemy_flutter/layout/shop_app/shop_layout_controller.dart';
+import 'package:udemy_flutter/layout/social_app/social_layout.dart';
 import 'package:udemy_flutter/layout/todo_app/todo_layoutcontroller.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/modules/shop_app/login/shop_login_screen.dart';
@@ -23,7 +24,6 @@ import 'shared/styles/thems.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
-
   // NOTE : to run all thing befor runApp()
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -35,33 +35,40 @@ void main() async {
   // then new layoutcontroller created and call diohelper on null so return business list null
   DioHelperNews.init().then((value) {});
 
-
   // NOTE : For shop App ----------------------
 
   DioHelperShop.init().then((value) {});
   await CashHelper.Init();
 
 // check if no cash data ==> return false
-  bool? onboarding = CashHelper.getData(key: "onBoarding");
-  print(onboarding);
-
-  token = CashHelper.getData(key: "token") ?? null;
-  print("token :" + token.toString());
+  // bool? onboarding = CashHelper.getData(key: "onBoarding");
+  // print(onboarding);
+  // NOTE: New
+  // token = CashHelper.getData(key: "token") ?? null;
+  // print("token :" + token.toString());
   Widget widget;
 
+  // if (onboarding != null) {
+  //   if (token != null)
+  //     widget = ShopLayout();
+  //   else
+  //     widget = ShopLoginScreen();
+  // } else {
+  //   widget = OnBoardingScreen();
+  // }
 
-  if (onboarding != null) {
-    if (token != null)
-      widget = ShopLayout();
-    else
-      widget = ShopLoginScreen();
+  uId = CashHelper.getData(key: "uId") ?? null;
+  print("UId :" + uId.toString());
+
+  if (uId != null) {
+    widget = SocialLayout();
   } else {
-    widget = OnBoardingScreen();
+    widget = SocialLoginScreen();
   }
+
   //NOTE ----------------------------------
 
-
- //NOTE : ADD dependencies
+  //NOTE : ADD dependencies
   Get.put(NewsLayoutController());
   Get.put(TodoLayoutController());
   Get.put(ShopLayoutController());
@@ -85,7 +92,7 @@ class MyApp extends StatelessWidget {
 
         initialBinding: Binding(),
         debugShowCheckedModeBanner: false,
-        home: SocialLoginScreen(),
+        home: widget,
       ),
     );
   }

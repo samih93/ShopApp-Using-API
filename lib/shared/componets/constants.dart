@@ -23,6 +23,8 @@ void printFullText(String text) {
 
 String? token = "";
 
+String? uId = "";
+
 // GET
 
 // base url : https://newsapi.org/
@@ -33,7 +35,7 @@ String? token = "";
 // https://newsapi.org/v2/everything?q=tesla&apiKey=65f7f556ec76449fa7dc7c0069f040ca
 
 
-// NOTE:
+// NOTE: style
 /// NAME         SIZE  WEIGHT  SPACING
 /// headline1    96.0  light   -1.5
 /// headline2    60.0  light   -0.5
@@ -54,4 +56,7 @@ String? token = "";
 // NOTE:    
 // FIXME:    
 // WARNING: 
-// ATTENTION: 
+
+
+
+//NOTE: 

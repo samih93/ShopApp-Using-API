@@ -23,9 +23,12 @@ ThemeData darkThem() => ThemeData(
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: HexColor('#525252'),
           unselectedItemColor: Colors.grey),
+
+      //NOTE : set default bodytext1
       textTheme: TextTheme(
         bodyText1: TextStyle(
             color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+        subtitle1: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       ),
     );
 
@@ -45,8 +48,11 @@ ThemeData lightTheme() => ThemeData(
           )),
       floatingActionButtonTheme:
           FloatingActionButtonThemeData(backgroundColor: defaultColor),
+
+      //NOTE : set default bodytext1
       textTheme: TextTheme(
         bodyText1: TextStyle(
             color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+        subtitle1: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
       ),
     );

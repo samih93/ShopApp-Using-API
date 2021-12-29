@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/layout/shop_app/shop_layout.dart';
 import 'package:udemy_flutter/layout/shop_app/shop_layout_controller.dart';
+import 'package:udemy_flutter/layout/social_app/social_layout.dart';
 import 'package:udemy_flutter/models/shop_app/login_model.dart';
 import 'package:udemy_flutter/modules/shop_app/register/shop_register_screen.dart';
 import 'package:udemy_flutter/modules/social_app/social_login/social_login_controller.dart';
@@ -96,10 +97,22 @@ class SocialLoginScreen extends StatelessWidget {
                             isUppercase: true,
                             onpress: () async {
                               if (_formkey.currentState!.validate()) {
-                                socialLoginController.userlogin(
+                                await socialLoginController.userlogin(
                                     email: emailController.text,
                                     password: passwordController.text);
                               }
+
+                              if (socialLoginController.statusLoginMessage ==
+                                  ToastStatus.Success) {
+                                //NOTE: uId saved in login method
+                                CashHelper.saveData(key: "uId", value: uId);
+                                Get.offAll(SocialLayout());
+                              }
+
+                              showToast(
+                                  message: socialLoginController.statusMessage,
+                                  status: socialLoginController
+                                      .statusLoginMessage!);
                             }),
                     SizedBox(
                       height: 10,
