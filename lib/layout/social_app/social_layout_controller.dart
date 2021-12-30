@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:udemy_flutter/models/social_app/social_usermodel.dart';
 import 'package:udemy_flutter/modules/social_app/chats/chat_screen.dart';
 import 'package:udemy_flutter/modules/social_app/feeds/feeds_screen.dart';
+import 'package:udemy_flutter/modules/social_app/new_post/new_post_screen.dart';
 import 'package:udemy_flutter/modules/social_app/settings/setting_screen.dart';
 import 'package:udemy_flutter/modules/social_app/users/users_screen.dart';
 import 'package:udemy_flutter/shared/componets/constants.dart';
@@ -29,6 +30,7 @@ class SocialLayoutController extends GetxController {
   final screens = [
     SocialFeedsScreen(),
     SocialChatScreen(),
+    NewPostScreen(),
     SocialUsersScreen(),
     SocialSettingScreen()
   ];

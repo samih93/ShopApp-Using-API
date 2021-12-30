@@ -17,10 +17,8 @@ class SocialLayout extends StatelessWidget {
             IconButton(onPressed: () {}, icon: Icon(Icons.notifications))
           ],
         ),
-        body: socialLayoutController.screens[
-            socialLayoutController.currentIndex > 2
-                ? socialLayoutController.currentIndex - 1
-                : socialLayoutController.currentIndex],
+        body:
+            socialLayoutController.screens[socialLayoutController.currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           elevation: 30,
           type: BottomNavigationBarType.fixed,
