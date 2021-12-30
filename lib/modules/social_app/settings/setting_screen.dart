@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/layout/social_app/social_layout_controller.dart';
+import 'package:udemy_flutter/modules/social_app/edit_profile/social_edit_profile.dart';
 import 'package:udemy_flutter/shared/componets/componets.dart';
 
 class SocialSettingScreen extends StatelessWidget {
@@ -9,164 +10,178 @@ class SocialSettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SocialLayoutController>(
-      init: SocialLayoutController(),
-      builder: (socialLayoutController) => Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Container(
-              height: 220,
-              child: Stack(
-                alignment: AlignmentDirectional.bottomCenter,
+        init: SocialLayoutController(),
+        builder: (socialLayoutController) {
+          var socialUserModel = socialLayoutController.socialUserModel!;
+          return Scaffold(
+            body: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
                 children: [
-                  //NOTE : Cover Image
-                  Align(
-                    alignment: AlignmentDirectional.topCenter,
-                    child: Container(
-                        height: 180,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(5),
-                            topRight: Radius.circular(5),
-                          ),
-                          image: DecorationImage(
-                            image: NetworkImage(socialLayoutController
-                                .socialUserModel!.coverimage
+                  //NOTE Cover And Profile ---------------------
+                  Container(
+                    height: 220,
+                    child: Stack(
+                      alignment: AlignmentDirectional.bottomCenter,
+                      children: [
+                        //NOTE : Cover Image
+                        Align(
+                          alignment: AlignmentDirectional.topCenter,
+                          child: Container(
+                              height: 180,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(5),
+                                  topRight: Radius.circular(5),
+                                ),
+                                image: DecorationImage(
+                                  image: NetworkImage(socialLayoutController
+                                      .socialUserModel!.coverimage
+                                      .toString()),
+                                  fit: BoxFit.cover,
+                                ),
+                              )),
+                        ),
+                        //NOTE profileImage
+                        CircleAvatar(
+                          radius: profileheight + 3,
+                          backgroundColor:
+                              Theme.of(context).scaffoldBackgroundColor,
+                          child: CircleAvatar(
+                            radius: profileheight,
+                            backgroundImage: NetworkImage(socialLayoutController
+                                .socialUserModel!.image
                                 .toString()),
-                            fit: BoxFit.cover,
                           ),
-                        )),
-                  ),
-                  //NOTE profileImage
-                  CircleAvatar(
-                    radius: profileheight + 3,
-                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                    child: CircleAvatar(
-                      radius: profileheight,
-                      backgroundImage: NetworkImage(socialLayoutController
-                          .socialUserModel!.image
-                          .toString()),
+                        ),
+                      ],
                     ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  //NOTE Name
+                  Text(
+                    socialLayoutController.socialUserModel!.name.toString(),
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                  // NOTE bio
+                  Text(
+                    "bio",
+                    style: Theme.of(context).textTheme.caption,
+                  ),
+                  // NOTE posts and follower ,following
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 15.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: InkWell(
+                            onTap: () {},
+                            child: Column(
+                              children: [
+                                Text(
+                                  "100",
+                                  style: Theme.of(context).textTheme.subtitle1,
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Posts",
+                                  style: Theme.of(context).textTheme.caption,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: InkWell(
+                            onTap: () {},
+                            child: Column(
+                              children: [
+                                Text(
+                                  "390",
+                                  style: Theme.of(context).textTheme.subtitle1,
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Photos",
+                                  style: Theme.of(context).textTheme.caption,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: InkWell(
+                            onTap: () {},
+                            child: Column(
+                              children: [
+                                Text(
+                                  "2K",
+                                  style: Theme.of(context).textTheme.subtitle1,
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Followers",
+                                  style: Theme.of(context).textTheme.caption,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: InkWell(
+                            onTap: () {},
+                            child: Column(
+                              children: [
+                                Text(
+                                  "700",
+                                  style: Theme.of(context).textTheme.subtitle1,
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Following",
+                                  style: Theme.of(context).textTheme.caption,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // NOTE : Edit Profile Button
+                  Row(
+                    children: [
+                      Expanded(
+                        child: OutlinedButton(
+                          onPressed: () {},
+                          child: Text("Edit Profile"),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      OutlinedButton(
+                          onPressed: () {
+                            Get.to(SocialEditProfile());
+                          },
+                          child: Icon(Icons.edit)),
+                    ],
                   ),
                 ],
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              socialLayoutController.socialUserModel!.name.toString(),
-              style: Theme.of(context).textTheme.bodyText1,
-            ),
-            Text(
-              "bio",
-              style: Theme.of(context).textTheme.caption,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {},
-                      child: Column(
-                        children: [
-                          Text(
-                            "100",
-                            style: Theme.of(context).textTheme.subtitle1,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "Posts",
-                            style: Theme.of(context).textTheme.caption,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {},
-                      child: Column(
-                        children: [
-                          Text(
-                            "390",
-                            style: Theme.of(context).textTheme.subtitle1,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "Photos",
-                            style: Theme.of(context).textTheme.caption,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {},
-                      child: Column(
-                        children: [
-                          Text(
-                            "2K",
-                            style: Theme.of(context).textTheme.subtitle1,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "Followers",
-                            style: Theme.of(context).textTheme.caption,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {},
-                      child: Column(
-                        children: [
-                          Text(
-                            "700",
-                            style: Theme.of(context).textTheme.subtitle1,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "Following",
-                            style: Theme.of(context).textTheme.caption,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    child: Text("Edit Profile"),
-                  ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                OutlinedButton(onPressed: () {}, child: Icon(Icons.edit)),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+          );
+        });
   }
 }

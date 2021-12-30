@@ -12,7 +12,8 @@ class SocialLayout extends StatelessWidget {
       init: Get.find<SocialLayoutController>(),
       builder: (socialLayoutController) => Scaffold(
         appBar: AppBar(
-          title: Text("Social App"),
+          title: Text(socialLayoutController
+              .appbar_title[socialLayoutController.currentIndex]),
           actions: [
             IconButton(onPressed: () {}, icon: Icon(Icons.notifications))
           ],

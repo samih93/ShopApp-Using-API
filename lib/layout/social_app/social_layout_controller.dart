@@ -26,7 +26,7 @@ class SocialLayoutController extends GetxController {
     BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
   ];
 
-  //NOTE: ---------------------------Screens----------------------------
+  //NOTE: ---------------------------Screens and Titles----------------------------
   final screens = [
     SocialFeedsScreen(),
     SocialChatScreen(),
@@ -34,6 +34,8 @@ class SocialLayoutController extends GetxController {
     SocialUsersScreen(),
     SocialSettingScreen()
   ];
+
+  final appbar_title = ['Home', 'Chat', 'Post', 'Users', 'Settings'];
 
   //NOTE:  -------------------- Get User Data-------------------------
   SocialUserModel? _socialUserModel;

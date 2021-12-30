@@ -9,6 +9,22 @@ import 'package:udemy_flutter/models/shop_app/home_model.dart';
 import 'package:udemy_flutter/modules/news_app/web_view/webview_screen.dart';
 import 'package:udemy_flutter/shared/styles/colors.dart';
 
+//NOTE  ---------default APP bar -------------------------
+AppBar defaultAppBar(
+        {required BuildContext context,
+        String? title,
+        List<Widget>? actions}) =>
+    AppBar(
+      titleSpacing: 5,
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back),
+        onPressed: () => Navigator.pop(context),
+      ),
+      title: Text(title.toString()),
+      actions: actions,
+    );
+
+//NOTE ----------default Button -----------------------------
 Widget defaultButton(
         {double width = double.infinity,
         Color background = Colors.blue,
@@ -35,6 +51,7 @@ Widget defaultButton(
       ),
     );
 
+//NOTE ----------default Text  Button -----------------------------
 Widget defaultTextButton(
         {@required VoidCallback? onpress, @required String? text}) =>
     TextButton(
@@ -44,6 +61,7 @@ Widget defaultTextButton(
       ),
     );
 
+//NOTE ----------default TextFormField -----------------------------
 Widget defaultTextFormField({
   required TextEditingController controller,
   required TextInputType inputtype,
@@ -77,6 +95,7 @@ Widget defaultTextFormField({
         ),
         validator: onvalidate);
 
+//NOTE ----------Build Task Item -----------------------------
 Widget buildTaskItem(Map map) => GetBuilder<TodoLayoutController>(
       init: Get.find<TodoLayoutController>(),
       builder: (todocontroller) => Dismissible(
@@ -153,6 +172,7 @@ Widget buildTaskItem(Map map) => GetBuilder<TodoLayoutController>(
       ),
     );
 
+//NOTE ----------Build Task Builder -----------------------------
 // circular indicator then show list of tasks or archived taks or finished task
 Widget tasksBuilder({required List<Map> tasks, required String message}) =>
     tasks.length == 0
@@ -180,11 +200,14 @@ Widget tasksBuilder({required List<Map> tasks, required String message}) =>
                 ),
             itemCount: tasks.length);
 
+//NOTE ----------My Divider -----------------------------
 Widget myDivider() => Container(
       color: Colors.grey,
       width: double.infinity,
       height: 1,
     );
+
+//NOTE ----------Build Article Item -----------------------------
 Widget buildArticleItem(article, context) => Directionality(
       textDirection: TextDirection.rtl,
       child: GestureDetector(
@@ -256,6 +279,7 @@ Widget buildArticleItem(article, context) => Directionality(
       ),
     );
 
+//NOTE ----------Build Favorite Item -----------------------------
 Widget buildFavoriteItem(ProductModel? model, {bool issearch = false}) =>
     Container(
       padding: EdgeInsets.all(20),
@@ -352,11 +376,14 @@ Widget buildFavoriteItem(ProductModel? model, {bool issearch = false}) =>
       ),
     );
 
+//NOTE ----------Get Date Formated -----------------------------
 String getDateFormated(String date) {
   List<String> listdate = date.split("T");
   List<String> list1date = listdate[1].split(":");
   return list1date[0] + ":" + list1date[1] + "   " + listdate[0];
 }
+
+//NOTE ----------Toast message -----------------------------
 
 void showToast({required message, required ToastStatus status}) =>
     Fluttertoast.showToast(
@@ -368,8 +395,11 @@ void showToast({required message, required ToastStatus status}) =>
         textColor: Colors.white,
         fontSize: 16.0);
 
+//NOTE ----------Toast Types -----------------------------
+
 enum ToastStatus { Success, Error, Warning }
 
+//NOTE ----------choose Toast Color -----------------------------
 Color chooseToastColor(ToastStatus status) {
   Color color;
   switch (status) {
