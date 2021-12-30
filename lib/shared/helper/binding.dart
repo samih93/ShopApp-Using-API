@@ -10,7 +10,7 @@ import 'package:udemy_flutter/modules/social_app/social_register/social_register
 class Binding extends Bindings {
   @override
   void dependencies() {
-    // implement dependencies
+    //NOTE:  implement dependencies
     Get.lazyPut(() => TodoLayoutController());
     Get.lazyPut(() => NewsLayoutController());
     Get.lazyPut(() => ShopLayoutController());

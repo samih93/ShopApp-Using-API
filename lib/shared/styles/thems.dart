@@ -5,7 +5,7 @@ import 'package:udemy_flutter/shared/styles/colors.dart';
 
 ThemeData darkThem() => ThemeData(
       scaffoldBackgroundColor: HexColor('#525252'),
-      primarySwatch: Colors.deepOrange,
+      primarySwatch: defaultColor,
       appBarTheme: AppBarTheme(
           iconTheme: IconThemeData(color: Colors.white),
           backgroundColor: HexColor('#525252'),
@@ -29,6 +29,9 @@ ThemeData darkThem() => ThemeData(
         bodyText1: TextStyle(
             color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
         subtitle1: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        bodyText2: TextStyle(
+          color: Colors.white,
+        ),
       ),
     );
 
@@ -53,6 +56,9 @@ ThemeData lightTheme() => ThemeData(
       textTheme: TextTheme(
         bodyText1: TextStyle(
             color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+        bodyText2: TextStyle(
+          color: Colors.black,
+        ),
         subtitle1: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
       ),
     );

@@ -37,7 +37,7 @@ class SocialLoginScreen extends StatelessWidget {
                       "LOGIN",
                       style: Theme.of(context)
                           .textTheme
-                          .headline5!
+                          .bodyText1!
                           .copyWith(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(

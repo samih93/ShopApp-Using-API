@@ -87,8 +87,8 @@ class SocialRegisterController extends GetxController {
       required String email,
       required String phone,
       required String uid}) async {
-    SocialUserModel model =
-        SocialUserModel(name: name, email: email, phone: phone, uId: uid);
+    SocialUserModel model = SocialUserModel(
+        name: name, email: email, phone: phone, image: '', uId: uid);
     await FirebaseFirestore.instance
         .collection('users')
         .doc(uid)

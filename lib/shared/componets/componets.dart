@@ -65,6 +65,9 @@ Widget defaultTextFormField({
         onTap: ontap,
         obscureText: obscure,
         onChanged: onchange,
+        style: TextStyle(
+          fontWeight: FontWeight.normal,
+        ),
         decoration: InputDecoration(
           labelText: text,
           hintText: hinttext ?? null,

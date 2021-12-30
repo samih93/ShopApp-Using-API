@@ -89,6 +89,7 @@ class MyApp extends StatelessWidget {
         darkTheme: darkThem(),
         themeMode:
             newsLayoutController.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+        //themeMode: ThemeMode.dark,
 
         initialBinding: Binding(),
         debugShowCheckedModeBanner: false,

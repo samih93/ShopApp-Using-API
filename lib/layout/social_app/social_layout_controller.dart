@@ -17,6 +17,7 @@ class SocialLayoutController extends GetxController {
   List<BottomNavigationBarItem> bottomItems = [
     BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
     BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chats"),
+    BottomNavigationBarItem(icon: Icon(Icons.post_add_sharp), label: "Post"),
     BottomNavigationBarItem(
       icon: Icon(Icons.person),
       label: "Users",
