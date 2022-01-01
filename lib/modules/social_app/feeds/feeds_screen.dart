@@ -71,7 +71,7 @@ class SocialFeedsScreen extends StatelessWidget {
                       'https://lh3.googleusercontent.com/a-/AOh14GgzR_P3O_71eptoflnQWXvVAidn3BTVooIABjTakQ=s288-p-rw-no'),
                 ),
                 SizedBox(
-                  width: 15,
+                  width: 10,
                 ),
                 Expanded(
                     child: Column(

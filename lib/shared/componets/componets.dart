@@ -65,25 +65,26 @@ Widget defaultTextButton(
     );
 
 //NOTE ----------default TextFormField -----------------------------
-Widget defaultTextFormField({
-  required TextEditingController controller,
-  required TextInputType inputtype,
-  Function(String?)? onfieldsubmit,
-  VoidCallback? ontap,
-  String? Function(String?)? onvalidate,
-  Function(String?)? onchange,
-  String? text,
-  Widget? prefixIcon,
-  Widget? suffixIcon,
-  bool obscure = false,
-  InputBorder? border,
-  String? hinttext,
-}) =>
+Widget defaultTextFormField(
+        {required TextEditingController controller,
+        required TextInputType inputtype,
+        Function(String?)? onfieldsubmit,
+        VoidCallback? ontap,
+        String? Function(String?)? onvalidate,
+        Function(String?)? onchange,
+        String? text,
+        Widget? prefixIcon,
+        Widget? suffixIcon,
+        bool obscure = false,
+        InputBorder? border,
+        String? hinttext,
+        int? maxligne}) =>
     TextFormField(
         controller: controller,
         keyboardType: inputtype,
         onFieldSubmitted: onfieldsubmit,
         onTap: ontap,
+        maxLines: maxligne ?? 1,
         obscureText: obscure,
         onChanged: onchange,
         style: TextStyle(

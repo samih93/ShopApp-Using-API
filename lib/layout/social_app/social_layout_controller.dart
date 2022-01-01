@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:udemy_flutter/models/social_app/post_model.dart';
 import 'package:udemy_flutter/models/social_app/social_usermodel.dart';
 import 'package:udemy_flutter/modules/social_app/chats/chat_screen.dart';
 import 'package:udemy_flutter/modules/social_app/feeds/feeds_screen.dart';
@@ -130,6 +131,7 @@ class SocialLayoutController extends GetxController {
 
   String? _imagecoverUrl = null;
   String? get imageCoverUrl => _imagecoverUrl;
+
   Future<void> uploadCoverImage() async {
     _isloadingUrlcover = true;
     update();
@@ -163,6 +165,7 @@ class SocialLayoutController extends GetxController {
     print("Profile :" + _imageProfileUrl.toString());
     print("cover : " + _imagecoverUrl.toString());
     _isloadingupdateUser = true;
+    update();
     SocialUserModel model = SocialUserModel(
         name: name,
         phone: phone,
@@ -187,5 +190,88 @@ class SocialLayoutController extends GetxController {
     }).catchError((error) {
       print(error.toString());
     });
+  }
+
+  //NOTE :---------------------- Manage New Post  --------------------------
+
+  File? _postimage;
+  File? get postimage => _postimage;
+
+  Future<void> pickPostImage() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      _postimage = File(pickedFile.path);
+      //NOTE :upload post image to firebase storage
+      uploadPostImage();
+      update();
+    } else {
+      print('no image selected');
+    }
+  }
+
+// NOTE :  upload post image
+  bool? _isloadingurlPost = false;
+  bool? get isloadingurlPost => _isloadingurlPost;
+
+  String? _imagePostUrl = null;
+  String? get imagePostUrl => _imagePostUrl;
+
+  Future<void> uploadPostImage() async {
+    _isloadingurlPost = true;
+    update();
+    FirebaseStorage.instance
+        .ref('')
+        .child('posts/${Uri.file(_postimage!.path).pathSegments.last}')
+        .putFile(_postimage!)
+        .then((value) {
+      value.ref.getDownloadURL().then((value) {
+        _imagePostUrl = value;
+        _isloadingurlPost = false;
+        update();
+      }).catchError((error) {
+        {
+          print(error.toString());
+        }
+      });
+    }).catchError((error) {
+      print(error.toString());
+    });
+  }
+
+// NOTE : create post
+  bool? _isloadingcreatePost = false;
+  bool? get isloadingcreatePost => _isloadingcreatePost;
+
+  Future<void> createNewPost({
+    required String postdate,
+    required String text,
+  }) async {
+    _isloadingcreatePost = true;
+    update();
+    PostModel model = PostModel(
+        name: _socialUserModel!.name,
+        image: _socialUserModel!.image.toString(),
+        uId: _socialUserModel!.uId,
+        postdate: postdate,
+        text: text,
+        postImage: _imagePostUrl ?? '');
+    await FirebaseFirestore.instance
+        .collection('posts')
+        // NOTE .doc('1').set() set data under document Id =1
+        .add(model.toJson()) // NOTE .add will generate new Id
+        .then((value) {
+      _postimage = null;
+      _imagePostUrl = null;
+      _isloadingcreatePost = false;
+      update();
+    }).catchError((error) {
+      print(error.toString());
+    });
+  }
+
+  void removePostImage() {
+    _postimage = null;
+    _imagePostUrl = null;
+    update();
   }
 }

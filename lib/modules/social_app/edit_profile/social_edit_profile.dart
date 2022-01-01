@@ -80,6 +80,9 @@ class SocialEditProfile extends StatelessWidget {
                   children: [
                     if (socialLayoutController.isloadingupdateUser!)
                       LinearProgressIndicator(),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Container(
                       height: 220,
                       child: Stack(
