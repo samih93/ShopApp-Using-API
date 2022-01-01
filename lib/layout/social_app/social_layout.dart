@@ -25,6 +25,7 @@ class SocialLayout extends StatelessWidget {
           type: BottomNavigationBarType.fixed,
           selectedItemColor: defaultColor,
           onTap: (index) {
+            //NOTE : if index equal 2 open NewPostScreen without change index
             if (index == 2)
               Get.to(NewPostScreen());
             else

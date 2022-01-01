@@ -53,11 +53,14 @@ Widget defaultButton(
 
 //NOTE ----------default Text  Button -----------------------------
 Widget defaultTextButton(
-        {@required VoidCallback? onpress, @required String? text}) =>
+        {@required VoidCallback? onpress,
+        @required String? text,
+        Color? color}) =>
     TextButton(
       onPressed: onpress,
       child: Text(
         text!,
+        style: TextStyle(color: color ?? defaultColor),
       ),
     );
 
