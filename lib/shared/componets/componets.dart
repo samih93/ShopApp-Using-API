@@ -7,6 +7,7 @@ import 'package:udemy_flutter/layout/todo_app/todo_layoutcontroller.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:udemy_flutter/models/shop_app/home_model.dart';
 import 'package:udemy_flutter/modules/news_app/web_view/webview_screen.dart';
+import 'package:udemy_flutter/shared/componets/constants.dart';
 import 'package:udemy_flutter/shared/styles/colors.dart';
 
 //NOTE  ---------default APP bar -------------------------
@@ -379,13 +380,6 @@ Widget buildFavoriteItem(ProductModel? model, {bool issearch = false}) =>
         ),
       ),
     );
-
-//NOTE ----------Get Date Formated -----------------------------
-String getDateFormated(String date) {
-  List<String> listdate = date.split("T");
-  List<String> list1date = listdate[1].split(":");
-  return list1date[0] + ":" + list1date[1] + "   " + listdate[0];
-}
 
 //NOTE ----------Toast message -----------------------------
 

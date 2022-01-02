@@ -25,6 +25,29 @@ String? token = "";
 
 String? uId = "";
 
+//NOTE ----------Get Date Formated For Task -----------------------------
+String getDateFormated(String date) {
+  List<String> listdate = date.split("T");
+  List<String> list1date = listdate[1].split(":");
+  return list1date[0] + ":" + list1date[1] + "   " + listdate[0];
+}
+
+//NOTE : cover DateTime To Ago
+String convertToAgo(DateTime input) {
+  Duration diff = DateTime.now().difference(input);
+
+  if (diff.inDays >= 1) {
+    return '${diff.inDays}d';
+  } else if (diff.inHours >= 1) {
+    return '${diff.inHours}h';
+  } else if (diff.inMinutes >= 1) {
+    return '${diff.inMinutes}m';
+  } else if (diff.inSeconds >= 1) {
+    return '${diff.inSeconds}s';
+  } else {
+    return 'just now';
+  }
+}
 // GET
 
 // base url : https://newsapi.org/

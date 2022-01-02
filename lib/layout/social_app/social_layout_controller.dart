@@ -17,6 +17,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 class SocialLayoutController extends GetxController {
   SocialLayoutController() {
+    getPosts();
     getUserData();
   }
 
@@ -263,15 +264,48 @@ class SocialLayoutController extends GetxController {
       _postimage = null;
       _imagePostUrl = null;
       _isloadingcreatePost = false;
+      getPosts();
       update();
     }).catchError((error) {
       print(error.toString());
     });
   }
 
+// NOTE on click close to remove image from post
   void removePostImage() {
     _postimage = null;
     _imagePostUrl = null;
     update();
+  }
+
+// NOTE --------------------------Get All Posts------------------------
+
+  bool? _isloadingGetPosts = false;
+  bool? get isloadingGetPosts => _isloadingGetPosts;
+
+  List<PostModel> _listOfPost = [];
+  List<PostModel> get listOfPost => _listOfPost;
+
+  Future<void> getPosts() async {
+    _isloadingGetPosts = true;
+    update();
+    FirebaseFirestore.instance.collection('posts').get().then((value) {
+      // NOTE : reference on posts
+      value.docs.forEach((element) {
+        // NOTE : elemet => doc
+        _listOfPost.add(PostModel.fromJson(element.data()));
+      });
+      _isloadingGetPosts = false;
+      // NOTE : Sort List desc
+      _listOfPost.length != 0
+          ? _listOfPost.sort((a, b) {
+              //NOTE : compareTo : ==> 0 if a==b
+              return b.postdate!.compareTo(a.postdate!);
+            })
+          : [];
+      update();
+    }).catchError((error) {
+      print(error.toString());
+    });
   }
 }
