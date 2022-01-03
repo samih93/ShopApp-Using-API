@@ -292,10 +292,6 @@ class SocialLayoutController extends GetxController {
   List<PostModel> _listOfPost = [];
   List<PostModel> get listOfPost => _listOfPost;
 
-  List<int> _listoflikes = [];
-  List<int> get listoflikes => _listoflikes;
-  Map<String, bool> _islikedMap = Map<String, bool>();
-
   void getPosts() {
     _listOfPost = [];
     _isloadingGetPosts = true;
@@ -303,53 +299,43 @@ class SocialLayoutController extends GetxController {
     update();
     FirebaseFirestore.instance.collection('posts').get().then((value) {
       // NOTE : reference on posts
-      value.docs.forEach((element) async {
+      int index = 0;
+      value.docs.forEach((docOfpost) async {
         // NOTE : elemet => doc
         // NOTE foreach document go to reference likes
-        await element.reference.collection('likes').get().then((value) {
+        await docOfpost.reference
+            .collection('likes')
+            .get()
+            .then((likescollection) async {
           // NOTE value is the collection likes
           // NOTE Add lenght of doc for each likes in post doc
 
-          _listoflikes.add(value.docs.length);
-
+          _listOfPost.add(PostModel.fromJson(docOfpost.data()));
           //NOTE check  if this user like a post
-          if (value.docs.isNotEmpty) {
-            // check if has docs in likes collection
-
-            value.docs.forEach((e) {
+          if (likescollection.docs.isNotEmpty) {
+            likescollection.docs.forEach((docOflikes) {
               //  e is the id of doc in likes
-              if (e.id == _socialUserModel!.uId) {
-                _islikedMap.addAll({element.id: true});
-              } else {
-                _islikedMap.addAll({element.id: false});
+              if (docOflikes.id == uId) {
+                _listOfPost[index].isLiked = true;
               }
             });
-          } else {
-            _islikedMap.addAll({element.id: false});
           }
-          _listOfPost.add(PostModel.fromJson(element.data()));
 
+          _listOfPost[index].nbOfLikes = likescollection.docs.length;
+
+          index++;
           update();
         }).catchError((error) {
           print(error.toString());
         });
-        //print("after wait");
         // NOTE : Sort List desc
-        // _listOfPost.length != 0
-        //     ? _listOfPost.sort((a, b) {
-        //         //NOTE : compareTo : ==> 0 if a==b
-        //         return b.postdate!.compareTo(a.postdate!);
-        //       })
-        //     : [];
+        _listOfPost.length != 0
+            ? _listOfPost.sort((a, b) {
+                //NOTE : compareTo : ==> 0 if a==b
+                return b.postdate!.compareTo(a.postdate!);
+              })
+            : [];
 
-        _islikedMap.forEach((key, value) {
-          print(key + "  -   " + value.toString());
-        });
-        int i = 0;
-        _listOfPost.forEach((element) {
-          element.isLiked = _islikedMap[element.uId] ?? false;
-          i++;
-        });
         _isloadingGetPosts = false;
 
         update();
@@ -363,6 +349,8 @@ class SocialLayoutController extends GetxController {
 
   void likePost(String postId, int index, {bool isForremove = false}) {
     if (isForremove == true) {
+      _listOfPost[index].isLiked = false;
+      _listOfPost[index].nbOfLikes--;
       FirebaseFirestore.instance
           .collection('posts')
           .doc(postId)
@@ -370,26 +358,29 @@ class SocialLayoutController extends GetxController {
           .doc(_socialUserModel!.uId)
           .delete()
           .then((value) {
-        _listOfPost[index].isLiked = false;
-        _listoflikes[index]--;
         print('removed from Likes');
         update();
       }).catchError((error) {
+        _listOfPost[index].isLiked = true;
+        _listOfPost[index].nbOfLikes++;
         print(error.toString());
       });
     } else {
+      // NOTE Change  nb and color of likes quickly then update to firestore
+      _listOfPost[index].isLiked = true;
+      _listOfPost[index].nbOfLikes++;
       FirebaseFirestore.instance
           .collection('posts')
           .doc(postId)
           .collection('likes')
           .doc(_socialUserModel!.uId)
           .set({'like': true}).then((value) {
-        _listOfPost[index].isLiked = true;
-        _listoflikes[index]++;
-
         print("Added To Likes");
         update();
       }).catchError((error) {
+        //NOTE : if an error happen return data to the last updated
+        _listOfPost[index].isLiked = false;
+        _listOfPost[index].nbOfLikes--;
         print(error.toString());
       });
     }

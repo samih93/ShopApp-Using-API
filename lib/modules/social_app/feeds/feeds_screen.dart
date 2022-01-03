@@ -198,7 +198,8 @@ class SocialFeedsScreen extends StatelessWidget {
                                   width: 5,
                                 ),
                                 Text(
-                                  socialLayoutController.listoflikes[index]
+                                  socialLayoutController
+                                      .listOfPost[index].nbOfLikes
                                       .toString(),
                                   style: Theme.of(context).textTheme.caption,
                                 ),
@@ -272,7 +273,7 @@ class SocialFeedsScreen extends StatelessWidget {
                             children: [
                               Icon(
                                   socialLayoutController
-                                          .listOfPost[index].isLiked!
+                                          .listOfPost[index].isLiked
                                       ? Icons.favorite
                                       : Icons.favorite_border,
                                   color: Colors.red),

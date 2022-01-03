@@ -6,7 +6,8 @@ class PostModel {
   String? text;
   String? postImage;
   String? postId;
-  bool? isLiked;
+  bool isLiked = false;
+  int nbOfLikes = 0;
 
   PostModel({
     this.name,
