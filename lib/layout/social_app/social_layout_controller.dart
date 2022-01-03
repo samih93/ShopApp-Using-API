@@ -13,12 +13,11 @@ import 'package:udemy_flutter/modules/social_app/new_post/new_post_screen.dart';
 import 'package:udemy_flutter/modules/social_app/settings/setting_screen.dart';
 import 'package:udemy_flutter/modules/social_app/users/users_screen.dart';
 import 'package:udemy_flutter/shared/componets/constants.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 
 class SocialLayoutController extends GetxController {
   SocialLayoutController() {
-    getPosts();
     getUserData();
+    getPosts();
   }
 
 // NOTE: -------------------Bottom Navigation------------------------
@@ -52,7 +51,7 @@ class SocialLayoutController extends GetxController {
     FirebaseFirestore.instance.collection('users').doc(uId).get().then((value) {
       print(value.data());
       _socialUserModel = SocialUserModel.fromJson(value.data()!);
-      print("get user email :" + _socialUserModel!.email.toString());
+      // print("get user email :" + _socialUserModel!.email.toString());
       update();
     });
   }
@@ -259,8 +258,15 @@ class SocialLayoutController extends GetxController {
     await FirebaseFirestore.instance
         .collection('posts')
         // NOTE .doc('1').set() set data under document Id =1
-        .add(model.toJson()) // NOTE .add will generate new Id
+        // NOTE .add will generate new Id
+        .add(model.toJson())
         .then((value) {
+      // NOTE update postId to data of document after add the document
+      FirebaseFirestore.instance
+          .collection('posts')
+          .doc(value.id)
+          .update({'postId': value.id});
+      model.isLiked = false;
       _postimage = null;
       _imagePostUrl = null;
       _isloadingcreatePost = false;
@@ -286,26 +292,106 @@ class SocialLayoutController extends GetxController {
   List<PostModel> _listOfPost = [];
   List<PostModel> get listOfPost => _listOfPost;
 
-  Future<void> getPosts() async {
+  List<int> _listoflikes = [];
+  List<int> get listoflikes => _listoflikes;
+  Map<String, bool> _islikedMap = Map<String, bool>();
+
+  void getPosts() {
+    _listOfPost = [];
     _isloadingGetPosts = true;
+
     update();
     FirebaseFirestore.instance.collection('posts').get().then((value) {
       // NOTE : reference on posts
-      value.docs.forEach((element) {
+      value.docs.forEach((element) async {
         // NOTE : elemet => doc
-        _listOfPost.add(PostModel.fromJson(element.data()));
+        // NOTE foreach document go to reference likes
+        await element.reference.collection('likes').get().then((value) {
+          // NOTE value is the collection likes
+          // NOTE Add lenght of doc for each likes in post doc
+
+          _listoflikes.add(value.docs.length);
+
+          //NOTE check  if this user like a post
+          if (value.docs.isNotEmpty) {
+            // check if has docs in likes collection
+
+            value.docs.forEach((e) {
+              //  e is the id of doc in likes
+              if (e.id == _socialUserModel!.uId) {
+                _islikedMap.addAll({element.id: true});
+              } else {
+                _islikedMap.addAll({element.id: false});
+              }
+            });
+          } else {
+            _islikedMap.addAll({element.id: false});
+          }
+          _listOfPost.add(PostModel.fromJson(element.data()));
+
+          update();
+        }).catchError((error) {
+          print(error.toString());
+        });
+        //print("after wait");
+        // NOTE : Sort List desc
+        // _listOfPost.length != 0
+        //     ? _listOfPost.sort((a, b) {
+        //         //NOTE : compareTo : ==> 0 if a==b
+        //         return b.postdate!.compareTo(a.postdate!);
+        //       })
+        //     : [];
+
+        _islikedMap.forEach((key, value) {
+          print(key + "  -   " + value.toString());
+        });
+        int i = 0;
+        _listOfPost.forEach((element) {
+          element.isLiked = _islikedMap[element.uId] ?? false;
+          i++;
+        });
+        _isloadingGetPosts = false;
+
+        update();
       });
-      _isloadingGetPosts = false;
-      // NOTE : Sort List desc
-      _listOfPost.length != 0
-          ? _listOfPost.sort((a, b) {
-              //NOTE : compareTo : ==> 0 if a==b
-              return b.postdate!.compareTo(a.postdate!);
-            })
-          : [];
-      update();
     }).catchError((error) {
       print(error.toString());
     });
+  }
+
+  //NOTE : -----------Like Post --------------------------
+
+  void likePost(String postId, int index, {bool isForremove = false}) {
+    if (isForremove == true) {
+      FirebaseFirestore.instance
+          .collection('posts')
+          .doc(postId)
+          .collection('likes')
+          .doc(_socialUserModel!.uId)
+          .delete()
+          .then((value) {
+        _listOfPost[index].isLiked = false;
+        _listoflikes[index]--;
+        print('removed from Likes');
+        update();
+      }).catchError((error) {
+        print(error.toString());
+      });
+    } else {
+      FirebaseFirestore.instance
+          .collection('posts')
+          .doc(postId)
+          .collection('likes')
+          .doc(_socialUserModel!.uId)
+          .set({'like': true}).then((value) {
+        _listOfPost[index].isLiked = true;
+        _listoflikes[index]++;
+
+        print("Added To Likes");
+        update();
+      }).catchError((error) {
+        print(error.toString());
+      });
+    }
   }
 }
