@@ -1,5 +1,3 @@
-import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/modules/news_app/business/business_screen.dart';
@@ -56,7 +54,7 @@ class NewsLayoutController extends GetxController {
     if (isdarkcashedthem != null) {
       _isDarkMode = isdarkcashedthem;
     }
-    //FIXME : 
+    //FIXME :
     // getAllBusiness();
   }
 

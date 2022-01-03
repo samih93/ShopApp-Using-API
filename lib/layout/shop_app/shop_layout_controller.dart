@@ -12,7 +12,6 @@ import 'package:udemy_flutter/modules/shop_app/settings/setting_screen.dart';
 import 'package:udemy_flutter/shared/componets/constants.dart';
 import 'package:udemy_flutter/shared/network/end_point.dart';
 import 'package:udemy_flutter/shared/network/remote/diohelper_shop.dart';
-import 'dart:convert';
 
 class ShopLayoutController extends GetxController {
   List<BottomNavigationBarItem> bottomItems = [

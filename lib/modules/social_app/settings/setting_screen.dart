@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:udemy_flutter/layout/social_app/social_layout_controller.dart';
 import 'package:udemy_flutter/modules/social_app/edit_profile/social_edit_profile.dart';
 import 'package:udemy_flutter/shared/componets/componets.dart';
+import 'package:udemy_flutter/shared/componets/constants.dart';
 
 class SocialSettingScreen extends StatelessWidget {
   final double coverheight = 250;
@@ -191,6 +192,12 @@ class SocialSettingScreen extends StatelessWidget {
                             child: Icon(Icons.edit)),
                       ],
                     ),
+
+                    defaultButton(
+                        text: "Sign Out",
+                        onpress: () {
+                          SocialsignOut();
+                        })
                   ],
                 ),
               ),
