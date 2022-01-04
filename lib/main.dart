@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:udemy_flutter/layout/news_app/news_layout.dart';
@@ -7,6 +8,7 @@ import 'package:udemy_flutter/layout/news_app/news_layoutController.dart';
 import 'package:udemy_flutter/layout/shop_app/shop_layout.dart';
 import 'package:udemy_flutter/layout/shop_app/shop_layout_controller.dart';
 import 'package:udemy_flutter/layout/social_app/social_layout.dart';
+import 'package:udemy_flutter/layout/social_app/social_layout_controller.dart';
 import 'package:udemy_flutter/layout/todo_app/todo_layoutcontroller.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/modules/shop_app/login/shop_login_screen.dart';
@@ -72,6 +74,7 @@ void main() async {
   Get.put(NewsLayoutController());
   Get.put(TodoLayoutController());
   Get.put(ShopLayoutController());
+  Get.put(SocialLayoutController());
   runApp(MyApp(widget));
 }
 

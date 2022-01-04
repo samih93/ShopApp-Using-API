@@ -162,8 +162,8 @@ class SocialLayoutController extends GetxController {
       {required String name,
       required String phone,
       required String bio}) async {
-    print("Profile :" + _imageProfileUrl.toString());
-    print("cover : " + _imagecoverUrl.toString());
+    // print("Profile :" + _imageProfileUrl.toString());
+    //  print("cover : " + _imagecoverUrl.toString());
     _isloadingupdateUser = true;
     update();
     SocialUserModel model = SocialUserModel(
@@ -176,7 +176,7 @@ class SocialLayoutController extends GetxController {
         uId: _socialUserModel!.uId);
     await FirebaseFirestore.instance
         .collection('users')
-        .doc(_socialUserModel!.uId)
+        .doc(uId)
         .update(model.toJson())
         .then((value) {
       print("User Updated");
@@ -349,8 +349,11 @@ class SocialLayoutController extends GetxController {
 
   void likePost(String postId, int index, {bool isForremove = false}) {
     if (isForremove == true) {
+      // NOTE Change  nb and color of likes quickly then update to firestore
+
       _listOfPost[index].isLiked = false;
       _listOfPost[index].nbOfLikes--;
+      update();
       FirebaseFirestore.instance
           .collection('posts')
           .doc(postId)
@@ -359,16 +362,17 @@ class SocialLayoutController extends GetxController {
           .delete()
           .then((value) {
         print('removed from Likes');
-        update();
       }).catchError((error) {
         _listOfPost[index].isLiked = true;
         _listOfPost[index].nbOfLikes++;
         print(error.toString());
+        update();
       });
     } else {
       // NOTE Change  nb and color of likes quickly then update to firestore
       _listOfPost[index].isLiked = true;
       _listOfPost[index].nbOfLikes++;
+      update();
       FirebaseFirestore.instance
           .collection('posts')
           .doc(postId)
@@ -376,11 +380,12 @@ class SocialLayoutController extends GetxController {
           .doc(_socialUserModel!.uId)
           .set({'like': true}).then((value) {
         print("Added To Likes");
-        update();
       }).catchError((error) {
         //NOTE : if an error happen return data to the last updated
         _listOfPost[index].isLiked = false;
         _listOfPost[index].nbOfLikes--;
+        update();
+
         print(error.toString());
       });
     }

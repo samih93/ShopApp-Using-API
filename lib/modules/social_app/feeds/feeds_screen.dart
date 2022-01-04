@@ -84,9 +84,18 @@ class SocialFeedsScreen extends StatelessWidget {
                   Row(
                     children: [
                       CircleAvatar(
-                          radius: 20,
-                          backgroundImage:
-                              NetworkImage(model.image.toString())),
+                        radius: 20,
+                        backgroundImage:
+                            socialLayoutController.listOfPost[index].image ==
+                                        null ||
+                                    socialLayoutController
+                                            .listOfPost[index].image ==
+                                        ""
+                                ? AssetImage('assets/default profile.png')
+                                    as ImageProvider
+                                : NetworkImage(socialLayoutController
+                                    .listOfPost[index].image!),
+                      ),
                       SizedBox(
                         width: 10,
                       ),
@@ -103,11 +112,18 @@ class SocialFeedsScreen extends StatelessWidget {
                               SizedBox(
                                 width: 5,
                               ),
-                              Icon(
-                                Icons.check_circle,
-                                color: defaultColor,
-                                size: 16,
-                              ),
+                              socialLayoutController.listOfPost[index].uId! ==
+                                          uId &&
+                                      socialLayoutController
+                                          .socialUserModel!.isemailverified!
+                                  ? Icon(
+                                      Icons.check_circle,
+                                      color: defaultColor,
+                                      size: 16,
+                                    )
+                                  : SizedBox(
+                                      width: 0,
+                                    ),
                             ],
                           ),
                           Text(

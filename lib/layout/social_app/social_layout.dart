@@ -6,10 +6,11 @@ import 'package:udemy_flutter/modules/social_app/search/search_screen.dart';
 import 'package:udemy_flutter/shared/styles/colors.dart';
 
 class SocialLayout extends StatelessWidget {
+  SocialLayout();
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SocialLayoutController>(
-      init: Get.find<SocialLayoutController>(),
+      init: SocialLayoutController(),
       builder: (socialLayoutController) => Scaffold(
         appBar: AppBar(
           title: Text(socialLayoutController

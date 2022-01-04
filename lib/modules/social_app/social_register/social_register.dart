@@ -139,12 +139,11 @@ class SocialRegisterScreen extends StatelessWidget {
                               }
                               print(
                                   "status firestore ${socialRegisterController.isSuccessRegisterToFireStore}");
+
                               if (socialRegisterController
-                                  .isSuccessRegisterToFireStore) {
-                                Get.offAll(SocialLayout());
-                              }
-                              if (socialRegisterController.statusLoginMessage ==
-                                  ToastStatus.Success) {
+                                      .isSuccessRegisterToFireStore &&
+                                  socialRegisterController.statusLoginMessage ==
+                                      ToastStatus.Success) {
                                 //NOTE: uId saved in login method
                                 CashHelper.saveData(key: "uId", value: uId);
                                 Get.offAll(SocialLayout());
