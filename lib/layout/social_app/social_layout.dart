@@ -4,9 +4,9 @@ import 'package:udemy_flutter/layout/social_app/social_layout_controller.dart';
 import 'package:udemy_flutter/modules/social_app/new_post/new_post_screen.dart';
 import 'package:udemy_flutter/modules/social_app/search/search_screen.dart';
 import 'package:udemy_flutter/shared/styles/colors.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class SocialLayout extends StatelessWidget {
-  SocialLayout();
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SocialLayoutController>(

@@ -19,6 +19,12 @@ class SocialLayoutController extends GetxController {
     getUserData();
     getPosts();
   }
+  SocialLayoutController.onload()
+  {
+      getUserData();
+    getPosts();
+  }
+  
 
 // NOTE: -------------------Bottom Navigation------------------------
   List<BottomNavigationBarItem> bottomItems = [
