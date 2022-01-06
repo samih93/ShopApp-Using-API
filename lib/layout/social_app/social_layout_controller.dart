@@ -16,15 +16,17 @@ import 'package:udemy_flutter/shared/componets/constants.dart';
 
 class SocialLayoutController extends GetxController {
   SocialLayoutController() {
-    getUserData();
+    getLoggedInUserData();
     getPosts();
+    // getUserDataById('g5x32jTyFWRZ3nxf7reABQCavTT2').then((value) {
+    //   print(value!.isemailverified);
+    // });
   }
-  SocialLayoutController.onload()
-  {
-      getUserData();
-    getPosts();
-  }
-  
+  // SocialLayoutController.onload() {
+  //   getLoggedInUserData();
+  //   getPosts();
+  //   update();
+  // }
 
 // NOTE: -------------------Bottom Navigation------------------------
   List<BottomNavigationBarItem> bottomItems = [
@@ -53,13 +55,28 @@ class SocialLayoutController extends GetxController {
   SocialUserModel? _socialUserModel;
   SocialUserModel? get socialUserModel => _socialUserModel;
 
-  void getUserData() {
+  void getLoggedInUserData() {
     FirebaseFirestore.instance.collection('users').doc(uId).get().then((value) {
-      print(value.data());
+      //   print(value.data());
       _socialUserModel = SocialUserModel.fromJson(value.data()!);
       // print("get user email :" + _socialUserModel!.email.toString());
       update();
     });
+  }
+
+  Future<SocialUserModel?> getUserDataById(String userId) async {
+    SocialUserModel? model;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .get()
+        .then((value) {
+      print(value.data());
+      // print("get user email :" + _socialUserModel!.email.toString());
+      model = SocialUserModel.fromJson(value.data()!);
+      update();
+    });
+    return model;
   }
 
   // NOTE: --------------------- On Change Index Of Screens ------------------
@@ -192,7 +209,7 @@ class SocialLayoutController extends GetxController {
       _imageProfileUrl = null;
       _imagecoverUrl = null;
       _isloadingupdateUser = false;
-      getUserData();
+      getLoggedInUserData();
     }).catchError((error) {
       print(error.toString());
     });

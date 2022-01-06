@@ -16,7 +16,12 @@ class SocialLayout extends StatelessWidget {
           title: Text(socialLayoutController
               .appbar_title[socialLayoutController.currentIndex]),
           actions: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.notifications))
+            IconButton(
+                onPressed: () {
+
+                  print('hello');
+                },
+                icon: Icon(Icons.notifications))
           ],
         ),
         body:
