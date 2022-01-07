@@ -19,14 +19,8 @@ class SocialLayoutController extends GetxController {
     getLoggedInUserData();
     getPosts();
 
-    // getUserDataById('g5x32jTyFWRZ3nxf7reABQCavTT2');
-    // getUserDataById('uNeb4UR2vISMCeLmdi7IJOipsCG2');
+    getUsers();
   }
-  // SocialLayoutController.onload() {
-  //   getLoggedInUserData();
-  //   getPosts();
-  //   update();
-  // }
 
 // NOTE: -------------------Bottom Navigation------------------------
   List<BottomNavigationBarItem> bottomItems = [
@@ -420,5 +414,24 @@ class SocialLayoutController extends GetxController {
         print(error.toString());
       });
     }
+  }
+
+  // NOTE: Get All Users
+  List<SocialUserModel> _users = [];
+  List<SocialUserModel> get users => _users;
+  bool? _isloadingGetUsers = false;
+  bool? get isloadingGetUsers => _isloadingGetUsers;
+
+  Future<void> getUsers() async {
+    _isloadingGetUsers = true;
+    update();
+    await FirebaseFirestore.instance.collection('users').get().then((value) {
+      value.docs.forEach((usermodel) {
+        if (usermodel.data()['uId'] != uId)
+          _users.add(SocialUserModel.fromJson(usermodel.data()));
+        _isloadingGetUsers = false;
+        update();
+      });
+    });
   }
 }
