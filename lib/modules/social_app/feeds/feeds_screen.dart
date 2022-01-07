@@ -80,9 +80,15 @@ class SocialFeedsScreen extends StatelessWidget {
       GetBuilder<SocialLayoutController>(
           init: Get.find<SocialLayoutController>(),
           builder: (socialLayoutController) {
-            // SocialUserModel userOfPost =
-            //     socialLayoutController.getUserDataById(
-            //         socialLayoutController.listOfPost[index].uId.toString()) as SocialUserModel;
+            // SocialUserModel? userOfPost;
+
+            // socialLayoutController
+            //     .getUserDataById(
+            //         socialLayoutController.listOfPost[index].uId.toString())
+            //     .then((value) {
+            //   userOfPost = value;
+            //   // print(userOfPost!.isemailverified);
+            // });
             return Card(
                 elevation: 5,
                 clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -124,11 +130,14 @@ class SocialFeedsScreen extends StatelessWidget {
                                   SizedBox(
                                     width: 5,
                                   ),
-                                  Icon(
-                                    Icons.check_circle,
-                                    color: defaultColor,
-                                    size: 16,
-                                  )
+                                  if (socialLayoutController
+                                          .listOfPost[index].isEmailVerified ==
+                                      true)
+                                    Icon(
+                                      Icons.check_circle,
+                                      color: defaultColor,
+                                      size: 16,
+                                    )
                                 ],
                               ),
                               Text(

@@ -8,6 +8,7 @@ class PostModel {
   String? postId;
   bool isLiked = false;
   int nbOfLikes = 0;
+  bool? isEmailVerified;
 
   PostModel({
     this.name,

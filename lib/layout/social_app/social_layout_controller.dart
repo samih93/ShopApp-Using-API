@@ -18,9 +18,9 @@ class SocialLayoutController extends GetxController {
   SocialLayoutController() {
     getLoggedInUserData();
     getPosts();
-    // getUserDataById('g5x32jTyFWRZ3nxf7reABQCavTT2').then((value) {
-    //   print(value!.isemailverified);
-    // });
+
+    // getUserDataById('g5x32jTyFWRZ3nxf7reABQCavTT2');
+    // getUserDataById('uNeb4UR2vISMCeLmdi7IJOipsCG2');
   }
   // SocialLayoutController.onload() {
   //   getLoggedInUserData();
@@ -64,19 +64,20 @@ class SocialLayoutController extends GetxController {
     });
   }
 
-  Future<SocialUserModel?> getUserDataById(String userId) async {
+  Future<bool?> isEmailVerifiedById(String userId) async {
     SocialUserModel? model;
     await FirebaseFirestore.instance
         .collection('users')
         .doc(userId)
         .get()
         .then((value) {
-      print(value.data());
+      // print(value.data());
       // print("get user email :" + _socialUserModel!.email.toString());
       model = SocialUserModel.fromJson(value.data()!);
-      update();
+      print(model!.isemailverified!);
+      //update();
     });
-    return model;
+    return model!.isemailverified;
   }
 
   // NOTE: --------------------- On Change Index Of Screens ------------------
@@ -324,15 +325,11 @@ class SocialLayoutController extends GetxController {
       // NOTE : reference on posts
       int index = 0;
       value.docs.forEach((docOfpost) async {
-        // NOTE : elemet => doc
         // NOTE foreach document go to reference likes
         await docOfpost.reference
             .collection('likes')
             .get()
             .then((likescollection) async {
-          // NOTE value is the collection likes
-          // NOTE Add lenght of doc for each likes in post doc
-
           _listOfPost.add(PostModel.fromJson(docOfpost.data()));
           //NOTE check  if this user like a post
           if (likescollection.docs.isNotEmpty) {
@@ -344,6 +341,8 @@ class SocialLayoutController extends GetxController {
             });
           }
 
+          // NOTE value is the collection likes
+          // NOTE Add lenght of doc for each likes in post doc
           _listOfPost[index].nbOfLikes = likescollection.docs.length;
 
           index++;
@@ -351,6 +350,14 @@ class SocialLayoutController extends GetxController {
         }).catchError((error) {
           print(error.toString());
         });
+
+        _listOfPost.forEach((element) async {
+          isEmailVerifiedById(element.uId.toString()).then((value) {
+            element.isEmailVerified = value;
+            update();
+          });
+        });
+
         // NOTE : Sort List desc
         _listOfPost.length != 0
             ? _listOfPost.sort((a, b) {

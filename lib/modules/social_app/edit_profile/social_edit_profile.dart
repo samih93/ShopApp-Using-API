@@ -17,7 +17,7 @@ class SocialEditProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SocialLayoutController>(
-        init: SocialLayoutController(),
+        init: Get.find<SocialLayoutController>(),
         builder: (socialLayoutController) {
           var socialUserModel = socialLayoutController.socialUserModel!;
           var profileimage = socialLayoutController.profileimage;
