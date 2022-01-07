@@ -330,11 +330,12 @@ class SocialLayoutController extends GetxController {
             .collection('likes')
             .get()
             .then((likescollection) async {
+          // NOTE : add posts in list befor access to its index
           _listOfPost.add(PostModel.fromJson(docOfpost.data()));
           //NOTE check  if this user like a post
           if (likescollection.docs.isNotEmpty) {
             likescollection.docs.forEach((docOflikes) {
-              //  e is the id of doc in likes
+              // NOTE  check of  the id of doc in likes equal to current user
               if (docOflikes.id == uId) {
                 _listOfPost[index].isLiked = true;
               }
@@ -358,7 +359,7 @@ class SocialLayoutController extends GetxController {
           });
         });
 
-        // NOTE : Sort List desc
+        // NOTE : Sort List desc order by date
         _listOfPost.length != 0
             ? _listOfPost.sort((a, b) {
                 //NOTE : compareTo : ==> 0 if a==b
