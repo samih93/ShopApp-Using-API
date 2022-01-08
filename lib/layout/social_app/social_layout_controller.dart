@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:udemy_flutter/models/social_app/message_model.dart';
 import 'package:udemy_flutter/models/social_app/post_model.dart';
 import 'package:udemy_flutter/models/social_app/social_usermodel.dart';
 import 'package:udemy_flutter/modules/social_app/chats/chat_screen.dart';
@@ -16,7 +17,7 @@ import 'package:udemy_flutter/shared/componets/constants.dart';
 
 class SocialLayoutController extends GetxController {
   SocialLayoutController() {
-    getLoggedInUserData();
+    if (uId != null) getLoggedInUserData();
     getPosts();
 
     getUsers();
@@ -432,6 +433,53 @@ class SocialLayoutController extends GetxController {
         _isloadingGetUsers = false;
         update();
       });
+    });
+  }
+
+  // NOTE :------------------ send Message ---------------------------------------
+
+  var isSendMessageSuccess = false.obs;
+
+  void sendMessage(
+      {required String receiverId,
+      required String messageDate,
+      required String text}) {
+    isSendMessageSuccess.value = false;
+    SocialMessageModel model = SocialMessageModel(
+        senderId: uId,
+        receiverId: receiverId,
+        text: text,
+        messageDate: messageDate);
+
+    // NOTE write message in user sender
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(uId)
+        .collection('chats')
+        .doc(receiverId)
+        .collection('messages')
+        .add(model.toJson())
+        .then((value) {
+      isSendMessageSuccess.value = true;
+      update();
+    }).catchError((error) {
+      print(error.toString());
+    });
+
+    // NOTE write message in user received
+
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(receiverId)
+        .collection('chats')
+        .doc(uId)
+        .collection('messages')
+        .add(model.toJson())
+        .then((value) {
+      isSendMessageSuccess.value = true;
+      update();
+    }).catchError((error) {
+      print(error.toString());
     });
   }
 }

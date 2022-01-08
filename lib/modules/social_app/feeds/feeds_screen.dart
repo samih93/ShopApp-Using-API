@@ -103,16 +103,11 @@ class SocialFeedsScreen extends StatelessWidget {
                         children: [
                           CircleAvatar(
                             radius: 20,
-                            backgroundImage: socialLayoutController
-                                            .listOfPost[index].image ==
-                                        null ||
-                                    socialLayoutController
-                                            .listOfPost[index].image ==
-                                        ""
-                                ? AssetImage('assets/default profile.png')
-                                    as ImageProvider
-                                : NetworkImage(socialLayoutController
-                                    .listOfPost[index].image!),
+                            backgroundImage:
+                                model.image == null || model.image == ""
+                                    ? AssetImage('assets/default profile.png')
+                                        as ImageProvider
+                                    : NetworkImage(model.image!),
                           ),
                           SizedBox(
                             width: 10,
@@ -130,9 +125,7 @@ class SocialFeedsScreen extends StatelessWidget {
                                   SizedBox(
                                     width: 5,
                                   ),
-                                  if (socialLayoutController
-                                          .listOfPost[index].isEmailVerified ==
-                                      true)
+                                  if (model.isEmailVerified == true)
                                     Icon(
                                       Icons.check_circle,
                                       color: defaultColor,
@@ -230,9 +223,7 @@ class SocialFeedsScreen extends StatelessWidget {
                                       width: 5,
                                     ),
                                     Text(
-                                      socialLayoutController
-                                          .listOfPost[index].nbOfLikes
-                                          .toString(),
+                                      model.nbOfLikes.toString(),
                                       style:
                                           Theme.of(context).textTheme.caption,
                                     ),
@@ -281,17 +272,12 @@ class SocialFeedsScreen extends StatelessWidget {
                                   children: [
                                     CircleAvatar(
                                       radius: 15,
-                                      backgroundImage: socialLayoutController
-                                                      .socialUserModel!.image ==
-                                                  null ||
-                                              socialLayoutController
-                                                      .socialUserModel!.image ==
-                                                  ""
+                                      backgroundImage: model.image == null ||
+                                              model.image == ""
                                           ? AssetImage(
                                                   'assets/default profile.png')
                                               as ImageProvider
-                                          : NetworkImage(
-                                              '${socialLayoutController.socialUserModel!.image}'),
+                                          : NetworkImage('${model.image}'),
                                     ),
                                     SizedBox(
                                       width: 15,
@@ -309,8 +295,7 @@ class SocialFeedsScreen extends StatelessWidget {
                               child: Row(
                                 children: [
                                   Icon(
-                                      socialLayoutController
-                                              .listOfPost[index].isLiked
+                                      model.isLiked
                                           ? Icons.favorite
                                           : Icons.favorite_border,
                                       color: Colors.red),
@@ -324,21 +309,13 @@ class SocialFeedsScreen extends StatelessWidget {
                                 ],
                               ),
                               onTap: () {
-                                if (socialLayoutController
-                                        .listOfPost[index].isLiked ==
-                                    true) {
+                                if (model.isLiked == true) {
                                   socialLayoutController.likePost(
-                                      socialLayoutController
-                                          .listOfPost[index].postId
-                                          .toString(),
-                                      index,
+                                      model.postId.toString(), index,
                                       isForremove: true);
                                 } else {
                                   socialLayoutController.likePost(
-                                      socialLayoutController
-                                          .listOfPost[index].postId
-                                          .toString(),
-                                      index);
+                                      model.postId.toString(), index);
                                 }
                               },
                             ),

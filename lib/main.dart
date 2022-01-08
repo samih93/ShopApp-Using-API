@@ -74,7 +74,7 @@ void main() async {
   Get.put(NewsLayoutController());
   Get.put(TodoLayoutController());
   Get.put(ShopLayoutController());
-  Get.put(SocialLayoutController());
+  // Get.put(SocialLayoutController());
   runApp(MyApp(widget));
 }
 

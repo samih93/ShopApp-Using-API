@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/layout/social_app/social_layout_controller.dart';
 import 'package:udemy_flutter/models/social_app/social_usermodel.dart';
+import 'package:udemy_flutter/modules/social_app/chat_details/chat_details_screen.dart';
 import 'package:udemy_flutter/shared/componets/componets.dart';
 
 class SocialChatScreen extends StatelessWidget {
@@ -19,7 +20,11 @@ class SocialChatScreen extends StatelessWidget {
   }
 
   Widget buildChatItem(SocialUserModel socialUserModel) => InkWell(
-        onTap: () {},
+        onTap: () {
+          Get.to(ChatDetailsScreen(
+            socialUserModel: socialUserModel,
+          ));
+        },
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Row(

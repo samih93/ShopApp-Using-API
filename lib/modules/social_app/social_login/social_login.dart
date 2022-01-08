@@ -106,7 +106,7 @@ class SocialLoginScreen extends StatelessWidget {
                                   ToastStatus.Success) {
                                 //NOTE: uId saved in login method
                                 CashHelper.saveData(key: "uId", value: uId);
-                                Get.offAll(SocialLayout());
+                                Get.off(SocialLayout());
                               }
 
                               showToast(

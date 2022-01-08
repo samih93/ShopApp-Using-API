@@ -14,7 +14,7 @@ class Binding extends Bindings {
     Get.lazyPut(() => TodoLayoutController());
     Get.lazyPut(() => NewsLayoutController());
     Get.lazyPut(() => ShopLayoutController());
-    Get.lazyPut(() => SocialLayoutController());
+    //Get.lazyPut(() => SocialLayoutController());
 
     //Get.lazyPut(() => ProfileController());
   }
