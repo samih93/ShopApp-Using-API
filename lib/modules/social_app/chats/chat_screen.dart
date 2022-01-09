@@ -19,8 +19,14 @@ class SocialChatScreen extends StatelessWidget {
     );
   }
 
-  Widget buildChatItem(SocialUserModel socialUserModel) => InkWell(
+  Widget buildChatItem(
+    SocialUserModel socialUserModel,
+  ) =>
+      InkWell(
         onTap: () {
+          // TODO: get Messages
+          // socialLayoutController.getMessages(
+          //     receiverId: socialUserModel.uId.toString());
           Get.to(ChatDetailsScreen(
             socialUserModel: socialUserModel,
           ));
