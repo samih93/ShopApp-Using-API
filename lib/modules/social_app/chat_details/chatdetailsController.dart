@@ -125,7 +125,8 @@ class ChatDetailsController extends GetxController {
     update();
     await FirebaseStorage.instance
         .ref('')
-        .child('users/chats/${Uri.file(_messageImage!.path).pathSegments.last}')
+        .child(
+            'users/chats/$uId/${Uri.file(_messageImage!.path).pathSegments.last}')
         .putFile(_messageImage!)
         .then((value) {
       value.ref.getDownloadURL().then((value) {
