@@ -483,35 +483,5 @@ class SocialLayoutController extends GetxController {
     });
   }
 
-  // NOTE : -------------- get Messages-----------------
-
-  List<SocialMessageModel> _listOfMessages = [];
-  List<SocialMessageModel> get listOfMessages => _listOfMessages;
-
-  var isGetMessageSuccess = false.obs;
-
-  void getMessages({required String receiverId}) {
-    print('getmessageing');
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(uId)
-        .collection('chats')
-        .doc(receiverId)
-        .collection('messages')
-        .snapshots()
-        // ! Stream => of type Stream<QureySnapshot>  get data and still open to receive new updates
-        // ! get => of type Future<QuerySnapshot> get data one time
-        .listen((event) {
-      _listOfMessages = []; // ! cz listen get old and new data
-      event.docs.forEach((element) {
-        _listOfMessages.add(SocialMessageModel.fromJson(element.data()));
-        update();
-      });
-
-      _listOfMessages.forEach((element) {
-        print(element.text);
-      });
-      isGetMessageSuccess.value = true;
-    });
-  }
+  
 }

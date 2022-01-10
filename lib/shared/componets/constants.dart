@@ -48,7 +48,18 @@ String? uId = "";
 String getDateFormated(String date) {
   List<String> listdate = date.split("T");
   List<String> list1date = listdate[1].split(":");
+
   return list1date[0] + ":" + list1date[1] + "   " + listdate[0];
+}
+
+// 2022-01-09 00:27:32.205150
+String getMessageTimeFromDate(String date)
+{
+  List<String> listdate = date.split(" ");
+    List<String> list1date = listdate[1].split(":");
+    return  list1date[0] + ":" + list1date[1];
+
+
 }
 
 //NOTE : cover DateTime To Ago
