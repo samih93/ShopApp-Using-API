@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/layout/social_app/social_layout_controller.dart';
@@ -193,6 +194,37 @@ class SocialSettingScreen extends StatelessWidget {
                       ],
                     ),
 
+                    Row(
+                      children: [
+                        Expanded(
+                          child: OutlinedButton(
+                              onPressed: () {
+                                //NOTE : FriendsRequest this is announcement title for notification can be anything
+                                FirebaseMessaging.instance
+                                    .subscribeToTopic("FriendsRequest");
+                                showToast(
+                                    message: "Subscribed",
+                                    status: ToastStatus.Success);
+                              },
+                              child: Text("Subscribe")),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(
+                          child: OutlinedButton(
+                              onPressed: () {
+                                // NOTE
+                                FirebaseMessaging.instance
+                                    .unsubscribeFromTopic("FriendsRequest");
+                                showToast(
+                                    message: "Unsubscribed",
+                                    status: ToastStatus.Success);
+                              },
+                              child: Text("Unsubscribe")),
+                        ),
+                      ],
+                    ),
                     defaultButton(
                         text: "Sign Out",
                         onpress: () {

@@ -1,0 +1,25 @@
+FcM API 
+to : can be to topic like "to":"/topics/announcement/"
+----------------------
+{
+    "to": "cjhklEC-SN69jSukoQ386S:APA91bEm_3AAANnu0fRhbigpkbzeG3Xe8IhMQByohKhsB7dsYC7_la8dUv0YtH1F2Rwf4gd7tX0znJvfHAoB8Oby0ig6LBRz6RV5jBOcl4cPaenYDBPnpfd9V6Cnuaple7G3uv0RLZ8o",
+    "notification" : {
+     "body" : "Test post",
+     "title": "Push notifications E",
+     "sound" :"default"
+ },
+ "android":{
+     "priortiy":"HIGH",
+     "notification":{
+     "notification_priority":"PRIORITY_MAX",
+     "sound":"default",
+     "default_vibrate_timings" :true,
+     "default_light_settings":true
+ }
+ },
+ "data": {
+            "click_action": "FLUTTER_NOTIFICATION_CLICK",
+            "id": "87",
+            "type": "order"
+          }
+}

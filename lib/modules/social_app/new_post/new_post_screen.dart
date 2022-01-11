@@ -17,18 +17,25 @@ class NewPostScreen extends StatelessWidget {
           return Scaffold(
             appBar:
                 defaultAppBar(context: context, title: "Add Post", actions: [
-              defaultTextButton(
-                  onpress: () {
-                    socialLayoutController
-                        .createNewPost(
-                            postdate: DateTime.now().toString(),
-                            text: postBodyController.text)
-                        .then((value) {
-                      if (!socialLayoutController.isloadingcreatePost!)
-                        Navigator.pop(context);
-                    });
-                  },
-                  text: "Post")
+              socialLayoutController.postBodyText != ""
+                  ? defaultTextButton(
+                      onpress: () {
+                        socialLayoutController
+                            .createNewPost(
+                                postdate: DateTime.now().toString(),
+                                text: postBodyController.text)
+                            .then((value) {
+                          if (!socialLayoutController.isloadingcreatePost!)
+                            Navigator.pop(context);
+                        });
+                      },
+                      text: "Post")
+                  : defaultTextButton(
+                      onpress: () {
+                        return null;
+                      },
+                      text: "Post",
+                      color: Colors.grey)
             ]),
             body: Padding(
               padding: const EdgeInsets.all(20.0),
@@ -62,6 +69,15 @@ class NewPostScreen extends StatelessWidget {
                                 socialUserModel.name ?? 'No Name',
                                 style: TextStyle(height: 1.4),
                               ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              if (socialUserModel.isemailverified == true)
+                                Icon(
+                                  Icons.check_circle,
+                                  color: defaultColor,
+                                  size: 16,
+                                )
                             ],
                           ),
                         ],
@@ -71,6 +87,10 @@ class NewPostScreen extends StatelessWidget {
                   Expanded(
                     child: defaultTextFormField(
                         maxligne: 15,
+                        onchange: (value) {
+                          socialLayoutController
+                              .ontyping_postBody(value.toString());
+                        },
                         controller: postBodyController,
                         inputtype: TextInputType.multiline,
                         border: InputBorder.none,

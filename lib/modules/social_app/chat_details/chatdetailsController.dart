@@ -8,6 +8,7 @@ import 'package:udemy_flutter/models/social_app/message_model.dart';
 import 'package:udemy_flutter/shared/componets/constants.dart';
 
 class ChatDetailsController extends GetxController {
+  // NOTE on type in text field to check if empty or not
   var messageText = "".obs;
 
   void ontypingmessage(value) {

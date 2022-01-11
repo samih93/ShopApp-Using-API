@@ -257,7 +257,7 @@ class SocialLayoutController extends GetxController {
     });
   }
 
-// NOTE : create post
+// NOTE : -----------------create post----------------------------
   bool? _isloadingcreatePost = false;
   bool? get isloadingcreatePost => _isloadingcreatePost;
 
@@ -294,6 +294,15 @@ class SocialLayoutController extends GetxController {
     }).catchError((error) {
       print(error.toString());
     });
+  }
+
+  // NOTE on type in text field body of post  to check if empty or not
+
+  var postBodyText = "".obs;
+
+  void ontyping_postBody(String value) {
+    postBodyText.value = value;
+    update();
   }
 
 // NOTE on click close to remove image from post
@@ -482,6 +491,4 @@ class SocialLayoutController extends GetxController {
       print(error.toString());
     });
   }
-
-  
 }

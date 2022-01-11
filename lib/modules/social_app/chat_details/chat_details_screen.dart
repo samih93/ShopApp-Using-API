@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/layout/social_app/social_layout_controller.dart';
@@ -259,15 +260,33 @@ class ChatDetailsScreen extends StatelessWidget {
               alignment: Alignment.bottomRight,
               children: [
                 Container(
-                    width: double.infinity,
-                    height: 180,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      image: DecorationImage(
-                        image: NetworkImage('${model.image}'),
-                        fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: 180,
+                  // decoration: BoxDecoration(
+                  //   borderRadius: BorderRadius.circular(4),
+                  //   image: DecorationImage(
+                  //     image: NetworkImage('${model.image}'),
+                  //     fit: BoxFit.cover,
+                  //   ),
+                  // ),
+                  child: CachedNetworkImage(
+                    imageUrl: model.image.toString(),
+                    imageBuilder: (context, imageProvider) => Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                          // colorFilter: ColorFilter.mode(
+                          //     Colors.red, BlendMode.colorBurn)
+                        ),
                       ),
-                    )),
+                    ),
+                    placeholder: (context, url) =>
+                        Center(child: CircularProgressIndicator()),
+                    errorWidget: (context, url, error) =>
+                        Image.asset("assets/notfound.png"),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
@@ -319,15 +338,33 @@ class ChatDetailsScreen extends StatelessWidget {
               alignment: Alignment.bottomRight,
               children: [
                 Container(
-                    width: double.infinity,
-                    height: 180,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      image: DecorationImage(
-                        image: NetworkImage('${model.image}'),
-                        fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: 180,
+                  // decoration: BoxDecoration(
+                  //   borderRadius: BorderRadius.circular(4),
+                  //   image: DecorationImage(
+                  //     image: NetworkImage('${model.image}'),
+                  //     fit: BoxFit.cover,
+                  //   ),
+                  // ),
+                  child: CachedNetworkImage(
+                    imageUrl: model.image.toString(),
+                    imageBuilder: (context, imageProvider) => Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                          // colorFilter: ColorFilter.mode(
+                          //     Colors.red, BlendMode.colorBurn)
+                        ),
                       ),
-                    )),
+                    ),
+                    placeholder: (context, url) =>
+                        Center(child: CircularProgressIndicator()),
+                    errorWidget: (context, url, error) =>
+                        Image.asset("assets/notfound.png"),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
