@@ -8,15 +8,15 @@ class SocialUserModel {
   String? uId;
   bool? isemailverified;
 
-  SocialUserModel({
-    this.name,
-    this.email,
-    this.phone,
-    this.image,
-    this.coverimage,
-    this.bio,
-    this.uId,
-  });
+  SocialUserModel(
+      {this.name,
+      this.email,
+      this.phone,
+      this.image,
+      this.coverimage,
+      this.bio,
+      this.uId,
+      this.isemailverified});
 
   SocialUserModel.fromJson(Map<String, dynamic> json) {
     name = json['name'];

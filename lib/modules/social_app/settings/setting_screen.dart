@@ -201,7 +201,7 @@ class SocialSettingScreen extends StatelessWidget {
                               onPressed: () {
                                 //NOTE : FriendsRequest this is announcement title for notification can be anything
                                 FirebaseMessaging.instance
-                                    .subscribeToTopic("FriendsRequest");
+                                    .subscribeToTopic("FriendsPost");
                                 showToast(
                                     message: "Subscribed",
                                     status: ToastStatus.Success);
@@ -216,7 +216,7 @@ class SocialSettingScreen extends StatelessWidget {
                               onPressed: () {
                                 // NOTE
                                 FirebaseMessaging.instance
-                                    .unsubscribeFromTopic("FriendsRequest");
+                                    .unsubscribeFromTopic("FriendsPost");
                                 showToast(
                                     message: "Unsubscribed",
                                     status: ToastStatus.Success);

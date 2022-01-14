@@ -21,6 +21,7 @@ import 'package:udemy_flutter/shared/helper/binding.dart';
 import 'package:udemy_flutter/shared/network/local/cashhelper.dart';
 import 'package:udemy_flutter/shared/network/remote/diohelper_news.dart';
 import 'package:udemy_flutter/shared/network/remote/diohelper_shop.dart';
+import 'package:udemy_flutter/shared/network/remote/diohelper_social.dart';
 import 'package:udemy_flutter/shared/styles/thems.dart';
 
 import 'shared/styles/thems.dart';
@@ -67,6 +68,8 @@ void main() async {
   // NOTE : For shop App ----------------------
 
   DioHelperShop.init().then((value) {});
+  DioHelperSocial.init().then((value) {});
+
   await CashHelper.Init();
 
 // check if no cash data ==> return false

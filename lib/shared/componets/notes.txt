@@ -1,4 +1,5 @@
-FcM API 
+ NOTE  : FcM API 
+NOTE :  url :  https://fcm.googleapis.com/fcm/send
 to : can be to topic like "to":"/topics/announcement/"
 ----------------------
 {
@@ -23,3 +24,39 @@ to : can be to topic like "to":"/topics/announcement/"
             "type": "order"
           }
 }
+
+/////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////////
+NOTE ------------------  show sqllite database-----------------------
+
+in sdk --> platform tools
+1 - adb devices
+2 - adb -s emulator-5554 shell
+3 - run-as com.example.e_commerce_app
+4 - cd path of db
+5 - sqlite3 nameofdatabase
+6 .tables
+
+-------------------------------------------------------------
+
+
+/////////////////////////////////////////////////////////////
+NOTE ---------------------Add to Github ---------------------------
+
+git init
+git add . 
+git remote add origin https://github.com/samih93/Orders.git
+git commit -m "initial commit"
+git push -u origin master
+
+
+--------------------------------------------------------------
+
+
+///////////////////////////////////////////////////////////////
+NOTE ----------------------- signingReport -------------------------
+
+1 - in terminal cd android 
+2 - ./gradlew signingReport

@@ -14,6 +14,7 @@ import 'package:udemy_flutter/modules/social_app/new_post/new_post_screen.dart';
 import 'package:udemy_flutter/modules/social_app/settings/setting_screen.dart';
 import 'package:udemy_flutter/modules/social_app/users/users_screen.dart';
 import 'package:udemy_flutter/shared/componets/constants.dart';
+import 'package:udemy_flutter/shared/network/remote/diohelper_social.dart';
 
 class SocialLayoutController extends GetxController {
   SocialLayoutController() {
@@ -69,7 +70,7 @@ class SocialLayoutController extends GetxController {
       // print(value.data());
       // print("get user email :" + _socialUserModel!.email.toString());
       model = SocialUserModel.fromJson(value.data()!);
-      print(model!.isemailverified!);
+      //print(model!.isemailverified!);
       //update();
     });
     return model!.isemailverified;
@@ -189,6 +190,7 @@ class SocialLayoutController extends GetxController {
         name: name,
         phone: phone,
         bio: bio,
+        isemailverified: _socialUserModel!.isemailverified,
         email: _socialUserModel!.email,
         image: _imageProfileUrl ?? _socialUserModel!.image.toString(),
         coverimage: _imagecoverUrl ?? _socialUserModel!.coverimage.toString(),
@@ -487,6 +489,35 @@ class SocialLayoutController extends GetxController {
         .then((value) {
       isSendMessageSuccess.value = true;
       update();
+    }).catchError((error) {
+      print(error.toString());
+    });
+  }
+
+  void pushNotification() {
+    DioHelperSocial.postData(url: 'https://fcm.googleapis.com/fcm/send', data: {
+      "to": "/topics/FriendsPost",
+      "notification": {
+        "body": "Test post",
+        "title": "Push notifications E",
+        "sound": "default"
+      },
+      "android": {
+        "priortiy": "HIGH",
+        "notification": {
+          "notification_priority": "PRIORITY_MAX",
+          "sound": "default",
+          "default_vibrate_timings": true,
+          "default_light_settings": true
+        }
+      },
+      "data": {
+        "click_action": "FLUTTER_NOTIFICATION_CLICK",
+        "id": "87",
+        "type": "order"
+      }
+    }).then((value) {
+      print("notification pushed");
     }).catchError((error) {
       print(error.toString());
     });

@@ -18,7 +18,7 @@ class SocialLayout extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () {
-                  print('hello');
+                  socialLayoutController.pushNotification();
                 },
                 icon: Icon(Icons.notifications))
           ],

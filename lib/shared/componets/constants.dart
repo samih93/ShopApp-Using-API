@@ -44,6 +44,9 @@ String? token = "";
 
 String? uId = "";
 
+String? API_FCM_KEY =
+    "AAAAnTCPhyA:APA91bEPhSWbmdwi_Xkz4DRxUgMAt1-5TU4Fdj3EzE3S9lgeqtHQIEJ_wBOj6ZkzF8SOtpmB5_iJGLl74xuiYKvbk8atO0oRaLwZJjpFp6fcTHh3NH2q9xROvvMvtR9CfpoPIyciLJ7g";
+
 //NOTE ----------Get Date Formated For Task -----------------------------
 String getDateFormated(String date) {
   List<String> listdate = date.split("T");
@@ -53,13 +56,10 @@ String getDateFormated(String date) {
 }
 
 // 2022-01-09 00:27:32.205150
-String getMessageTimeFromDate(String date)
-{
+String getMessageTimeFromDate(String date) {
   List<String> listdate = date.split(" ");
-    List<String> list1date = listdate[1].split(":");
-    return  list1date[0] + ":" + list1date[1];
-
-
+  List<String> list1date = listdate[1].split(":");
+  return list1date[0] + ":" + list1date[1];
 }
 
 //NOTE : cover DateTime To Ago
