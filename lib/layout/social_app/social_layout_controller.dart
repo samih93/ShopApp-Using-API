@@ -498,7 +498,7 @@ class SocialLayoutController extends GetxController {
 
   void pushNotification() {
     DioHelperSocial.postData(url: 'https://fcm.googleapis.com/fcm/send', data: {
-      "to": "/topics/FriendsPost",
+      "to": "/topics/friendpost",
       "notification": {
         "body": "see details",
         "title": _socialUserModel!.name.toString() + " Add new Post",
