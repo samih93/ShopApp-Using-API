@@ -291,6 +291,8 @@ class SocialLayoutController extends GetxController {
       _postimage = null;
       _imagePostUrl = null;
       _isloadingcreatePost = false;
+      // NOTE push notification to subscribed to channel FriendsPost
+      pushNotification();
       getPosts();
       update();
     }).catchError((error) {
@@ -498,8 +500,8 @@ class SocialLayoutController extends GetxController {
     DioHelperSocial.postData(url: 'https://fcm.googleapis.com/fcm/send', data: {
       "to": "/topics/FriendsPost",
       "notification": {
-        "body": "Test post",
-        "title": "Push notifications E",
+        "body": "see details",
+        "title": _socialUserModel!.name.toString() + " Add new Post",
         "sound": "default"
       },
       "android": {

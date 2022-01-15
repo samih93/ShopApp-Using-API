@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:udemy_flutter/layout/social_app/social_layout_controller.dart';
 import 'package:udemy_flutter/modules/shop_app/login/shop_login_screen.dart';
 import 'package:udemy_flutter/modules/social_app/social_login/social_login.dart';
@@ -65,6 +67,11 @@ String getMessageTimeFromDate(String date) {
 //NOTE : cover DateTime To Ago
 String convertToAgo(DateTime input) {
   Duration diff = DateTime.now().difference(input);
+//initializeDateFormatting('en_US,', null);
+// if (diff.inDays >= 6) {
+//     //! TODo:
+//     return DateFormat.yMMMd(input.toString()).toString();
+//   } else if
 
   if (diff.inDays >= 1) {
     return '${diff.inDays}d';
@@ -87,7 +94,6 @@ String convertToAgo(DateTime input) {
 // for search
 // https://newsapi.org/v2/everything?q=tesla&apiKey=65f7f556ec76449fa7dc7c0069f040ca
 
-
 // NOTE: style
 /// NAME         SIZE  WEIGHT  SPACING
 /// headline1    96.0  light   -1.5
@@ -104,12 +110,10 @@ String convertToAgo(DateTime input) {
 /// caption      12.0  regular  0.4
 /// overline     10.0  regular  1.5
 
-// ToDo: 
-// ! important 
-// NOTE:    
-// FIXME:    
-// WARNING: 
+// ToDo:
+// ! important
+// NOTE:
+// FIXME:
+// WARNING:
 
-
-
-//NOTE: 
+//NOTE:

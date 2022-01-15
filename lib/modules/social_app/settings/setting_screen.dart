@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:udemy_flutter/layout/social_app/social_layout_controller.dart';
 import 'package:udemy_flutter/modules/social_app/edit_profile/social_edit_profile.dart';
+import 'package:udemy_flutter/modules/social_app/notifications/notification_screen.dart';
 import 'package:udemy_flutter/shared/componets/componets.dart';
 import 'package:udemy_flutter/shared/componets/constants.dart';
 
@@ -183,14 +184,23 @@ class SocialSettingScreen extends StatelessWidget {
                             child: Text("Edit Profile"),
                           ),
                         ),
-                        SizedBox(
-                          width: 10,
-                        ),
                         OutlinedButton(
                             onPressed: () {
                               Get.to(SocialEditProfile());
                             },
                             child: Icon(Icons.edit)),
+                      ],
+                    ),
+
+                    Row(
+                      children: [
+                        Expanded(
+                          child: OutlinedButton(
+                              onPressed: () {
+                                Get.to(SocialNotificationScreen());
+                              },
+                              child: Text('Notifications Settings')),
+                        ),
                       ],
                     ),
 
