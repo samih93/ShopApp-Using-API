@@ -42,12 +42,12 @@ class NewsLayout extends StatelessWidget {
               }
             },
             items: newsLayoutController.bottomItems),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            print(newsLayoutController.business.length);
-          },
-          child: Icon(Icons.add),
-        ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () async {
+        //     print(newsLayoutController.business.length);
+        //   },
+        //   child: Icon(Icons.add),
+        // ),
       ),
     );
   }

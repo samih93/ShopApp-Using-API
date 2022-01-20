@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "675124578080-go3gebcr1rerm13rpvvp5uhis50pncbs.apps.googleusercontent.com",
+          "client_id": "675124578080-ls0lu8keh39ed4eer9ddl4d5139g3sjs.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.udemy_flutter",
-            "certificate_hash": "c0a3620c10b6b6b0cbc00643ba7072e52b199a7f"
+            "certificate_hash": "952cb7c18fcf503d966691a00dd0cf5a1c66bf74"
           }
         },
         {
@@ -28,7 +28,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyASi2S2KnW2ZYxg4CDQQ0XHrmQbCL62FBQ"
+          "current_key": "AIzaSyDlCfIRdA877p2mYO9GaMuCj6ZqYQdyPNo"
         }
       ],
       "services": {

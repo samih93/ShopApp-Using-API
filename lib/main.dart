@@ -63,21 +63,21 @@ void main() async {
   // dio helper is used to call api
   // this come first cz in new controller i use the dio so if i dont use then ,
   // then new layoutcontroller created and call diohelper on null so return business list null
-  DioHelperNews.init().then((value) {});
+  //DioHelperNews.init().then((value) {});
 
   // NOTE : For shop App ----------------------
 
   DioHelperShop.init().then((value) {});
-  DioHelperSocial.init().then((value) {});
+//DioHelperSocial.init().then((value) {});
 
   await CashHelper.Init();
 
-// check if no cash data ==> return false
-  // bool? onboarding = CashHelper.getData(key: "onBoarding");
-  // print(onboarding);
-  // NOTE: New
-  // token = CashHelper.getData(key: "token") ?? null;
-  // print("token :" + token.toString());
+  // check if no cash data ==> return false
+  bool? onboarding = CashHelper.getData(key: "onBoarding");
+  print(onboarding);
+  //NOTE: New
+  token = CashHelper.getData(key: "token") ?? null;
+  print("token :" + token.toString());
   Widget widget;
 
   // if (onboarding != null) {

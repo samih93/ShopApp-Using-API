@@ -288,7 +288,7 @@ Widget buildArticleItem(article, context) => Directionality(
 Widget buildFavoriteItem(ProductModel? model, {bool issearch = false}) =>
     Container(
       padding: EdgeInsets.all(20),
-      height: 120,
+      height: 130,
       child: GetBuilder<ShopLayoutController>(
         init: Get.find<ShopLayoutController>(),
         builder: (shopLayoutController) => Row(

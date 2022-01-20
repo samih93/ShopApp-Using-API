@@ -27,10 +27,12 @@ class SocialLoginController extends GetxController {
       {required String email, required String password}) async {
     _isloadingLogin = true;
     update();
+    print("Samih");
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) {
+        print("damaj");
         print(value.user!.email);
         uId = value.user!.uid;
         _statusLoginMessage = ToastStatus.Success;

@@ -32,7 +32,7 @@ class ShopLayoutController extends GetxController {
 
 // NOTE: first call for  constructor  i retreive needs data
   ShopLayoutController() {
-    //FIXME :
+    //FIXME
     // getHomeData();
     // getCategories();
     // getFavorites();
