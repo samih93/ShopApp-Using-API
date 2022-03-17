@@ -2,10 +2,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:udemy_flutter/layout/shop_app/shop_layout_controller.dart';
-import 'package:udemy_flutter/models/shop_app/category_model.dart';
-import 'package:udemy_flutter/models/shop_app/change_favorite_model.dart';
-import 'package:udemy_flutter/models/shop_app/home_model.dart';
+import 'package:udemy_flutter/layout/shop_layout_controller.dart';
+import 'package:udemy_flutter/models/category_model.dart';
+import 'package:udemy_flutter/models/home_model.dart';
 import 'package:udemy_flutter/shared/componets/componets.dart';
 import 'package:udemy_flutter/shared/styles/colors.dart';
 

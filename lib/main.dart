@@ -5,12 +5,11 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:udemy_flutter/layout/shop_app/shop_layout.dart';
-import 'package:udemy_flutter/layout/shop_app/shop_layout_controller.dart';
-
 import 'package:get/get.dart';
-import 'package:udemy_flutter/modules/shop_app/login/shop_login_screen.dart';
-import 'package:udemy_flutter/modules/shop_app/onboarding/on_boarding_screen.dart';
+import 'package:udemy_flutter/layout/shop_layout.dart';
+import 'package:udemy_flutter/layout/shop_layout_controller.dart';
+import 'package:udemy_flutter/modules/login/shop_login_screen.dart';
+import 'package:udemy_flutter/modules/onboarding/on_boarding_screen.dart';
 import 'package:udemy_flutter/shared/componets/componets.dart';
 import 'package:udemy_flutter/shared/componets/constants.dart';
 import 'package:udemy_flutter/shared/helper/binding.dart';

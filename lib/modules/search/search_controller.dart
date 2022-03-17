@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:udemy_flutter/models/shop_app/search_model.dart';
+import 'package:udemy_flutter/models/search_model.dart';
 import 'package:udemy_flutter/shared/componets/constants.dart';
 import 'package:udemy_flutter/shared/network/end_point.dart';
 import 'package:udemy_flutter/shared/network/remote/diohelper_shop.dart';

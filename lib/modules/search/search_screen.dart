@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:udemy_flutter/modules/shop_app/search/search_controller.dart';
+import 'package:udemy_flutter/modules/search/search_controller.dart';
 import 'package:udemy_flutter/shared/componets/componets.dart';
 
 class ShopSearchScreen extends StatelessWidget {

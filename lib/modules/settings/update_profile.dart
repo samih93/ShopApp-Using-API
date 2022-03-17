@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:udemy_flutter/layout/shop_app/shop_layout_controller.dart';
-import 'package:udemy_flutter/models/shop_app/login_model.dart';
+import 'package:udemy_flutter/layout/shop_layout_controller.dart';
+import 'package:udemy_flutter/models/login_model.dart';
 import 'package:udemy_flutter/shared/componets/componets.dart';
 import 'package:udemy_flutter/shared/componets/constants.dart';
 import 'package:udemy_flutter/shared/network/local/cashhelper.dart';
@@ -18,15 +18,25 @@ class UpdateProfile extends StatelessWidget {
     return GetBuilder<ShopLayoutController>(
         init: Get.find<ShopLayoutController>(),
         builder: (shopLayoutController) {
-          if(shopLayoutController.shopLoginModel!=null)
-            {
-              nameController.text = shopLayoutController.shopLoginModel?.userData!=null? shopLayoutController.shopLoginModel!.userData!.name.toString():"";
-              emailController.text =shopLayoutController.shopLoginModel?.userData!=null? shopLayoutController.shopLoginModel!.userData!.email.toString():"";
-              phoneController.text = shopLayoutController.shopLoginModel?.userData!=null? shopLayoutController.shopLoginModel!.userData!.phone.toString():"";
+          if (shopLayoutController.shopLoginModel != null) {
+            nameController.text =
+                shopLayoutController.shopLoginModel?.userData != null
+                    ? shopLayoutController.shopLoginModel!.userData!.name
+                        .toString()
+                    : "";
+            emailController.text =
+                shopLayoutController.shopLoginModel?.userData != null
+                    ? shopLayoutController.shopLoginModel!.userData!.email
+                        .toString()
+                    : "";
+            phoneController.text =
+                shopLayoutController.shopLoginModel?.userData != null
+                    ? shopLayoutController.shopLoginModel!.userData!.phone
+                        .toString()
+                    : "";
+          }
 
-            }
-
-          return  Scaffold(
+          return Scaffold(
             appBar: AppBar(
               title: Text("Update Profile"),
             ),
@@ -34,10 +44,9 @@ class UpdateProfile extends StatelessWidget {
               padding: const EdgeInsets.all(15.0),
               child: Center(
                 child: Form(
-                  key :_formkey,
+                  key: _formkey,
                   child: Column(
                     children: [
-
                       defaultTextFormField(
                         controller: nameController,
                         text: "User Name",
@@ -48,9 +57,7 @@ class UpdateProfile extends StatelessWidget {
                             return 'Please Enter Name';
                           }
                         },
-
                       ),
-
                       SizedBox(
                         height: 15,
                       ),
@@ -78,7 +85,6 @@ class UpdateProfile extends StatelessWidget {
                             return 'Please Phone number';
                           }
                         },
-
                       ),
                       SizedBox(
                         height: 10,
@@ -86,32 +92,35 @@ class UpdateProfile extends StatelessWidget {
                       shopLayoutController.isloadingupdate!
                           ? Center(child: CircularProgressIndicator())
                           : defaultButton(
-                          text: "Update",
-                          isUppercase: true,
-                          onpress: () async {
-                            ShopLoginModel? shopLoginModel;
+                              text: "Update",
+                              isUppercase: true,
+                              onpress: () async {
+                                ShopLoginModel? shopLoginModel;
 
-                            if (_formkey.currentState!.validate()) {
-                              shopLayoutController
-                                  .updateUserData(name:nameController.text,email:emailController.text ,phone :phoneController.text)
-                                  .then((value) {
-                                 shopLoginModel = value;
+                                if (_formkey.currentState!.validate()) {
+                                  shopLayoutController
+                                      .updateUserData(
+                                          name: nameController.text,
+                                          email: emailController.text,
+                                          phone: phoneController.text)
+                                      .then((value) {
+                                    shopLoginModel = value;
 
-                                if (shopLoginModel!.status!) {
-                                  print("success");
-                                  print(shopLoginModel!.userData!.token);
-                                    showToast(
-                                        message: shopLoginModel!.message,
-                                        status: ToastStatus.Success);
-                                } else {
-                                  print("failed");
-                                  showToast(
-                                      message:shopLoginModel!.message,
-                                      status: ToastStatus.Error);
+                                    if (shopLoginModel!.status!) {
+                                      print("success");
+                                      print(shopLoginModel!.userData!.token);
+                                      showToast(
+                                          message: shopLoginModel!.message,
+                                          status: ToastStatus.Success);
+                                    } else {
+                                      print("failed");
+                                      showToast(
+                                          message: shopLoginModel!.message,
+                                          status: ToastStatus.Error);
+                                    }
+                                  });
                                 }
-                              });
-                            }
-                          }),
+                              }),
                     ],
                   ),
                 ),

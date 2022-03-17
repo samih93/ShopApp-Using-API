@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:udemy_flutter/models/shop_app/boarding_model.dart';
-import 'package:udemy_flutter/modules/shop_app/login/shop_login_screen.dart';
+import 'package:udemy_flutter/models/boarding_model.dart';
+import 'package:udemy_flutter/modules/login/shop_login_screen.dart';
 import 'package:udemy_flutter/shared/network/local/cashhelper.dart';
 import 'package:udemy_flutter/shared/styles/colors.dart';
 

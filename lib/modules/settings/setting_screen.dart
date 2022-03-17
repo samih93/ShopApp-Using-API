@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:udemy_flutter/layout/shop_app/shop_layout_controller.dart';
-import 'package:udemy_flutter/modules/shop_app/favorites/favorite_screen.dart';
-import 'package:udemy_flutter/modules/shop_app/settings/update_profile.dart';
+import 'package:udemy_flutter/layout/shop_layout_controller.dart';
+import 'package:udemy_flutter/modules/favorites/favorite_screen.dart';
+import 'package:udemy_flutter/modules/settings/update_profile.dart';
 import 'package:udemy_flutter/shared/componets/componets.dart';
 import 'package:udemy_flutter/shared/componets/constants.dart';
 import 'package:udemy_flutter/shared/styles/colors.dart';

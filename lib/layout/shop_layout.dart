@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:udemy_flutter/layout/shop_app/shop_layout_controller.dart';
-import 'package:udemy_flutter/modules/shop_app/search/search_screen.dart';
+import 'package:udemy_flutter/layout/shop_layout_controller.dart';
+import 'package:udemy_flutter/modules/search/search_screen.dart';
 import 'package:udemy_flutter/shared/styles/colors.dart';
 
 class ShopLayout extends StatelessWidget {

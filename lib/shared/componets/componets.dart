@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:udemy_flutter/layout/shop_app/shop_layout_controller.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:udemy_flutter/models/shop_app/home_model.dart';
+import 'package:udemy_flutter/layout/shop_layout_controller.dart';
+import 'package:udemy_flutter/models/home_model.dart';
 import 'package:udemy_flutter/shared/componets/constants.dart';
 import 'package:udemy_flutter/shared/styles/colors.dart';
 

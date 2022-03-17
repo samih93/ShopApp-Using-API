@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
-import 'package:udemy_flutter/modules/shop_app/login/shop_login_screen.dart';
+import 'package:udemy_flutter/modules/login/shop_login_screen.dart';
 import 'package:udemy_flutter/shared/network/local/cashhelper.dart';
 
 final Color primaryColor = Colors.deepPurple.shade900;

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:udemy_flutter/models/shop_app/category_model.dart';
-import 'package:udemy_flutter/models/shop_app/change_favorite_model.dart';
-import 'package:udemy_flutter/models/shop_app/favorites_model.dart';
-import 'package:udemy_flutter/models/shop_app/home_model.dart';
-import 'package:udemy_flutter/models/shop_app/login_model.dart';
-import 'package:udemy_flutter/modules/shop_app/categories/category_screen.dart';
-import 'package:udemy_flutter/modules/shop_app/favorites/favorite_screen.dart';
-import 'package:udemy_flutter/modules/shop_app/products/product_screen.dart';
-import 'package:udemy_flutter/modules/shop_app/settings/setting_screen.dart';
+import 'package:udemy_flutter/models/category_model.dart';
+import 'package:udemy_flutter/models/change_favorite_model.dart';
+import 'package:udemy_flutter/models/favorites_model.dart';
+import 'package:udemy_flutter/models/home_model.dart';
+import 'package:udemy_flutter/models/login_model.dart';
+import 'package:udemy_flutter/modules/categories/category_screen.dart';
+import 'package:udemy_flutter/modules/favorites/favorite_screen.dart';
+import 'package:udemy_flutter/modules/products/product_screen.dart';
+import 'package:udemy_flutter/modules/settings/setting_screen.dart';
+
 import 'package:udemy_flutter/shared/componets/constants.dart';
 import 'package:udemy_flutter/shared/network/end_point.dart';
 import 'package:udemy_flutter/shared/network/remote/diohelper_shop.dart';

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:udemy_flutter/layout/shop_app/shop_layout_controller.dart';
+import 'package:udemy_flutter/layout/shop_layout_controller.dart';
 
 class Binding extends Bindings {
   @override

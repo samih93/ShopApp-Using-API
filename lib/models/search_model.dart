@@ -1,4 +1,4 @@
-import 'package:udemy_flutter/models/shop_app/home_model.dart';
+import 'package:udemy_flutter/models/home_model.dart';
 
 class Searchmodel {
   bool? status;
