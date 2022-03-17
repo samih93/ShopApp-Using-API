@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
-import 'package:udemy_flutter/layout/social_app/social_layout_controller.dart';
 import 'package:udemy_flutter/modules/shop_app/login/shop_login_screen.dart';
-import 'package:udemy_flutter/modules/social_app/social_login/social_login.dart';
 import 'package:udemy_flutter/shared/network/local/cashhelper.dart';
 
 final Color primaryColor = Colors.deepPurple.shade900;
@@ -18,22 +16,6 @@ void signOut() {
       Get.off(ShopLoginScreen());
       token = "";
     }
-  });
-}
-
-void SocialsignOut() {
-  FirebaseAuth.instance.signOut().then((value) {
-    print("Sign out successfully");
-    CashHelper.removeDatabykey(key: "uId").then((value) {
-      if (value) {
-        Get.offAll(SocialLoginScreen());
-        uId = "";
-        // ! delete social controller cz when sign in to  get new data
-        Get.delete<SocialLayoutController>();
-      }
-    });
-  }).catchError((error) {
-    print(error.toString());
   });
 }
 

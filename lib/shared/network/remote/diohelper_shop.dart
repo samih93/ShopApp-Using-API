@@ -17,7 +17,7 @@ class DioHelperShop {
       ),
     );
 
-    // erooooorrrr befor added this
+    //! erooooorrrr befor added this
     //DioError [DioErrorType.other]: HandshakeException: Handshake error in client (OS Error: I/flutter ( 9085):
     // CERTIFICATE_VERIFY_FAILED: unable to get local issuer certificate(handshake.cc:359))
 
@@ -37,7 +37,7 @@ class DioHelperShop {
   }) async {
     dio!.options.headers = {
       'lang': lang,
-      'Authorization': token??"",
+      'Authorization': token ?? "",
       'Content-Type': 'application/json',
     };
 
@@ -56,7 +56,7 @@ class DioHelperShop {
   }) async {
     dio!.options.headers = {
       'lang': lang,
-      'Authorization': token??"",
+      'Authorization': token ?? "",
       'Content-Type': 'application/json',
     };
 
@@ -76,7 +76,7 @@ class DioHelperShop {
   }) async {
     dio!.options.headers = {
       'lang': lang,
-      'Authorization': token??"",
+      'Authorization': token ?? "",
       'Content-Type': 'application/json',
     };
 

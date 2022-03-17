@@ -11,7 +11,8 @@ class ShopLayout extends StatelessWidget {
       init: ShopLayoutController(),
       builder: (shopLayoutController) => Scaffold(
         appBar: AppBar(
-          title: Text("Shop Layout"),
+          title: Text(
+              shopLayoutController.titles[shopLayoutController.currentIndex]),
           actions: [
             IconButton(
                 onPressed: () {

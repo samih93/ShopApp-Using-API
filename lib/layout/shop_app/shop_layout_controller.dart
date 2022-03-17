@@ -30,13 +30,15 @@ class ShopLayoutController extends GetxController {
     SettingsScreen()
   ];
 
+  final titles = ["Shop Screen", "Category", "Favorites", "Settings"];
+
 // NOTE: first call for  constructor  i retreive needs data
   ShopLayoutController() {
     //FIXME
-    // getHomeData();
-    // getCategories();
-    // getFavorites();
-    // getUserProfile();
+    getHomeData();
+    getCategories();
+    getFavorites();
+    getUserProfile();
   }
 
   // NOTE: --------------------- On Change Index Of Screens ------------------
